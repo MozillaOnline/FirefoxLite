@@ -70,8 +70,12 @@ import org.mozilla.focus.utils.IntentUtils;
 import org.mozilla.focus.utils.Settings;
 import org.mozilla.focus.utils.SupportUtils;
 import org.mozilla.focus.utils.ViewUtils;
+<<<<<<< HEAD
 import org.mozilla.focus.web.GeoPermissionCache;
 import org.mozilla.focus.web.HttpAuthenticationDialogBuilder;
+=======
+import org.mozilla.focus.web.WebViewProvider;
+>>>>>>> tabs: let BrowserFragment not to extend WebFragment
 import org.mozilla.focus.widget.AnimatedProgressBar;
 import org.mozilla.focus.widget.BackKeyHandleable;
 import org.mozilla.focus.widget.FindInPage;
@@ -685,7 +689,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
     }
 
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionHandler.onRequestPermissionsResult(getContext(), requestCode, permissions, grantResults);
@@ -830,6 +833,14 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         return true;
     }
 
+    public void setBlockingEnabled(boolean enabled) {
+        final List<Tab> tabs = tabsSession.getTabs();
+        for (final Tab tab : tabs) {
+            tab.setBlockingEnabled(enabled);
+        }
+    }
+
+    public void loadUrl(@NonNull final String url, boolean openNewTab) {
     /**
      * @param url                 target url
      * @param openNewTab          whether to load url in a new tab or not
@@ -1134,6 +1145,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             }
 
             return IntentUtils.handleExternalUri(getContext(), url);
+
         }
 
         @Override
@@ -1153,7 +1165,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             hideFindInPage();
             if (sessionManager.getFocusSession() != null) {
                 final String currentUrl = sessionManager.getFocusSession().getUrl();
-
                 final boolean progressIsForLoadedUrl = TextUtils.equals(currentUrl, loadedUrl);
                 // Some new url may give 100 directly and then start from 0 again. don't treat
                 // as loaded for these urls;
