@@ -68,6 +68,7 @@ import org.mozilla.focus.utils.IntentUtils;
 import org.mozilla.focus.utils.Settings;
 import org.mozilla.focus.utils.ThreadUtils;
 import org.mozilla.focus.utils.UrlUtils;
+import org.mozilla.focus.web.WebViewProvider;
 import org.mozilla.focus.widget.AnimatedProgressBar;
 import org.mozilla.focus.widget.BackKeyHandleable;
 import org.mozilla.focus.widget.FragmentListener;
@@ -115,6 +116,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
 
     private ViewGroup webViewSlot;
     private TabsSession tabsSession;
+
 
     private View backgroundView;
     private TransitionDrawable backgroundTransition;
@@ -402,6 +404,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             tabCounter.setCount(tabsSession.getTabsCount());
         }
 
+
         return view;
     }
 
@@ -581,7 +584,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         }
     }
 
-
     /**
      * Hide system bars. They can be revealed temporarily with system gestures, such as swiping from
      * the top of the screen. These transient system bars will overlay app’s content, may have some
@@ -732,6 +734,14 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         return true;
     }
 
+    public void setBlockingEnabled(boolean enabled) {
+        final List<Tab> tabs = tabsSession.getTabs();
+        for (final Tab tab : tabs) {
+            tab.setBlockingEnabled(enabled);
+        }
+    }
+
+    public void loadUrl(@NonNull final String url, boolean openNewTab) {
     /**
      * @param url                 target url
      * @param openNewTab          whether to load url in a new tab or not
@@ -999,11 +1009,11 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             backgroundTransition.resetTransition();
         }
 
-
         private void updateUrlFromWebView(@NonNull Tab source) {
             if (tabsSession.getFocusTab() != null) {
                 final String viewURL = tabsSession.getFocusTab().getUrl();
                 onURLChanged(source, viewURL);
+
             }
         }
 
@@ -1024,6 +1034,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             }
 
             historyInserter.onTabFinished(tab);
+
         }
 
         @Override
@@ -1050,7 +1061,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
 
             if (tabsSession.getFocusTab() != null) {
                 final String currentUrl = tabsSession.getFocusTab().getUrl();
-
                 final boolean progressIsForLoadedUrl = TextUtils.equals(currentUrl, loadedUrl);
                 // Some new url may give 100 directly and then start from 0 again. don't treat
                 // as loaded for these urls;
