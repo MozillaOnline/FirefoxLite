@@ -22,6 +22,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -36,8 +37,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+
 import android.support.v7.widget.SnapHelper;
 import android.text.TextUtils;
+
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -61,6 +65,10 @@ import org.mozilla.fileutils.FileUtils;
 import org.mozilla.focus.Inject;
 import org.mozilla.focus.R;
 import org.mozilla.focus.activity.MainActivity;
+
+import org.mozilla.focus.navigation.ScreenNavigator;
+import org.mozilla.focus.activity.AddTopsiteActivity;
+
 import org.mozilla.focus.history.BrowsingHistoryManager;
 import org.mozilla.focus.history.model.Site;
 import org.mozilla.focus.locale.LocaleAwareFragment;
@@ -109,22 +117,37 @@ import org.mozilla.rocket.util.LoggerWrapper;
 import org.mozilla.threadutils.ThreadUtils;
 import org.mozilla.urlutils.UrlUtils;
 
+
 import java.io.File;
 import java.lang.ref.WeakReference;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+<<<<<<< HEAD
 import static org.mozilla.rocket.widget.NewsSourcePreference.PREF_INT_NEWS_PRIORITY;
 
 public class HomeFragment extends LocaleAwareFragment implements TopSitesContract.View, TopSitesContract.Model,
         ScreenNavigator.HomeScreen, ContentPortalView.ContentPortalListener {
+=======
+
+import java.util.UUID;
+
+
+public class HomeFragment extends LocaleAwareFragment implements TopSitesContract.View,
+        ScreenNavigator.HomeScreen {
+>>>>>>> Topsites
     private static final String TAG = "HomeFragment";
 
     public static final String TOPSITES_PREF = "topsites_pref";
@@ -153,6 +176,9 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private JSONArray orginalDefaultSites = null;
     private SessionManager sessionManager;
     private final SessionManagerObserver observer = new SessionManagerObserver();
+    private int MAX_TOPSITES = 8;
+    private final Site ADD_SITE = new Site();
+
     private RecyclerView banner;
     private LinearLayoutManager bannerLayoutManager;
     private BroadcastReceiver receiver;
@@ -541,7 +567,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         };
         snapHelper.attachToRecyclerView(banner);
 
+<<<<<<< HEAD
         SwipeMotionLayout home_container = view.findViewById(R.id.home_container);
+=======
+        SwipeMotionLayout home_container = (SwipeMotionLayout)view.findViewById(R.id.home_container);
+>>>>>>> Topsites
         home_container.setOnSwipeListener(new GestureListenerAdapter());
 
         if (ThemeManager.shouldShowOnboarding(view.getContext())) {
@@ -666,6 +696,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         }
         timer.cancel();
         timer = null;
+<<<<<<< HEAD
         stopAnimation();
     }
 
@@ -676,6 +707,9 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         if (arrow2 != null && arrow2.getAnimation() != null) {
             arrow2.getAnimation().cancel();
         }
+=======
+        updateTopSitesData(getContext());
+>>>>>>> Topsites
     }
 
     @Override
@@ -723,15 +757,28 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 
     @Override
     public void showSites(@NonNull List<Site> sites) {
+<<<<<<< HEAD
         TopSideComparator topSideComparator = new TopSideComparator();
         Collections.sort(sites, topSideComparator);
 
         if (this.topSiteAdapter == null) {
             this.topSiteAdapter = new TopSiteAdapter(sites, clickListener, clickListener, pinSiteManager);
+=======
+        ADD_SITE.setId(0);
+        ADD_SITE.setViewCount(0);
+        ADD_SITE.setFavIconUri("//android_asset/topsites/icon/ic_add.png");
+        if (this.topSiteAdapter == null) {
+            Log.e("Topsite","adapter null");
+            this.topSiteAdapter = new TopSiteAdapter(sites, clickListener, clickListener);
+>>>>>>> Topsites
             this.recyclerView.setAdapter(topSiteAdapter);
         } else {
+            Log.e("Topsite","adapter Not null");
             this.recyclerView.setAdapter(topSiteAdapter);
             this.topSiteAdapter.setSites(sites);
+        }
+        if (this.topSiteAdapter.sites.size()<MAX_TOPSITES && (!this.topSiteAdapter.sites.contains(ADD_SITE))){
+            appendSite(ADD_SITE);
         }
     }
 
@@ -795,13 +842,20 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         public void onClick(View v) {
             final Site site = (Site) v.getTag();
             final Activity parent = getActivity();
-            if ((site != null) && (parent instanceof FragmentListener)) {
+
+            //if the site is not an addTopsite button
+            if (site.getId() != 0 ) {
+                            if ((site != null) && (parent instanceof FragmentListener)) {
                 ScreenNavigator.get(v.getContext()).showBrowserScreen(site.getUrl(), true, false);
                 ViewParent viewParent = v.getParent();
                 if (viewParent instanceof ViewGroup) {
                     int index = ((ViewGroup) v.getParent()).indexOfChild(v);
                     TelemetryWrapper.clickTopSiteOn(index, site.isDefault() ? site.getTitle() : "");
                 }
+            }else{
+                //Start AddTopsiteActivity
+                Intent intent = new Intent(getActivity(),AddTopsiteActivity.class);
+                startActivityForResult(intent, 999);
             }
         }
 
@@ -809,7 +863,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         public boolean onLongClick(View v) {
             final Site site = (Site) v.getTag();
 
-            if (site == null) {
+            if (site == null || site.getId()== 0 ) {
                 return false;
             }
             final PopupMenu popupMenu = new PopupMenu(v.getContext(), v, Gravity.CLIP_HORIZONTAL);
@@ -821,6 +875,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
 
             popupMenu.setOnMenuItemClickListener(item -> {
+
                 switch (item.getItemId()) {
                     case R.id.pin:
                         presenter.pinSite(site, HomeFragment.this::refreshTopSites);
@@ -842,6 +897,25 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                     default:
                         throw new IllegalStateException("Unhandled menu item");
                 }
+
+                    switch(item.getItemId()){
+                        case R.id.remove:
+                            if (site.getId() != 0) {
+                                presenter.removeSite(site);
+                                removeDefaultSites(site);
+                                TopSitesUtils.saveDefaultSites(getContext(), HomeFragment.this.orginalDefaultSites);
+                                BrowsingHistoryManager.getInstance().queryTopSites(TOP_SITES_QUERY_LIMIT, TOP_SITES_QUERY_MIN_VIEW_COUNT, mTopSitesQueryListener);
+                                TelemetryWrapper.removeTopSite(true);
+                            } else {
+                                site.setViewCount(1);
+                                BrowsingHistoryManager.getInstance().updateLastEntry(site, mTopSiteUpdateListener);
+                                TelemetryWrapper.removeTopSite(false);
+                            }
+                            break;
+                        default:
+                            throw new IllegalStateException("Unhandled menu item");
+                    }
+
 
                 return true;
             });
@@ -873,11 +947,29 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private void constructTopSiteList(List<Site> historySites) {
         //if history data are equal to the default data, merge them
         initDefaultSitesFromJSONArray(this.orginalDefaultSites);
+        if(this.topSiteAdapter != null) {
+            this.presenter.setSites(this.topSiteAdapter.sites);
+        }
         List<Site> topSites = new ArrayList<>(this.presenter.getSites());
+<<<<<<< HEAD
 
         mergeHistorySiteToTopSites(historySites, topSites);
         mergePinSiteToTopSites(pinSiteManager.getPinSites(), topSites);
 
+=======
+        for (Site topSite: topSites) {
+            Iterator<Site> querySitesIterator = querySites.iterator();
+            while (querySitesIterator.hasNext()) {
+                Site temp = querySitesIterator.next();
+                if (UrlUtils.urlsMatchExceptForTrailingSlash(topSite.getUrl(), temp.getUrl())) {
+                    topSite.setViewCount(topSite.getViewCount()+ temp.getViewCount());
+                    querySitesIterator.remove();
+                }
+            }
+        }
+
+        /*topSites.addAll(querySites);
+>>>>>>> Topsites
         TopSideComparator topSideComparator = new TopSideComparator();
         Collections.sort(topSites, topSideComparator);
 
@@ -886,7 +978,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             removeDefaultSites(removeSites);
 
             topSites = topSites.subList(0, TOP_SITES_QUERY_LIMIT);
-        }
+        }*/
 
         this.presenter.setSites(topSites);
         this.presenter.populateSites();
@@ -934,7 +1026,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 
     private void removeDefaultSites(List<Site> removeSites) {
         boolean isRemove = false;
-        for (int i = 0; i < removeSites.size(); i++) {
+        for(int i = 0; i < removeSites.size(); i++) {
             Site rSite = removeSites.get(i);
             if (rSite.getId() < 0) {
                 removeDefaultSites(rSite);
@@ -959,7 +1051,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                     }
                 }
             }
-        } catch (JSONException e) {
+        }  catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -1031,6 +1123,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         }
     }
 
+<<<<<<< HEAD
     // TODO: Reduce complexity here, a possible solution is to use the HashMap for site list
     private void removeDuplicatedSites(List<Site> sites, Site site, OnRemovedListener listener) {
         final Iterator<Site> siteIterator = sites.iterator();
@@ -1046,6 +1139,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private interface OnRemovedListener {
         void onRemoved(Site site);
     }
+=======
+>>>>>>> Topsites
 
     private static void parseCursorToSite(Cursor cursor, List<String> urls, List<byte[]> icons) {
         String url = cursor.getString(cursor.getColumnIndex(HistoryContract.BrowsingHistory.URL));
@@ -1105,6 +1200,57 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
             db.execSQL("DROP TABLE " + HistoryDatabaseHelper.Tables.BROWSING_HISTORY_LEGACY);
             PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(TOP_SITES_V2_PREF, true).apply();
+		}
+	}
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 999&&resultCode==1001){
+            String [] s = data.getStringExtra("result").split(" ",4);
+            Site newSite = new Site();
+            newSite.setTitle(s[0]);
+            if(!UrlUtils.isHttpOrHttps(s[1])){
+                String url = "http://"+s[1];
+                newSite.setUrl(url);
+            }else{
+                newSite.setUrl(s[1]);
+            }
+            if(s[2].isEmpty()) {
+                newSite.setFavIconUri("//android_asset/topsites/icon/"+"ic_default.png");
+            }else{
+                newSite.setFavIconUri("//android_asset/topsites/icon/"+s[2]);
+            }
+            if(String.valueOf(s[3]).equals("-11")) {
+                long newSiteId = Long.valueOf(UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
+                newSite.setId(newSiteId);
+                Log.e("Topsite","if"+String.valueOf(newSiteId));
+            }else{
+                newSite.setId(Long.parseLong(s[3]));
+                Log.e("Topsite","else"+String.valueOf(s[3]));
+            }
+            this.topSiteAdapter.removeSite(ADD_SITE);
+            removeDefaultSites(ADD_SITE);
+            appendSite(newSite);
+            try {
+                JSONObject jsonSite = new JSONObject();
+                jsonSite.put("id", newSite.getId());
+                jsonSite.put("url", newSite.getUrl());
+                jsonSite.put("title", newSite.getTitle());
+                jsonSite.put("viewCount", newSite.getViewCount());
+                jsonSite.put("lastViewTimestamp", newSite.getLastViewTimestamp());
+                //change to default icon later
+                if(s[2].isEmpty()) {
+                    jsonSite.put("favicon", "ic_default.png");
+                }else{
+                    jsonSite.put("favicon",s[2]);
+                }
+                this.orginalDefaultSites.put(jsonSite);
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            TopSitesUtils.saveDefaultSites(getContext(), HomeFragment.this.orginalDefaultSites);
+
         }
     }
 

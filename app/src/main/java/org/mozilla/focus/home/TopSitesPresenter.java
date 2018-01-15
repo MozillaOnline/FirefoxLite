@@ -5,10 +5,16 @@
 
 package org.mozilla.focus.home;
 
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 
 import org.mozilla.focus.history.model.Site;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +24,10 @@ public class TopSitesPresenter implements TopSitesContract.Presenter {
     private TopSitesContract.Model model;
 
     private List<Site> sites;
+
+    /*private int MAX_TOPSITES = 8;
+
+    private Site ADD_SITE = new Site();*/
 
     public TopSitesPresenter() {
         this.sites = new ArrayList<>();

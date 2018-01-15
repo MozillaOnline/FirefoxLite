@@ -6,8 +6,13 @@
 package org.mozilla.focus.widget;
 
 import android.app.DownloadManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.content.Intent;
+import android.net.Uri;
+import android.support.design.widget.BaseTransientBottomBar;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;

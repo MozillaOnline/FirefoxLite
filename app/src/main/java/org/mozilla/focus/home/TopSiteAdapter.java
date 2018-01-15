@@ -11,6 +11,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.StrictMode;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
@@ -26,15 +27,25 @@ import org.mozilla.focus.utils.DimenUtils;
 import org.mozilla.icon.FavIconUtils;
 import org.mozilla.rocket.home.pinsite.PinSiteManager;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
 
+<<<<<<< HEAD
     private List<Site> sites = new ArrayList<>();
     private final View.OnClickListener clickListener;
     private final View.OnLongClickListener longClickListener;
     private final PinSiteManager pinSiteManager;
+=======
+    List<Site> sites = new ArrayList<>();
+    final View.OnClickListener clickListener;
+    final View.OnLongClickListener longClickListener;
+    private int MAX_TOPSITES = 8;
+    private Site ADD_SITE = new Site();
+>>>>>>> Topsites
 
     TopSiteAdapter(@NonNull List<Site> sites,
                    @Nullable View.OnClickListener clickListener,
@@ -55,8 +66,13 @@ class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
         return new SiteViewHolder(view);
     }
 
+<<<<<<< HEAD
     private int addWhiteToColorCode(int colorCode, @SuppressWarnings("SameParameterValue") float percentage) {
         int result = (int) (colorCode + 0xFF * percentage / 2);
+=======
+    private int addWhiteToColorCode(int colorCode, float percentage) {
+        int result = (int) ( colorCode + 0xFF * percentage / 2 );
+>>>>>>> Topsites
         if (result > 0xFF) {
             result = 0xFF;
         }
@@ -87,6 +103,7 @@ class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
 
         // let click listener knows which site is clicked
         holder.itemView.setTag(site);
+
 
         if (clickListener != null) {
             holder.itemView.setOnClickListener(clickListener);

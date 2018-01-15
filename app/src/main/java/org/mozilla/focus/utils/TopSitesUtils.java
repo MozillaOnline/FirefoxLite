@@ -7,7 +7,11 @@ package org.mozilla.focus.utils;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
+<<<<<<< HEAD
 import android.support.annotation.RawRes;
+=======
+import android.util.Log;
+>>>>>>> Topsites
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +42,6 @@ public class TopSitesUtils {
 
     /**
      * get default topsites data from assets and restore it to SharedPreferences
-     *
      * @param context
      * @return default TopSites Json Array
      */
@@ -47,8 +50,8 @@ public class TopSitesUtils {
         try {
             obj = new JSONArray(loadDefaultSitesFromAssets(context, R.raw.topsites));
             long lastViewTimestampSystem = System.currentTimeMillis();
-            for (int i = 0; i < obj.length(); i++) {
-                ((JSONObject) obj.get(i)).put("lastViewTimestamp", lastViewTimestampSystem);
+            for (int i = 0 ; i < obj.length(); i++) {
+                ((JSONObject)obj.get(i)).put("lastViewTimestamp",lastViewTimestampSystem);
             }
             saveDefaultSites(context, obj);
         } catch (JSONException e) {
@@ -67,7 +70,13 @@ public class TopSitesUtils {
     public static String loadDefaultSitesFromAssets(Context context, @RawRes int resId) {
         String json = "[]";
         try {
+<<<<<<< HEAD
             InputStream is = context.getResources().openRawResource(resId);
+=======
+
+            InputStream is = context.getResources().openRawResource(R.raw.topsites);
+
+>>>>>>> Topsites
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -90,11 +99,13 @@ public class TopSitesUtils {
                 .apply();
     }
 
+
     public static List<Site> paresJsonToList(Context context, JSONArray jsonArray) {
         List<Site> defaultSites = new ArrayList<>();
         try {
             if (jsonArray != null) {
                 for (int i = 0; i < jsonArray.length(); i++) {
+<<<<<<< HEAD
                     JSONObject json_site = (JSONObject) jsonArray.get(i);
                     final long id = json_site.getLong(KEY_ID);
                     final String title = json_site.getString(KEY_TITLE);
@@ -102,12 +113,21 @@ public class TopSitesUtils {
                     final long viewCount = json_site.getLong(KEY_VIEW_COUNT);
                     final long lastViewed = json_site.getLong(KEY_LAST_VIEW_TIMESTAMP);
                     final String faviconUri = TOP_SITE_ASSET_PREFIX + json_site.getString(KEY_FAVICON);
+=======
+                    JSONObject json_site = (JSONObject)jsonArray.get(i);
+                    final long id = json_site.getLong("id");
+                    final String title = json_site.getString("title");
+                    final String url = json_site.getString("url");
+                    final long viewCount = json_site.getLong("viewCount");
+                    final long lastViewed = json_site.getLong("lastViewTimestamp");
+                    final String faviconUri = TOP_SITE_ASSET_PREFIX + json_site.getString("favicon");
+>>>>>>> Topsites
                     Site site = new Site(id, title, url, viewCount, lastViewed, faviconUri);
                     site.setDefault(true);
                     defaultSites.add(site);
                 }
             }
-        } catch (JSONException e) {
+        }  catch (JSONException e) {
             e.printStackTrace();
         } finally {
             return defaultSites;
