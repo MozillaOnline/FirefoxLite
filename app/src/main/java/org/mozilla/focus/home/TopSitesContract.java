@@ -5,6 +5,7 @@
 
 package org.mozilla.focus.home;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.mozilla.focus.history.model.Site;
