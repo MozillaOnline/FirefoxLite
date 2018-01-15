@@ -25,6 +25,16 @@ buildscript {
 android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tools
+    signingConfigs {
+        config {
+            keyAlias 'cn_rocket'
+            keyPassword 'mozilla'
+            storeFile file('/Users/mozillabeijing/signedkeybeta')
+            storePassword 'mozilla'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "org.mozilla"
         minSdkVersion Versions.min_sdk
@@ -64,14 +74,11 @@ android {
             }
         }
     }
-
     dexOptions {
         preDexLibraries true
     }
-
     // We have a three dimensional build configuration:
     // BUILD TYPE (debug, beta, release)
-
     buildTypes {
         release {
             minifyEnabled true
@@ -80,11 +87,10 @@ android {
         }
         beta {
             initWith release
-
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            matchingFallbacks = ["release"]
+            signingConfig signingConfigs.config
         }
         debug {
             def userName = System.getenv("USER")
@@ -96,7 +102,6 @@ android {
         // for some developers (i.e. variables can't be inspected or seen).
         coverage {
             initWith debug
-
             applicationIdSuffix ".coverage"
             testCoverageEnabled true
             matchingFallbacks = ["debug"]
@@ -112,14 +117,12 @@ android {
             }
         }
     }
-
     // used by Room, to test migrations
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 
     flavorDimensions "product", "engine"
-
     productFlavors {
         focus {
             dimension "product"
@@ -140,7 +143,6 @@ android {
         }
 
     }
-
     variantFilter { variant ->
         def flavors = variant.flavors*.name
         // We only need a gecko debug and beta build for now.
@@ -148,7 +150,6 @@ android {
             setIgnore(true)
         }
     }
-
     sourceSets {
         test {
             resources {
@@ -185,6 +186,7 @@ repositories {
 }
 
 dependencies {
+
     implementation project(':third_party:subsampling-scale-image-view')
     implementation project(':third_party:glide:annotation')
     implementation project(':third_party:glide:library')
@@ -202,6 +204,7 @@ dependencies {
     annotationProcessor Libs.room_compiler
     kapt Libs.room_compiler
 
+
     implementation(Libs.findbugs_annotations, {
         // We really only need the SuppressFBWarnings annotation, everything else can be ignored.
         // Without this we get weird failures due to dependencies.
@@ -212,6 +215,7 @@ dependencies {
 
     implementation Libs.adjust
     implementation Libs.play_services_analytics // Required by Adjust
+
 
     api Libs.lottie
 
@@ -237,6 +241,7 @@ dependencies {
     androidTestImplementation Libs.kotlin_stdlib
     testImplementation Libs.kotlin_stdlib
 
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
 }
 
 // -------------------------------------------------------------------------------------------------
