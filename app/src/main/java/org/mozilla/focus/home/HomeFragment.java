@@ -329,7 +329,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
         }
 
-        topSites.addAll(querySites);
+        /*topSites.addAll(querySites);
         TopSideComparator topSideComparator = new TopSideComparator();
         Collections.sort(topSites, topSideComparator);
 
@@ -338,7 +338,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             removeDefaultSites(removeSites);
 
             topSites = topSites.subList(0, TOP_SITES_QUERY_LIMIT);
-        }
+        }*/
 
         this.presenter.setSites(topSites);
         this.presenter.populateSites();

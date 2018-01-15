@@ -26,6 +26,16 @@ buildscript {
 android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tools
+    signingConfigs {
+        config {
+            keyAlias 'cn_rocket'
+            keyPassword 'mozilla'
+            storeFile file('/Users/mozillabeijing/signedkeybeta')
+            storePassword 'mozilla'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "org.mozilla"
         minSdkVersion Versions.min_sdk
@@ -72,14 +82,11 @@ android {
             targetCompatibility JavaVersion.VERSION_1_8
         }
     }
-
     dexOptions {
         preDexLibraries true
     }
-
     // We have a three dimensional build configuration:
     // BUILD TYPE (debug, beta, release)
-
     buildTypes {
         release {
             minifyEnabled true
@@ -93,6 +100,7 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             matchingFallbacks = ["release", "firebase"]
+            signingConfig signingConfigs.config
         }
         debug {
             def userName = System.getenv("USER")
@@ -131,14 +139,12 @@ android {
         }
         execution 'ANDROID_TEST_ORCHESTRATOR'
     }
-
     // used by Room, to test migrations
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 
     flavorDimensions "product", "engine"
-
     productFlavors {
         focus {
             dimension "product"
@@ -159,7 +165,6 @@ android {
         }
 
     }
-
     variantFilter { variant ->
         def flavors = variant.flavors*.name
         // We only need a gecko debug and beta build for now.
@@ -167,7 +172,6 @@ android {
             setIgnore(true)
         }
     }
-
     sourceSets {
         test {
             resources {
@@ -204,6 +208,7 @@ repositories {
 }
 
 dependencies {
+
     implementation project(':third_party:subsampling-scale-image-view')
     implementation project(':third_party:glide:annotation')
     implementation project(':third_party:glide:library')
@@ -223,6 +228,7 @@ dependencies {
     // Architecture components
     implementation "android.arch.lifecycle:extensions:${Versions.lifecycle}"
     implementation "android.arch.lifecycle:common-java8:${Versions.lifecycle}"
+
     implementation "android.arch.persistence.room:runtime:${Versions.room}"
     kapt "android.arch.persistence.room:compiler:${Versions.room}"
 
@@ -238,6 +244,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-analytics:${Versions.firebase}" // Required by Adjust
 
     implementation "com.airbnb.android:lottie:${Versions.lottie}"
+
 
     testImplementation "junit:junit:${Versions.junit}"
     testImplementation "org.robolectric:robolectric:${Versions.robolectric}"
@@ -269,6 +276,7 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${Versions.leakcanary}"
     firebaseImplementation "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
 
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
 }
 
 // -------------------------------------------------------------------------------------------------
