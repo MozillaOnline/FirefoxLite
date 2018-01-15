@@ -27,6 +27,10 @@ public class Site {
         this.favIconUri = favIconUri;
     }
 
+    public Site(){
+
+    }
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "_id")
     private long id;

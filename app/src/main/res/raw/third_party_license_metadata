@@ -12,11 +12,10 @@
 493:158 AppleJavaExtensions
 652:38 jaxen
 691:46 xml-apis
-738:92 compiler-4.0.0
-831:46 compiler-1.1.1
-878:46 javapoet-1.8.0
-925:46 jsr305-3.0.1
-972:92 annotations-4.0.0
+738:92 compiler
+831:46 javapoet
+3462:46 annotations
+1018:46 compiler-1.1.1
 1065:62 kotlin-metadata-1.4.0
 1128:46 migration-1.1.1
 1175:84 kotlin-compiler-lite-1.0.3-k-1.2.40
@@ -66,7 +65,6 @@
 3316:47 fastutil
 3364:50 jopt-simple
 3415:46 json-simple
-3462:46 annotations
 3509:121 kxml2
 3631:46 kotlin-compiler
 3678:46 kotlin-stdlib-jre7

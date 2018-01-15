@@ -5,11 +5,13 @@
 
 package org.mozilla.focus.home;
 
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.StrictMode;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
@@ -24,6 +26,8 @@ import org.mozilla.focus.history.model.Site;
 import org.mozilla.focus.utils.DimenUtils;
 import org.mozilla.icon.FavIconUtils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +36,8 @@ class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
     List<Site> sites = new ArrayList<>();
     final View.OnClickListener clickListener;
     final View.OnLongClickListener longClickListener;
+    private int MAX_TOPSITES = 8;
+    private Site ADD_SITE = new Site();
 
     TopSiteAdapter(@NonNull List<Site> sites,
                    @Nullable View.OnClickListener clickListener,
@@ -50,7 +56,7 @@ class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
     }
 
     private int addWhiteToColorCode(int colorCode, float percentage) {
-        int result = (int) (colorCode + 0xFF * percentage / 2);
+        int result = (int) ( colorCode + 0xFF * percentage / 2 );
         if (result > 0xFF) {
             result = 0xFF;
         }
@@ -96,6 +102,7 @@ class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
 
         // let click listener knows which site is clicked
         holder.itemView.setTag(site);
+
 
         if (clickListener != null) {
             holder.itemView.setOnClickListener(clickListener);
