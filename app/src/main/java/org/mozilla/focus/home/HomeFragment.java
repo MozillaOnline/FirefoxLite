@@ -6,14 +6,17 @@
 package org.mozilla.focus.home;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -31,6 +34,7 @@ import org.json.JSONObject;
 import org.mozilla.focus.Inject;
 import org.mozilla.focus.R;
 import org.mozilla.focus.activity.ScreenNavigator;
+import org.mozilla.focus.activity.AddTopsiteActivity;
 import org.mozilla.focus.history.BrowsingHistoryManager;
 import org.mozilla.focus.history.model.Site;
 import org.mozilla.focus.locale.LocaleAwareFragment;
@@ -47,10 +51,13 @@ import org.mozilla.focus.utils.UrlUtils;
 import org.mozilla.focus.widget.FragmentListener;
 import org.mozilla.focus.widget.SwipeMotionLayout;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 public class HomeFragment extends LocaleAwareFragment implements TopSitesContract.View {
 
@@ -71,6 +78,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private TopSiteAdapter topSiteAdapter;
     private JSONArray orginalDefaultSites = null;
     private TabsSession tabsSession;
+    private int MAX_TOPSITES = 8;
+    private final Site ADD_SITE = new Site();
 
     private final TabsChromeListener tabsChromeListener = new TabsChromeListener();
 
@@ -117,7 +126,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
         });
 
-        SwipeMotionLayout home_container = (SwipeMotionLayout) view.findViewById(R.id.home_container);
+        SwipeMotionLayout home_container = (SwipeMotionLayout)view.findViewById(R.id.home_container);
         home_container.setOnSwipeListener(new OnSwipeListener.OnSwipeListenerAdapter() {
             @Override
             public void onSwipeUp() {
@@ -136,7 +145,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     @Override
     public void onResume() {
         super.onResume();
-        updateTopSitesData();
+        updateTopSitesData(getContext());
     }
 
     @Override
@@ -169,12 +178,22 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 
     @Override
     public void showSites(@NonNull List<Site> sites) {
+        ADD_SITE.setId(0);
+        ADD_SITE.setViewCount(0);
+        //Change the icon later
+        Bitmap bitmap = TopSitesUtils.getIconFromAssets(getContext(),"ic_detik.png");
+        ADD_SITE.setFavIcon(bitmap);
         if (this.topSiteAdapter == null) {
+            Log.e("Topsite","adapter null");
             this.topSiteAdapter = new TopSiteAdapter(sites, clickListener, clickListener);
             this.recyclerView.setAdapter(topSiteAdapter);
         } else {
+            Log.e("Topsite","adapter Not null");
             this.recyclerView.setAdapter(topSiteAdapter);
             this.topSiteAdapter.setSites(sites);
+        }
+        if (this.topSiteAdapter.sites.size()<MAX_TOPSITES && (!this.topSiteAdapter.sites.contains(ADD_SITE))){
+            appendSite(ADD_SITE);
         }
     }
 
@@ -228,13 +247,20 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         public void onClick(View v) {
             final Site site = (Site) v.getTag();
             final Activity parent = getActivity();
-            if ((site != null) && (parent instanceof FragmentListener)) {
+
+            //if the site is not an addTopsite button
+            if (site.getId() != 0 ) {
+                            if ((site != null) && (parent instanceof FragmentListener)) {
                 ScreenNavigator.get(v.getContext()).showBrowserScreen(site.getUrl(), true, false);
                 ViewParent viewParent = v.getParent();
                 if (viewParent instanceof ViewGroup) {
                     int index = ((ViewGroup) v.getParent()).indexOfChild(v);
                     TelemetryWrapper.clickTopSiteOn(index);
                 }
+            }else{
+                //Start AddTopsiteActivity
+                Intent intent = new Intent(getActivity(),AddTopsiteActivity.class);
+                startActivityForResult(intent, 999);
             }
         }
 
@@ -242,7 +268,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         public boolean onLongClick(View v) {
             final Site site = (Site) v.getTag();
 
-            if (site == null) {
+            if (site == null || site.getId()== 0 ) {
                 return false;
             }
             final PopupMenu popupMenu = new PopupMenu(v.getContext(), v, Gravity.CLIP_HORIZONTAL);
@@ -250,9 +276,9 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
-                    switch (item.getItemId()) {
+                    switch(item.getItemId()){
                         case R.id.remove:
-                            if (site.getId() < 0) {
+                            if (site.getId() != 0) {
                                 HomeFragment.this.presenter.removeSite(site);
                                 HomeFragment.this.removeDefaultSites(site);
                                 TopSitesUtils.saveDefaultSites(getContext(), HomeFragment.this.orginalDefaultSites);
@@ -283,7 +309,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             List<Site> querySites = new ArrayList<>();
             for (Object site : sites) {
                 if (site instanceof Site) {
-                    querySites.add((Site) site);
+                    querySites.add((Site)site);
                 }
             }
 
@@ -301,13 +327,16 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private void mergeQueryAndDefaultSites(List<Site> querySites) {
         //if query data are equal to the default data, merge them
         initDefaultSitesFromJSONArray(this.orginalDefaultSites);
+        if(this.topSiteAdapter != null) {
+            this.presenter.setSites(this.topSiteAdapter.sites);
+        }
         List<Site> topSites = new ArrayList<>(this.presenter.getSites());
-        for (Site topSite : topSites) {
+        for (Site topSite: topSites) {
             Iterator<Site> querySitesIterator = querySites.iterator();
             while (querySitesIterator.hasNext()) {
                 Site temp = querySitesIterator.next();
                 if (UrlUtils.urlsMatchExceptForTrailingSlash(topSite.getUrl(), temp.getUrl())) {
-                    topSite.setViewCount(topSite.getViewCount() + temp.getViewCount());
+                    topSite.setViewCount(topSite.getViewCount()+ temp.getViewCount());
                     querySitesIterator.remove();
                 }
             }
@@ -354,7 +383,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 
     private void removeDefaultSites(List<Site> removeSites) {
         boolean isRemove = false;
-        for (int i = 0; i < removeSites.size(); i++) {
+        for(int i = 0; i < removeSites.size(); i++) {
             Site rSite = removeSites.get(i);
             if (rSite.getId() < 0) {
                 removeDefaultSites(rSite);
@@ -379,12 +408,12 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                     }
                 }
             }
-        } catch (JSONException e) {
+        }  catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public void updateTopSitesData() {
+    public void updateTopSitesData(Context context) {
         initDefaultSites();
         BrowsingHistoryManager.getInstance().queryTopSites(TOP_SITES_QUERY_LIMIT, TOP_SITES_QUERY_MIN_VIEW_COUNT, mTopSitesQueryListener);
     }
@@ -393,7 +422,53 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REFRESH_REQUEST_CODE) {
-            updateTopSitesData();
+            updateTopSitesData(getContext());
+        }else if(requestCode == 999&&resultCode==1001){
+            String [] s = data.getStringExtra("result").split(" ",4);
+            Site newSite = new Site();
+            newSite.setTitle(s[0]);
+            newSite.setUrl(s[1]);
+            //newSite.setFavIcon(s[2]);
+            //Change to default icon later
+            Bitmap bitmap;
+            if(s[2].isEmpty()) {
+                bitmap = TopSitesUtils.getIconFromAssets(getContext(), "ic_detik.png");
+            }else{
+                bitmap = TopSitesUtils.getIconFromAssets(getContext(), s[2]);
+            }
+            newSite.setFavIcon(bitmap);
+            if(String.valueOf(s[3]).equals("-11")) {
+                long newSiteId = Long.valueOf(UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
+                newSite.setId(newSiteId);
+                Log.e("Topsite","if"+String.valueOf(newSiteId));
+            }else{
+                newSite.setId(Long.parseLong(s[3]));
+                Log.e("Topsite","else"+String.valueOf(s[3]));
+            }
+            this.topSiteAdapter.removeSite(ADD_SITE);
+            removeDefaultSites(ADD_SITE);
+            appendSite(newSite);
+            try {
+                JSONObject jsonSite = new JSONObject();
+                jsonSite.put("id", newSite.getId());
+                jsonSite.put("url", newSite.getUrl());
+                jsonSite.put("title", newSite.getTitle());
+                jsonSite.put("viewCount", newSite.getViewCount());
+                jsonSite.put("lastViewTimestamp", newSite.getLastViewTimestamp());
+                //change to default icon later
+                if(s[2].isEmpty()) {
+                    jsonSite.put("favicon", "ic_detik.png");
+                }else{
+                    jsonSite.put("favicon",s[2]);
+                }
+
+                this.orginalDefaultSites.put(jsonSite);
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            TopSitesUtils.saveDefaultSites(getContext(), HomeFragment.this.orginalDefaultSites);
+
         }
     }
 

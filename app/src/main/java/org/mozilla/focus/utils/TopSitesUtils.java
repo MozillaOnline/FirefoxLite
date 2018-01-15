@@ -10,6 +10,7 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,10 +32,8 @@ import java.util.Locale;
 
 public class TopSitesUtils {
 
-    /**
-     *
+    /** 
      * get default topsites data from assets and restore it to SharedPreferences
-     *
      * @param context
      * @return default TopSites Json Array
      */
@@ -43,8 +42,8 @@ public class TopSitesUtils {
         try {
             obj = new JSONArray(loadDefaultSitesFromAssets(context));
             long lastViewTimestampSystem = System.currentTimeMillis();
-            for (int i = 0; i < obj.length(); i++) {
-                ((JSONObject) obj.get(i)).put("lastViewTimestamp", lastViewTimestampSystem);
+            for (int i = 0 ; i < obj.length(); i++) {
+                ((JSONObject)obj.get(i)).put("lastViewTimestamp",lastViewTimestampSystem);
             }
             saveDefaultSites(context, obj);
         } catch (JSONException e) {
@@ -66,7 +65,7 @@ public class TopSitesUtils {
 
             InputStream is;
             if (localFiles.contains(fileName)) {
-                is = assetManager.open(localPath + "/" + fileName);
+                is = assetManager.open(localPath+"/"+fileName);
             } else {
                 is = assetManager.open(defaultPath);
             }
@@ -99,7 +98,7 @@ public class TopSitesUtils {
         InputStream istream;
         Bitmap bitmap = null;
         try {
-            istream = assetManager.open("topsites/icon/" + fileName);
+            istream = assetManager.open("topsites/icon/"+fileName);
             bitmap = BitmapFactory.decodeStream(istream);
         } catch (IOException e) {
             // handle exception
@@ -113,7 +112,7 @@ public class TopSitesUtils {
         try {
             if (jsonArray != null) {
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject json_site = (JSONObject) jsonArray.get(i);
+                    JSONObject json_site = (JSONObject)jsonArray.get(i);
                     final Site site = new Site();
                     site.setId(json_site.getLong("id"));
                     site.setUrl(json_site.getString("url"));
@@ -125,7 +124,7 @@ public class TopSitesUtils {
                     defaultSites.add(site);
                 }
             }
-        } catch (JSONException e) {
+        }  catch (JSONException e) {
             e.printStackTrace();
         } finally {
             return defaultSites;

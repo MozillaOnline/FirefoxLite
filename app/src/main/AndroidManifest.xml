@@ -98,6 +98,13 @@
             android:theme="@style/SettingsTheme" />
 
         <activity
+            android:name="org.mozilla.focus.activity.AddTopsiteActivity"
+            android:enabled="true"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/SettingsTheme" />
+
+        <activity
             android:name="org.mozilla.focus.screenshot.ScreenshotViewerActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
