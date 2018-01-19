@@ -75,6 +75,7 @@ public class FirstrunPagerAdapter extends PagerAdapter {
             buttonView.setId(R.id.next);
         }
 
+       
 
         return view;
     }

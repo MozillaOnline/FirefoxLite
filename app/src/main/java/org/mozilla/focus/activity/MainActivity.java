@@ -398,7 +398,7 @@ public class MainActivity extends BaseActivity implements FragmentListener,
         }
 
         turboModeButton = menu.findViewById(R.id.menu_turbomode);
-        turboModeButton.setSelected(isTurboEnabled());
+        //turboModeButton.setSelected(isTurboEnabled());
 
         blockImageButton = menu.findViewById(R.id.menu_blockimg);
         blockImageButton.setSelected(isBlockingImages());
@@ -546,7 +546,7 @@ public class MainActivity extends BaseActivity implements FragmentListener,
 
                 TelemetryWrapper.menuBlockImageChangeTo(blockingImages);
                 break;
-            case R.id.menu_turbomode:
+            /*case R.id.menu_turbomode:
                 //  Toggle
                 final boolean turboEnabled = !isTurboEnabled();
                 Settings.getInstance(this).setTurboMode(turboEnabled);
@@ -556,7 +556,7 @@ public class MainActivity extends BaseActivity implements FragmentListener,
                 Toast.makeText(this, stringResource, Toast.LENGTH_SHORT).show();
 
                 TelemetryWrapper.menuTurboChangeTo(turboEnabled);
-                break;
+                break;*/
             case R.id.btn_private_browsing:
                 Intent intent = new Intent(this, PrivateModeActivity.class);
                 startActivity(intent);
@@ -854,7 +854,7 @@ public class MainActivity extends BaseActivity implements FragmentListener,
             if (browserFragment != null) {
                 browserFragment.setContentBlockingEnabled(turboEnabled);
             }
-            setMenuButtonSelected(R.id.menu_turbomode, turboEnabled);
+            //setMenuButtonSelected(R.id.menu_turbomode, turboEnabled);
         } else if (this.getResources().getString(R.string.pref_key_performance_block_images).equals(key)) {
             final boolean blockingImages = isBlockingImages();
             BrowserFragment browserFragment = getBrowserFragment();
