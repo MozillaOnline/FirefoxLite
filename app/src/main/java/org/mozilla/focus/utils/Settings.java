@@ -27,7 +27,8 @@ public class Settings {
 
     private static Settings instance;
     private static final boolean BLOCK_IMAGE_DEFAULT = false;
-    private static final boolean TURBO_MODE_DEFAULT = true;
+    //private static final boolean TURBO_MODE_DEFAULT = true;
+    private static final boolean TURBO_MODE_DEFAULT = false;
     private static final boolean DID_SHOW_RATE_APP_DEFAULT = false;
     private static final boolean DID_SHOW_SHARE_APP_DEFAULT = false;
 

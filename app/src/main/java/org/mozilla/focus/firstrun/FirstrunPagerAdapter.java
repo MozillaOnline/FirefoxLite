@@ -105,9 +105,9 @@ public class FirstrunPagerAdapter extends PagerAdapter {
             buttonView.setId(R.id.next);
         }
 
-        if (position == TURBO_MODE_PAGE_INDEX) {
+        /*if (position == TURBO_MODE_PAGE_INDEX) {
             initForTurboModePage(context, view);
-        }
+        }*/
 
         return view;
     }
