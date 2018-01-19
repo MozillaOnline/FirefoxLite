@@ -2,28 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="添加快速访问"
+        android:textColor="#0c0c0d"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/ic_globe"
+        android:drawablePadding="6dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray"/>
 
     <EditText
         android:id="@+id/topsite_name"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="11dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:background="@drawable/txt_radiusborder"
-        android:hint="Please enter the name"/>
+        android:hint="请输入网站名称"/>
 
     <EditText
         android:id="@+id/topsite_url"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="12dp"
         android:layout_marginLeft="6dp"
         android:layout_marginRight="6dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
         android:background="@drawable/txt_radiusborder"
-        android:hint="Please enter the url"/>
+        android:hint="请输入网址"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -35,54 +48,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/add_topsite"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="#0A84FF"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/button_radiusborder"
                 android:textColor="@android:color/white"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="36dp"
                 android:layout_weight="1"
                 android:onClick="onAddTopsiteClicked"
-                android:text="Add the topsite" />
+                android:text="添加" />
 
             <Button
                 android:id="@+id/cancel_topsite"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="#0A84FF"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/button_radiusborder"
                 android:textColor="@android:color/white"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="36dp"
                 android:layout_weight="1"
                 android:onClick="onCancelTopsiteClicked"
-                android:text="Cancel" />
+                android:text="取消" />
 
         </LinearLayout>
 
 
-        <Button
+        <TextView
             android:id="@+id/hot_list"
+            android:layout_marginTop="4dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/txt_radiusborder"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:onClick="onHotListClicked"
-            android:text="Hot List" />
+            android:gravity="center"
+            android:text="推  荐"
+            android:textColor="#0c0c0d"/>
 
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/topsite_recyclerview"
         android:layout_width="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_height="match_parent" />
 
 

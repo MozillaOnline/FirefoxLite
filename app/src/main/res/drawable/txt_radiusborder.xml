@@ -2,14 +2,14 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <stroke
-        android:width="2px"
+        android:width="1px"
         android:color="#000000" />
 
     <corners
-        android:bottomLeftRadius="5px"
-        android:bottomRightRadius="5px"
-        android:topLeftRadius="5px"
-        android:topRightRadius="5px" />
+        android:bottomLeftRadius="2px"
+        android:bottomRightRadius="2px"
+        android:topLeftRadius="2px"
+        android:topRightRadius="2px" />
 
     <padding
         android:bottom="5dp"
