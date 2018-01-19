@@ -85,7 +85,7 @@
     </FrameLayout>
 
 
-    <FrameLayout
+    <!--<FrameLayout
         android:id="@+id/menu_turbomode"
         style="@style/MenuButtonContainer">
 
@@ -99,7 +99,7 @@
                 style="@style/MenuToggleText"
                 android:text="@string/label_menu_turbo_mode" />
         </LinearLayout>
-    </FrameLayout>
+    </FrameLayout>-->
 
     <FrameLayout
         android:id="@+id/btn_private_browsing"
