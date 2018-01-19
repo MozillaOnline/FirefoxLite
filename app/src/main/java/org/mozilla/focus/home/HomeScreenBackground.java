@@ -52,13 +52,20 @@ public class HomeScreenBackground extends View implements ThemeManager.Themeable
     void init() {
         Rect rect = new Rect();
         ((Activity) getContext()).getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.home_pattern);
+        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.home_pattern);
         paint = new Paint();
         Shader shader1 = new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
         int colors[] = {Color.parseColor("#99FFFFFF"), Color.parseColor("#4dFFFFFF"), Color.parseColor("#1aFFFFFF"), Color.parseColor("#00FFFFFF")};
         float positions[] = {0.0f, 0.4f, 0.7f, 1f};
         Shader shader2 = new LinearGradient(0, rect.top, 0, rect.bottom, colors, positions, Shader.TileMode.CLAMP);
         paint.setShader(new ComposeShader(shader2, shader1, PorterDuff.Mode.MULTIPLY));
+        /*//Shader shader1 = new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
+        //int colors[] = {Color.parseColor("#FFFFFFFF"), Color.parseColor("#88FFFFFF"), Color.parseColor("#55FFFFFF"), Color.parseColor("#00FFFFFF")};
+        int colors[] = {Color.parseColor("#0A80B6"), Color.parseColor("#EFDBA7")};
+        //float positions[] = {0.0f, 0.4f, 0.7f, 1f};
+        Shader shader2 = new LinearGradient(0, rect.top, 0, rect.bottom, colors[0], colors[1], Shader.TileMode.CLAMP);
+        //paint.setShader(new ComposeShader(shader2, shader1, PorterDuff.Mode.MULTIPLY));
+        paint.setShader(shader2);*/
     }
 
     @Override
