@@ -6,7 +6,10 @@
 package org.mozilla.focus.widget;
 
 import android.app.DownloadManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
@@ -158,7 +161,32 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         });
     }
-
+    private void openFolder(final View view, final long rowId){
+        for (int i = 0; i< mDownloadInfo.size();i++){
+            DownloadInfo downloadInfo = mDownloadInfo.get(i);
+            if (rowId == downloadInfo.getRowId()){
+                File file = new File(downloadInfo.getFileUri());
+                Log.e("Download",downloadInfo.getFileUri());
+                if(file == null){
+                    Log.e("Download","file not exist");
+                    return;
+                }
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_DEFAULT);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setDataAndType(Uri.fromFile(file), "file/*");
+                Log.e("Download","intent");
+                try {
+                    mContext.startActivity(intent);
+                    Log.e("Download","startactivity");
+                    mContext.startActivity(Intent.createChooser(intent,"选择浏览工具"));
+                } catch (ActivityNotFoundException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
     private void addItem(DownloadInfo downloadInfo) {
         int index = -1;
         for (int i = 0; i < mDownloadInfo.size(); i++) {
@@ -272,6 +300,11 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                 case R.id.delete:
                                     delete(view, rowid);
                                     TelemetryWrapper.downloadDeleteFile();
+                                    popupMenu.dismiss();
+                                    return true;
+                                case R.id.open_folder:
+                                    Log.e("Download","entercase");
+                                    openFolder(view, rowid);
                                     popupMenu.dismiss();
                                     return true;
                                 case R.id.cancel:

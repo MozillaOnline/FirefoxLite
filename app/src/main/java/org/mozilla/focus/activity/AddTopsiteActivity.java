@@ -55,39 +55,6 @@ public class AddTopsiteActivity extends AppCompatActivity{
         cancelTopsite = findViewById(R.id.cancel_topsite);
         hotList = findViewById(R.id.hot_list);
         topsiteListView = (RecyclerView) findViewById(R.id.topsite_recyclerview);
-
-    }
-
-    private void initData(){
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mAdapter = new HotListAdapter(getData(), this);
-    }
-
-    public void onAddTopsiteClicked(View v){
-        if (topsiteName.getText().toString().isEmpty() || topsiteUrl.getText().toString().isEmpty()){
-            new  AlertDialog.Builder(this).setTitle("No Name or URL" ).setMessage("Please enter the Name and URL" ).setPositiveButton("OK" , null ).show();
-
-        }else if(topsiteName.getText().toString().contains(" ")){
-            new  AlertDialog.Builder(this).setTitle("No spaces are allowed in the name" ).setMessage("Please enter another name" ).setPositiveButton("OK" , null ).show();
-
-        } else{
-            name = topsiteName.getText().toString();
-            url = topsiteUrl.getText().toString();
-            String site = name+" "+url+" "+favIcon+" "+siteId;
-            Intent intent = new Intent();
-            intent.putExtra("result", site);
-            setResult(1001, intent);
-            this.finish();
-
-        }
-    }
-
-    public void onCancelTopsiteClicked(View v){
-        this.finish();
-
-    }
-
-    public void onHotListClicked(View v){
         topsiteListView.setVisibility(View.VISIBLE);
         //historyFragment.getView().setVisibility(View.GONE);
         initData();
@@ -142,6 +109,36 @@ public class AddTopsiteActivity extends AppCompatActivity{
         });
 
     }
+
+    private void initData(){
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mAdapter = new HotListAdapter(getData(), this);
+    }
+
+    public void onAddTopsiteClicked(View v){
+        if (topsiteName.getText().toString().isEmpty() || topsiteUrl.getText().toString().isEmpty()){
+            new  AlertDialog.Builder(this).setTitle("No Name or URL" ).setMessage("Please enter the Name and URL" ).setPositiveButton("OK" , null ).show();
+
+        }else if(topsiteName.getText().toString().contains(" ")){
+            new  AlertDialog.Builder(this).setTitle("No spaces are allowed in the name" ).setMessage("Please enter another name" ).setPositiveButton("OK" , null ).show();
+
+        } else{
+            name = topsiteName.getText().toString();
+            url = topsiteUrl.getText().toString();
+            String site = name+" "+url+" "+favIcon+" "+siteId;
+            Intent intent = new Intent();
+            intent.putExtra("result", site);
+            setResult(1001, intent);
+            this.finish();
+
+        }
+    }
+
+    public void onCancelTopsiteClicked(View v){
+        this.finish();
+
+    }
+
 
     private List<Site> getData() {
         List<Site> data;
