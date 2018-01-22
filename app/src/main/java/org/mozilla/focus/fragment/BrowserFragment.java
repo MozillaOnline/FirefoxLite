@@ -62,6 +62,7 @@ import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.screenshot.CaptureRunnable;
 import org.mozilla.focus.tabs.TabCounter;
 import org.mozilla.focus.tabs.tabtray.TabTray;
+import org.mozilla.focus.tabs.TabView;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.FileChooseAction;
@@ -683,6 +684,8 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         }
     }
 
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         permissionHandler.onRequestPermissionsResult(getContext(), requestCode, permissions, grantResults);
@@ -930,6 +933,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
     public boolean canGoForward() {
         return sessionManager.getFocusSession() != null
                 && sessionManager.getFocusSession().getCanGoForward();
+        
     }
 
     public boolean isLoading() {
@@ -1117,7 +1121,9 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             if (!isForegroundSession(session)) {
                 return;
             }
+
             updateURL(url);
+
         }
 
         @Override
@@ -1147,6 +1153,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             hideFindInPage();
             if (sessionManager.getFocusSession() != null) {
                 final String currentUrl = sessionManager.getFocusSession().getUrl();
+
                 final boolean progressIsForLoadedUrl = TextUtils.equals(currentUrl, loadedUrl);
                 // Some new url may give 100 directly and then start from 0 again. don't treat
                 // as loaded for these urls;

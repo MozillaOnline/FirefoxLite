@@ -41,8 +41,10 @@ import org.mozilla.urlutils.UrlUtils;
         super(context);
     }
 
+
     public void setViewClient(TabViewClient callback) {
         this.viewClient = callback;
+
     }
 
     @Override
