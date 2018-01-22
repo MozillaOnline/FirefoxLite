@@ -40,8 +40,10 @@ import org.mozilla.rocket.tabs.TabViewClient;
         super(context);
     }
 
+
     public void setViewClient(TabViewClient callback) {
         this.viewClient = callback;
+
     }
 
     @Override

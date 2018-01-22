@@ -5,30 +5,31 @@
 
 package org.mozilla.rocket.tabs;
 
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.webkit.GeolocationPermissions;
+import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 
 import org.mozilla.rocket.tabs.web.DownloadCallback;
 
+/**
+ * An interface for views which display web pages.
+ */
 public interface TabView {
     class HitTarget {
-        public final TabView source;
         public final boolean isLink;
         public final String linkURL;
 
         public final boolean isImage;
         public final String imageURL;
 
-        public HitTarget(@NonNull final TabView source,
-                         final boolean isLink,
-                         final String linkURL,
-                         final boolean isImage,
-                         final String imageURL) {
-
+        public HitTarget(final boolean isLink, final String linkURL, final boolean isImage, final String imageURL) {
             if (isLink && linkURL == null) {
                 throw new IllegalStateException("link hittarget must contain URL");
             }
@@ -37,12 +38,61 @@ public interface TabView {
                 throw new IllegalStateException("image hittarget must contain URL");
             }
 
-            this.source = source;
             this.isLink = isLink;
             this.linkURL = linkURL;
             this.isImage = isImage;
             this.imageURL = imageURL;
         }
+    }
+
+    interface Callback {
+        void onPageStarted(String url);
+
+        void onPageFinished(boolean isSecure);
+
+        void onProgress(int progress);
+
+        void onURLChanged(final String url);
+
+        /**
+         * Return true if the URL was handled, false if we should continue loading the current URL.
+         */
+        boolean handleExternalUrl(String url);
+
+        void onDownloadStart(Download download);
+
+        void onLongPress(final HitTarget hitTarget);
+
+        /**
+         * Notify the host application that the current page has entered full screen mode.
+         * <p>
+         * The callback needs to be invoked to request the page to exit full screen mode.
+         * <p>
+         * Some TabView implementations may pass a custom View which contains the web contents in
+         * full screen mode.
+         */
+        void onEnterFullScreen(@NonNull FullscreenCallback callback, @Nullable View view);
+
+        /**
+         * Notify the host application that the current page has exited full screen mode.
+         * <p>
+         * If a View was passed when the application entered full screen mode then this view must
+         * be hidden now.
+         */
+        void onExitFullScreen();
+
+        void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback);
+
+        /**
+         * @see WebChromeClient
+         */
+        boolean onShowFileChooser(WebView webView,
+                                  ValueCallback<Uri[]> filePathCallback,
+                                  WebChromeClient.FileChooserParams fileChooserParams);
+
+        void updateFailingUrl(String url, boolean updateFromError);
+
+        void onReceivedTitle(WebView view, String title);
     }
 
     interface FullscreenCallback {
@@ -67,11 +117,7 @@ public interface TabView {
 
     void performExitFullScreen();
 
-    void setViewClient(@Nullable TabViewClient viewClient);
-
-    void setChromeClient(@Nullable TabChromeClient chromeClient);
-
-    void setDownloadCallback(DownloadCallback callback);
+    void setCallback(Callback callback);
 
     void onPause();
 
@@ -87,8 +133,10 @@ public interface TabView {
 
     String getTitle();
 
+
     @SiteIdentity.SecurityState
     int getSecurityState();
+
 
     void loadUrl(String url);
 
@@ -102,15 +150,9 @@ public interface TabView {
 
     boolean canGoBack();
 
-    void restoreViewState(Bundle inState);
+    void restoreWebviewState(Bundle savedInstanceState);
 
-    void saveViewState(Bundle outState);
+    void onSaveInstanceState(Bundle outState);
 
     void insertBrowsingHistory();
-
-    View getView();
-
-    void buildDrawingCache(boolean autoScale);
-
-    Bitmap getDrawingCache(boolean autoScale);
 }

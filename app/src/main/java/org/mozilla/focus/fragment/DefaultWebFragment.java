@@ -17,8 +17,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import org.mozilla.focus.locale.LocaleAwareFragment;
+
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.UrlUtils;
+
 
 /**
  * Base implementation for fragments that use a WebView instance. Based on Android's WebViewFragment.
@@ -58,11 +60,13 @@ public abstract class DefaultWebFragment extends LocaleAwareFragment {
     public final View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflateLayout(inflater, container, savedInstanceState);
 
+
         isWebViewAvailable = true;
         WebViewClient webViewClient = createWebViewClient();
         webView.setWebViewClient(webViewClient);
         webView.setWebChromeClient(createWebChromeClient());
 
+    
 
         return view;
     }
@@ -78,6 +82,7 @@ public abstract class DefaultWebFragment extends LocaleAwareFragment {
             // per difference case, we should load initial url or pending url(if any).
             if (webViewState != null) {
                 webView.restoreState(webViewState);
+  
             }
 
             final String url = (webViewState == null) ? getInitialUrl() : pendingUrl;

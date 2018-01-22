@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -39,6 +40,7 @@ import org.mozilla.rocket.tabs.web.Download;
 import org.mozilla.rocket.tabs.web.DownloadCallback;
 
 import java.util.List;
+import org.mozilla.focus.tabs.TabView;
 
 public class WebContextMenu {
     public static final String DEFAULT_DOWNLOAD_EXTENSION = ".bin";
@@ -49,7 +51,7 @@ public class WebContextMenu {
         return titleView;
     }
 
-    public static Dialog show(final boolean inPrivate,
+   
                               final @NonNull Activity activity,
                               final @NonNull DownloadCallback callback,
                               final @NonNull TabView.HitTarget hitTarget) {
@@ -103,7 +105,11 @@ public class WebContextMenu {
     private static void setupMenuForHitTarget(final @NonNull boolean inPrivate,
                                               final @NonNull Dialog dialog,
                                               final @NonNull NavigationView navigationView,
+<<<<<<< HEAD
                                               final @NonNull DownloadCallback callback,
+=======
+                                              final @NonNull TabView.Callback callback,
+>>>>>>> refactor: rename interface IWebView -> TabView
                                               final @NonNull TabView.HitTarget hitTarget) {
         navigationView.inflateMenu(R.menu.menu_browser_context);
 
