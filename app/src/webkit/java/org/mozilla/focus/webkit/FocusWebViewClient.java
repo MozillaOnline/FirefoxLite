@@ -36,8 +36,10 @@ import org.mozilla.focus.utils.UrlUtils;
         super(context);
     }
 
+
     public void setViewClient(TabViewClient callback) {
         this.viewClient = callback;
+
     }
 
     @Override

@@ -19,9 +19,11 @@ import org.mozilla.focus.locale.LocaleAwareFragment;
 import org.mozilla.focus.tabs.TabChromeClient;
 import org.mozilla.focus.tabs.TabView;
 import org.mozilla.focus.tabs.TabViewClient;
+
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.UrlUtils;
 import org.mozilla.focus.web.WebViewProvider;
+
 
 /**
  * Base implementation for fragments that use SINGLE TabView instance. Based on Android's WebViewFragment.
@@ -63,6 +65,7 @@ public abstract class WebFragment extends LocaleAwareFragment {
     public final View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflateLayout(inflater, container, savedInstanceState);
 
+
         webViewSlot = (ViewGroup) view.findViewById(R.id.webview_slot);
         tabView = (TabView) WebViewProvider.create(getContext(), null);
 
@@ -70,6 +73,7 @@ public abstract class WebFragment extends LocaleAwareFragment {
         isWebViewAvailable = true;
         tabView.setViewClient(createTabViewClient());
         tabView.setChromeClient(createTabChromeClient());
+    
 
         return view;
     }
@@ -85,6 +89,7 @@ public abstract class WebFragment extends LocaleAwareFragment {
             // per difference case, we should load initial url or pending url(if any).
             if (webViewState != null) {
                 tabView.restoreViewState(webViewState);
+  
             }
 
             final String url = (webViewState == null) ? getInitialUrl() : pendingUrl;

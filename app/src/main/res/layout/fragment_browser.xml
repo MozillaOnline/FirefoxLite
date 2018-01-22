@@ -31,6 +31,7 @@
 
             <FrameLayout
                 android:id="@+id/webview_slot"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="26dp" />
