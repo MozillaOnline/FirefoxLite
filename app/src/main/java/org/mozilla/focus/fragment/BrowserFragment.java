@@ -60,14 +60,20 @@ import org.mozilla.focus.locale.LocaleAwareFragment;
 import org.mozilla.focus.menu.WebContextMenu;
 import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.screenshot.CaptureRunnable;
+
 import org.mozilla.focus.tabs.TabCounter;
 import org.mozilla.focus.tabs.tabtray.TabTray;
+import org.mozilla.focus.tabs.Tab;
 import org.mozilla.focus.tabs.TabView;
+import org.mozilla.focus.tabs.TabsChromeListener;
+import org.mozilla.focus.tabs.TabsSession;
+import org.mozilla.focus.tabs.TabsViewListener;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.FileChooseAction;
 import org.mozilla.focus.utils.IntentUtils;
 import org.mozilla.focus.utils.Settings;
+
 import org.mozilla.focus.utils.SupportUtils;
 import org.mozilla.focus.utils.ViewUtils;
 <<<<<<< HEAD
@@ -75,7 +81,11 @@ import org.mozilla.focus.web.GeoPermissionCache;
 import org.mozilla.focus.web.HttpAuthenticationDialogBuilder;
 =======
 import org.mozilla.focus.web.WebViewProvider;
+<<<<<<< HEAD
 >>>>>>> tabs: let BrowserFragment not to extend WebFragment
+=======
+
+>>>>>>> tabs: BrowserFragment involves TabsSession
 import org.mozilla.focus.widget.AnimatedProgressBar;
 import org.mozilla.focus.widget.BackKeyHandleable;
 import org.mozilla.focus.widget.FindInPage;
@@ -453,9 +463,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         if (tabCounter != null && isTabRestoredComplete()) {
             tabCounter.setCount(sessionManager.getTabsCount());
         }
-
         setNightModeEnabled(Settings.getInstance(getActivity()).isNightModeEnable());
-
         downloadingIndicator = view.findViewById(R.id.downloading_indicator);
         downloadIndicator = view.findViewById(R.id.download_unread_indicator);
 
@@ -573,7 +581,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        permissionHandler.onSaveInstanceState(outState);
         if (sessionManager.getFocusSession() != null) {
             final TabViewEngineSession es = sessionManager.getFocusSession().getEngineSession();
             if (es != null && es.getTabView() != null) {
@@ -840,6 +847,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         }
     }
 
+
     public void loadUrl(@NonNull final String url, boolean openNewTab) {
     /**
      * @param url                 target url
@@ -944,7 +952,8 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
     public boolean canGoForward() {
         return sessionManager.getFocusSession() != null
                 && sessionManager.getFocusSession().getCanGoForward();
-        
+
+
     }
 
     public boolean isLoading() {
@@ -1285,6 +1294,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             // If android change behavior after, can remove this.
             if (session.getEngineSession().getTabView() instanceof WebView) {
                 ((WebView) session.getEngineSession().getTabView()).clearFocus();
+
             }
         }
 
