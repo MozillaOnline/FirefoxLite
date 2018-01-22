@@ -58,27 +58,6 @@
         </FrameLayout>
         <FrameLayout
             style="@style/MenuButtonContainer"
-            android:id="@+id/menu_turbomode">
-            <LinearLayout
-                style="@style/MenuButtonGroup">
-                <View
-                    style="@style/MenuToggleIcon"
-                    android:background="@drawable/menu_speedmode"/>
-                <TextView
-                    style="@style/MenuToggleText"
-                    android:text="@string/label_menu_turbo_mode"/>
-            </LinearLayout>
-        </FrameLayout>
-    </org.mozilla.focus.widget.EqualDistributeRow>
-
-    <org.mozilla.focus.widget.EqualDistributeRow
-        style="@style/MenuSheetRow"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="1dp"
-        tools:background="#3300FF00">
-
-        <FrameLayout
-            style="@style/MenuButtonContainer"
             android:id="@+id/menu_blockimg">
             <!--todo: the FrameLayout and LinearLayout can actually be merged now, but we' re
             going to do this later since this is an uplift commit.-->
@@ -92,6 +71,15 @@
                     android:text="@string/label_menu_block_image"/>
             </LinearLayout>
         </FrameLayout>
+    </org.mozilla.focus.widget.EqualDistributeRow>
+
+
+    <org.mozilla.focus.widget.EqualDistributeRow
+        style="@style/MenuSheetRow"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="1dp"
+        tools:background="#3300FF00">
+
         <FrameLayout
             style="@style/MenuButtonContainer"
             android:id="@+id/menu_delete">
@@ -129,6 +117,20 @@
                 <TextView
                     style="@style/MenuButtonText"
                     android:text="@string/label_menu_exit"/>
+            </LinearLayout>
+        </FrameLayout>
+        <FrameLayout
+            style="@style/MenuButtonContainer"
+            android:id="@+id/menu_turbomode"
+            android:visibility="invisible">
+            <LinearLayout
+                style="@style/MenuButtonGroup">
+                <View
+                    style="@style/MenuToggleIcon"
+                    android:background="@drawable/menu_turbomode"/>
+                <TextView
+                    style="@style/MenuToggleText"
+                    android:text="@string/label_menu_turbo_mode"/>
             </LinearLayout>
         </FrameLayout>
 
