@@ -90,9 +90,9 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             matchingFallbacks = ["firebase"]
+            signingConfig signingConfigs.config
         }
         beta {
             initWith release

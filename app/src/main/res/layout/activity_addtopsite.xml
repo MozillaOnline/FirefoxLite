@@ -18,10 +18,10 @@
 
     <EditText
         android:id="@+id/topsite_name"
-        android:layout_marginTop="11dp"
-        android:layout_marginBottom="11dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:background="@drawable/txt_radiusborder"
@@ -30,9 +30,9 @@
     <EditText
         android:id="@+id/topsite_url"
         android:layout_marginTop="1dp"
-        android:layout_marginBottom="12dp"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:background="@drawable/txt_radiusborder"
@@ -48,12 +48,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/add_topsite"
-                android:layout_marginLeft="6dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/button_radiusborder"
                 android:textColor="@android:color/white"
@@ -66,7 +66,7 @@
             <Button
                 android:id="@+id/cancel_topsite"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="6dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/button_radiusborder"
                 android:textColor="@android:color/white"
                 android:layout_width="match_parent"
@@ -81,14 +81,14 @@
         <TextView
             android:id="@+id/hot_list"
             android:layout_marginTop="4dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="28dp"
             android:background="@drawable/txt_radiusborder"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="center"
-            android:text="推  荐"
+            android:text="推                荐"
             android:textColor="#0c0c0d"/>
 
     </LinearLayout>
