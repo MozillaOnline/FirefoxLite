@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" android:background="#f9f9fa">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:text="添加快速访问"
         android:textColor="#0c0c0d"
         android:gravity="center_vertical"
-        android:drawableLeft="@drawable/ic_globe"
-        android:drawablePadding="6dp"/>
+        android:drawableStart="@drawable/ic_globe"
+        android:drawablePadding="6dp"
+        android:paddingLeft="8dp"/>
+
 
     <View
         android:layout_width="match_parent"
@@ -78,24 +80,33 @@
         </LinearLayout>
 
 
+
         <TextView
-            android:id="@+id/hot_list"
-            android:layout_marginTop="4dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="28dp"
-            android:background="@drawable/txt_radiusborder"
+            android:id="@+id/title_hot_list"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center"
-            android:text="推                荐"
-            android:textColor="#0c0c0d"/>
+            android:layout_height="36dp"
+            android:text="推 荐"
+            android:background="#ffffff"
+            android:textColor="#0c0c0d"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/darker_gray"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:background="#ffffff"/>
 
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/topsite_recyclerview"
         android:layout_width="match_parent"
+        android:background="#ffffff"
         android:visibility="visible"
         android:layout_height="match_parent" />
 
