@@ -466,4 +466,5 @@
     <!-- The notice shown along with the message when the user captures screenshot for the first time -->
     <string name="my_shot_on_boarding_category_message">To improve your product experience, we collect information about your screenshots\' categories.</string>
 
+    <string name="first_run_page3_text">Blocking tracking ads not only speeds up browsing, it saves data. Save even more when you block images.</string>
 </resources>
