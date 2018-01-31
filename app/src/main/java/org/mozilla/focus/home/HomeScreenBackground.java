@@ -58,7 +58,7 @@ public class HomeScreenBackground extends ThemedImageView implements ThemeManage
         paint.setShader(new ComposeShader(shader2, shader1, PorterDuff.Mode.MULTIPLY));
         /*//Shader shader1 = new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
         //int colors[] = {Color.parseColor("#FFFFFFFF"), Color.parseColor("#88FFFFFF"), Color.parseColor("#55FFFFFF"), Color.parseColor("#00FFFFFF")};
-        int colors[] = {Color.parseColor("#0A80B6"), Color.parseColor("#EFDBA7")};
+        int colors[] = {Color.parseColor("#0A80B6"), Color.parseColor("#FFCC83")};
         //float positions[] = {0.0f, 0.4f, 0.7f, 1f};
         Shader shader2 = new LinearGradient(0, rect.top, 0, rect.bottom, colors[0], colors[1], Shader.TileMode.CLAMP);
         //paint.setShader(new ComposeShader(shader2, shader1, PorterDuff.Mode.MULTIPLY));
