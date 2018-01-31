@@ -326,10 +326,10 @@
 
     <!-- Title for survey notification posted after launching the app on the 3rd time
     %1$s will be replaced with an emoticon -->
-    <string name="survey_notification_title">We need you! %1$s</string>
+    <string name="survey_notification_title">我们需要你！%1$s</string>
 
     <!-- Subtitle for survey notification posted after launching the app on the 3rd time -->
-    <string name="survey_notification_description">Shape a better product for Indonesia</string>
+    <string name="survey_notification_description">为用户打造一个更好的产品</string>
     <string name="first_run_page3_text">如果您屏蔽了图像，那么流量节约则更加显著。</string>
 
 </resources>

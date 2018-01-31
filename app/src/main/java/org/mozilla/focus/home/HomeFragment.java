@@ -181,7 +181,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         ADD_SITE.setId(0);
         ADD_SITE.setViewCount(0);
         //Change the icon later
-        Bitmap bitmap = TopSitesUtils.getIconFromAssets(getContext(),"add.png");
+        Bitmap bitmap = TopSitesUtils.getIconFromAssets(getContext(),"ic_add.png");
         ADD_SITE.setFavIcon(bitmap);
         if (this.topSiteAdapter == null) {
             Log.e("Topsite","adapter null");

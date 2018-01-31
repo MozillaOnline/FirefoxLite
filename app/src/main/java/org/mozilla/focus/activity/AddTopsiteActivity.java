@@ -90,7 +90,7 @@ public class AddTopsiteActivity extends AppCompatActivity{
                             favIcon = "qidian.png";
                             break;
                         case "-18":
-                            favIcon = "ic_bukalapak.png";
+                            favIcon = "bilibili.png";
                             break;
                         case "-19":
                             favIcon = "4399.png";
