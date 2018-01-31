@@ -146,8 +146,7 @@
     <string name="first_run_page2_title">前所未有的快</string>
     <string name="first_run_page2_text">Use turbo mode to block tracking ads so you can browse at blazing speeds. If sites seem broken, just tap off the turbo mode switch in the menu.</string>
     <string name="first_run_page3_title">省流量 = 省钱</string>
-    <string name="first_run_page3_text">Blocking tracking ads not only speeds up browsing, it saves data. Save even more when you block images.</string>
-    <string name="first_run_page4_title">Screenshot everything</string>
+    <string name="first_run_page4_title">无比强大的截图功能</string>
     <string name="first_run_page4_text">截取整个网页，离线查看截图，还可以点击截图回到原始网页。</string>
 
     <string name="firstrun_close_button">知道了！</string>
@@ -250,11 +249,11 @@
 
     <!-- This string is followed by the image of the button, keep the trailing whitespace.
         Final result: 'Tap [image] on the menu to capture an entire web page'. -->
-    <string name="screenshot_grid_empty_text_msg_prefix">Tap&#160;</string>
+    <string name="screenshot_grid_empty_text_msg_prefix">点按菜单上的&#160;</string>
 
     <!-- This string is preceded by the image of the button, keep the leading whitespace.
         Final result: 'Tap [image] on the menu to capture an entire web page'. -->
-    <string name="screenshot_grid_empty_text_msg_postfix">&#160;&#160;on the menu to capture\nan entire web page.</string>
+    <string name="screenshot_grid_empty_text_msg_postfix">&#160;&#160;来截取整个网页。</string>
 
     <string name="screenshot_image_viewer_dialog_title">信息</string>
     <string name="screenshot_image_viewer_dialog_info_time1">日期: %1$s</string>
@@ -264,7 +263,7 @@
     <string name="screenshot_image_viewer_dialog_info_url1">链接: %1$s</string>
     <string name="screenshot_image_viewer_dialog_delete_msg">删除该图片？</string>
 
-    <string name="screenshot_on_boarding_text_msg">Tap the screenshot button in the menu to capture the whole page.\nFast, easy - come back to the page at anytime!</string>
+    <string name="screenshot_on_boarding_text_msg">点按菜单中的截图按钮来拍摄整个页面的截图。\n快速、简单——随时回看整个页面！</string>
     <string name="screenshot_on_boarding_btn_got_it">了解了！</string>
 
     <!-- Title for file picker when user trying to upload a file -->
@@ -276,7 +275,7 @@
     <string name="message_enable_block_image">隐藏图像</string>
     <string name="message_disable_block_image">显示图像</string>
     <string name="message_clear_cache_fail">无法删除缓存</string>
-    <string name="message_storage_unavailable_cancel_download">Storage inaccessible. Download canceled.</string>
+    <string name="message_storage_unavailable_cancel_download">无法访问存储空间。下载已取消。</string>
 
     <!-- Message indicate how much cache file cause disk storage was cleared.
         Argument 1 is the amount, i.e. 15.0 MB cache cleared -->
@@ -286,7 +285,7 @@
     <string name="message_cannot_find_screenshot">无法显示该截图</string>
 
     <!-- Remove Top site item -->
-    <string name="remove">Remove</string>
+    <string name="remove">移除</string>
 
     <!--In-app Promotion, Rate the App-->
     <string name="rate_app_dialog_text_title">喜欢 {{app_name}} 吗？</string>
@@ -298,32 +297,32 @@
     <string name="share_app_dialog_text_title">与朋友分享 {{app_name}} ！</string>
     <string name="share_app_dialog_text_content">- 快速，轻量\n- 省流量\n- 强大的截图功能</string>
     <string name="share_app_dialog_btn_share">分享</string>
-    <string name="share_app_promotion_text">Hey, check out this fast and lightweight browser from Mozilla. {{app_name}} {{share_app_google_play_url}}</string>
+    <string name="share_app_promotion_text">嘿，来试试这个出自 Mozilla 的超快轻量级浏览器吧！{{app_name}} {{share_app_google_play_url}}</string>
 
     <!-- Text shown in the "Your rights" screen.
     %1$s will be replaced with the name of the app (e.g. Firefox Rocket)-->
-    <string name="your_rights_content1"><![CDATA[%1$s is free and open source software made by Mozilla and other contributors.]]></string>
+    <string name="your_rights_content1"><![CDATA[%1$s 是由 Mozilla 和其他贡献者提供的自由且开源软件。]]></string>
 
     <!-- Text shown in the "Your rights" screen.
     %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
     %2$s will be replaced with a URL linking to the MPL (e.g. https://www.mozilla.org/en-US/MPL/) -->
-    <string name="your_rights_content2"><![CDATA[%1$s is made available to you under the terms of the <a href="%2$s">Mozilla Public License</a> and other open source licenses.]]></string>
+    <string name="your_rights_content2"><![CDATA[%1$s 根据 <a href="%2$s">Mozilla 公共许可证</a>以及其他开源许可证向您提供。]]></string>
 
     <!-- Text shown in the "Your rights" screen.
     %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
     %2$s will be replaced with a URL linking to the trademark policy (e.g. https://www.mozilla.org/foundation/trademarks/policy/) -->
-    <string name="your_rights_content3"><![CDATA[You are not granted any rights or licenses to the trademarks of the Mozilla Foundation or any party, including the Mozilla, Firefox or %1$s names or logos. Additional information may be found <a href="%2$s">here</a>.]]></string>
+    <string name="your_rights_content3"><![CDATA[您没有得到 Mozilla 基金会或任何其他方面（包括 Mozilla、Firefox 或 %1$s 的名称或标志）的商标授权。更多信息参见<a href="%2$s">此处</a>。]]></string>
 
     <!-- Text shown in the "Your rights" screen.
     %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
     %2$s will be replaced with a URL linking to the list of licenses used by the dependencies.-->
-    <string name="your_rights_content4"><![CDATA[Additional source code for %1$s is available under various other free and open source <a href="%2$s">licenses</a>.]]></string>
+    <string name="your_rights_content4"><![CDATA[%1$s 的其他源代码可按各种自由和开源软件<a href="%2$s">许可证</a>使用。]]></string>
 
     <!-- Text shown in the "Your rights" screen.
     %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
     %2$s will be replaced with a URL linking to the GPL
     %3$s will be replaced with a URL linking to the tracking protection wiki page (e.g. https://wiki.mozilla.org/Security/Tracking_protection#Lists) -->
-    <string name="your_rights_content5"><![CDATA[%1$s also uses blocklists provided by Disconnect, Inc. as separate and independent works under the <a href="%2$s">GNU General Public License v3</a>, and available <a href="%3$s">here</a>.]]></string>
+    <string name="your_rights_content5"><![CDATA[%1$s 还使用 Disconnect 公司提供的黑名单，该黑名单为该公司的独立作品，按 <a href="%2$s">GNU 通用公共许可证第三版</a>提供，可在<a href="%3$s">这里</a>找到。]]></string>
 
     <!-- Title for survey notification posted after launching the app on the 3rd time
     %1$s will be replaced with an emoticon -->
@@ -331,5 +330,6 @@
 
     <!-- Subtitle for survey notification posted after launching the app on the 3rd time -->
     <string name="survey_notification_description">Shape a better product for Indonesia</string>
+    <string name="first_run_page3_text">如果您屏蔽了图像，那么流量节约则更加显著。</string>
 
 </resources>
