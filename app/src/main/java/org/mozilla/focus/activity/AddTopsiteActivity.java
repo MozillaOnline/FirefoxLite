@@ -99,7 +99,7 @@ public class AddTopsiteActivity extends AppCompatActivity{
                             favIcon = "ximalaya.png";
                             break;
                         case "-39":
-                            favIcon = "wyyx.png";
+                            favIcon = "amazon.png";
                             break;
                         default:
                             break;
