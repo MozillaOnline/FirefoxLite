@@ -275,6 +275,7 @@
 
     <!-- Remove the item from Download file panel and delete the file -->
     <string name="delete_file">Delete file</string>
+    <string name="open_folder">Open Folder</string>
 
     <!-- Long Screenshot -->
     <!-- Message that is shown for a few seconds after a successful screenshot capture. -->
