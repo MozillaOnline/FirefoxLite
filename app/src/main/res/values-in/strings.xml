@@ -198,4 +198,5 @@
   <string name="bookmark_edit_success">Markah diperbarui</string>
   <string name="bookmarks_empty_view_msg">Tidak ada markah</string>
   <string name="edit_bookmark">Ubah</string>
+    <string name="open_folder">Open folder</string>
 </resources>
