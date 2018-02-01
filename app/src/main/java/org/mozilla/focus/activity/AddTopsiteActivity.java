@@ -117,10 +117,10 @@ public class AddTopsiteActivity extends AppCompatActivity{
 
     public void onAddTopsiteClicked(View v){
         if (topsiteName.getText().toString().isEmpty() || topsiteUrl.getText().toString().isEmpty()){
-            new  AlertDialog.Builder(this).setTitle("No Name or URL" ).setMessage("Please enter the Name and URL" ).setPositiveButton("OK" , null ).show();
+            new  AlertDialog.Builder(this).setTitle("缺少名称或网址" ).setMessage("请输入网站名称或网址" ).setPositiveButton("OK" , null ).show();
 
-        }else if(topsiteName.getText().toString().contains(" ")){
-            new  AlertDialog.Builder(this).setTitle("No spaces are allowed in the name" ).setMessage("Please enter another name" ).setPositiveButton("OK" , null ).show();
+        }else if(topsiteName.getText().toString().contains(" ")||topsiteUrl.getText().toString().contains(" ")){
+            new  AlertDialog.Builder(this).setTitle("名称或网址中含有空格" ).setMessage("请去掉空格后重新输入" ).setPositiveButton("OK" , null ).show();
 
         } else{
             name = topsiteName.getText().toString();
