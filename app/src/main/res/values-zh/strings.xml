@@ -226,7 +226,7 @@
     <string name="browsing_history_date_yesterday">昨天</string>
     <string name="browsing_history_menu_delete">删除</string>
     <string name="browsing_history_dialog_confirm_clear_message">清除所有浏览历史记录？</string>
-    <string name="browsing_history_dialog_btn_clear">取消</string>
+    <string name="browsing_history_dialog_btn_clear">清除</string>
 
     <!-- Remove the item from Download file panel -->
     <string name="remove_from_list">从列表中移除</string>

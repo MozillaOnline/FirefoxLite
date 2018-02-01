@@ -26,6 +26,8 @@
         android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="36dp"
+        android:singleLine="true"
+        android:maxLength="20"
         android:background="@drawable/txt_radiusborder"
         android:hint="请输入网站名称"/>
 
@@ -38,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:background="@drawable/txt_radiusborder"
+        android:singleLine="true"
         android:hint="请输入网址"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
