@@ -509,10 +509,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 
             //if the site is not an addTopsite button
             if (site.getId() != 0 ) {
-                            if ((site != null) && (parent instanceof FragmentListener)) {
+                Log.e("topsite",String.valueOf(site.getId()));
+             if ((site != null) && (parent instanceof FragmentListener)) {
                 ScreenNavigator.get(v.getContext()).showBrowserScreen(site.getUrl(), true, false);
                 ViewParent viewParent = v.getParent();
-                if (viewParent instanceof ViewGroup) {
+             if (viewParent instanceof ViewGroup) {
                     int index = ((ViewGroup) v.getParent()).indexOfChild(v);
                     TelemetryWrapper.clickTopSiteOn(index);
                 }
@@ -715,6 +716,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                 newSite.setId(Long.parseLong(s[3]));
                 Log.e("Topsite","else"+String.valueOf(s[3]));
             }
+            newSite.setLastViewTimestamp(0);
+            newSite.setViewCount(0);
             this.topSiteAdapter.removeSite(ADD_SITE);
             removeDefaultSites(ADD_SITE);
             appendSite(newSite);
