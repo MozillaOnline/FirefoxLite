@@ -221,4 +221,5 @@
   <string name="exp_survey_thanks">Terima kasih untuk memberikan umpan balik kepada kami %1$s</string>
   <string name="exp_survey_yes">YA</string>
   <string name="exp_survey_no">TIDAK</string>
+  <string name="open_folder">Open folder</string>
 </resources>
