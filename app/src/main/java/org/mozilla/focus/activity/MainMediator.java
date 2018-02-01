@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.util.Log;
 
 import org.mozilla.focus.R;
 import org.mozilla.focus.fragment.BrowserFragment;
