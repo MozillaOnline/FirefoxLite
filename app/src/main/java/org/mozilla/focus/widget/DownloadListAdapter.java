@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -24,7 +25,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.mozilla.focus.BuildConfig;
 import org.mozilla.focus.R;
+import org.mozilla.focus.activity.MainActivity;
 import org.mozilla.focus.download.DownloadInfo;
 import org.mozilla.focus.fragment.PanelFragment;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
@@ -65,6 +68,7 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             mDownloadInfo = list;
         }
     }
+
 
     @Override
     public int getItemViewType(int position) {
