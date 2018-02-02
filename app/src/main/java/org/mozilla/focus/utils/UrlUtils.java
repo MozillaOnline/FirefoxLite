@@ -167,6 +167,21 @@ public class UrlUtils {
         } else if (lengthDifference == -1) {
             return url2.charAt(url2.length() - 1) == '/' &&
                     url2.regionMatches(true, 0, url1, 0, url1.length());
+        } else if (lengthDifference == -7){
+            return url2.contains("http://") && (!(url1.contains("http://")));
+        } else if (lengthDifference == -8){
+            if(url2.contains("https://") && (!(url1.contains("https://")))){
+                return true;
+            }else if(url2.contains("http://") && (!(url1.contains("http://"))) && url2.charAt(url2.length() - 1) == '/'){
+                return true;
+            }else{
+                return false;
+            }
+        }else if (lengthDifference == -9){
+            if(url2.contains("https://") && (!(url1.contains("https://"))) && url2.charAt(url2.length() - 1) == '/'){
+                return true;
+            }
+            return false;
         }
 
         return false;
