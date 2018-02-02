@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.FileProvider;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -25,7 +26,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.mozilla.focus.BuildConfig;
 import org.mozilla.focus.R;
+import org.mozilla.focus.activity.MainActivity;
 import org.mozilla.focus.download.DownloadInfo;
 import org.mozilla.focus.download.DownloadInfoManager;
 import org.mozilla.focus.fragment.PanelFragment;
@@ -171,10 +174,12 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     Log.e("Download","file not exist");
                     return;
                 }
+                Uri fileUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID+".provider.fileprovider",file);
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_DEFAULT);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setDataAndType(Uri.fromFile(file), "file/*");
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.setDataAndType(fileUri, "file/*");
                 Log.e("Download","intent");
                 try {
                     mContext.startActivity(intent);
