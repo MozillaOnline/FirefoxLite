@@ -1018,15 +1018,15 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             if (isForegroundTab(tab)) {
                 // The URL which is supplied in onTabFinished() could be fake (see #301), but webview's
                 // URL is always correct _except_ for error pages
-                updateUrlFromWebView(tab);
+                updateUrlFromWebView(tab)
 
                 updateIsLoading(false);
 
                 FragmentListener.notifyParent(BrowserFragment.this, FragmentListener.TYPE.UPDATE_MENU, null);
 
                 backgroundTransition.startTransition(ANIMATION_DURATION);
+
                 siteIdentity.setImageLevel(isSecure ? SITE_LOCK : SITE_GLOBE);
-            }
 
             historyInserter.onTabFinished(tab);
 
