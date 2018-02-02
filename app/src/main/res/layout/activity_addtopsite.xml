@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:background="#f9f9fa">
+    android:layout_height="match_parent" >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="36dp"
@@ -57,9 +57,22 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/add_topsite"
+                android:id="@+id/cancel_topsite"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="15dp"
+                android:background="@drawable/button_radiusborder"
+                android:textColor="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:onClick="onCancelTopsiteClicked"
+                android:text="取消" />
+
+
+            <Button
+                android:id="@+id/add_topsite"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/button_radiusborder"
                 android:textColor="@android:color/white"
                 android:layout_width="match_parent"
@@ -68,17 +81,6 @@
                 android:onClick="onAddTopsiteClicked"
                 android:text="添加" />
 
-            <Button
-                android:id="@+id/cancel_topsite"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/button_radiusborder"
-                android:textColor="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="36dp"
-                android:layout_weight="1"
-                android:onClick="onCancelTopsiteClicked"
-                android:text="取消" />
 
         </LinearLayout>
 
@@ -99,8 +101,7 @@
             android:id="@+id/title_hot_list"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:text="推 荐"
-            android:background="#ffffff"
+            android:text="推荐"
             android:textColor="#0c0c0d"
             android:gravity="center_vertical"
             android:paddingLeft="8dp"/>
@@ -110,17 +111,12 @@
             android:layout_height="2dp"
             android:background="#d7d7db"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="16dp"
-            android:background="#ffffff"/>
-
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/topsite_recyclerview"
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:background="#ffffff"
         android:visibility="visible"
         android:layout_height="match_parent" />
 
