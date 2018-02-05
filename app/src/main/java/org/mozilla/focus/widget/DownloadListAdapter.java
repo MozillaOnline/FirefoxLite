@@ -10,6 +10,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Environment;
 import android.support.design.widget.BaseTransientBottomBar;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.FileProvider;
@@ -176,16 +177,16 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     return;
                 }
                 Uri fileUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID+".provider.fileprovider",file);
+                //Uri uri = Uri.parse("/storage/emulated/0/Download/");
+                //Intent intent = new Intent(Intent.ACTION_VIEW);
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_DEFAULT);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                intent.setDataAndType(fileUri, "file/*");
-                Log.e("Download","intent");
+                intent.setDataAndType(fileUri, "*/*");
+                Log.e("Download",fileUri.toString());
                 try {
                     mContext.startActivity(intent);
-                    Log.e("Download","startactivity");
-                    mContext.startActivity(Intent.createChooser(intent,"选择浏览工具"));
                 } catch (ActivityNotFoundException e) {
                     e.printStackTrace();
                 }
