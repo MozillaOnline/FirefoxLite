@@ -30,7 +30,7 @@ android {
         config {
             keyAlias 'cn_rocket'
             keyPassword 'mozilla'
-            storeFile file('/Users/mozillabeijing/signedkeybeta')
+            storeFile file('/Users/mozillabeijing/KEYSTORE')
             storePassword 'mozilla'
         }
     }
