@@ -11,15 +11,19 @@ apply from: 'buildscripts/findbugs.gradle'
 apply from: 'buildscripts/l10n.gradle'
 
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tools
     signingConfigs {
         config {
-            keyAlias 'cn_rocket'
-            keyPassword 'mozilla'
-            storeFile file('/Users/mozillabeijing/signedkeybeta')
-            storePassword 'mozilla'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
     compileSdkVersion 25
