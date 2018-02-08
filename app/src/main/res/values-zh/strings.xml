@@ -299,6 +299,7 @@
     <string name="share_app_dialog_btn_share">分享</string>
     <string name="share_app_promotion_text">嘿，来试试这个出自 Mozilla 的超快轻量级浏览器吧！{{app_name}} {{share_app_google_play_url}}</string>
 
+    <string name="rate_app_feedback_url">mozilla.com.cn/</string>
     <!-- Text shown in the "Your rights" screen.
     %1$s will be replaced with the name of the app (e.g. Firefox Rocket)-->
     <string name="your_rights_content1"><![CDATA[%1$s 是由 Mozilla 和其他贡献者提供的自由且开源软件。]]></string>
