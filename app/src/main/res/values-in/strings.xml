@@ -199,4 +199,5 @@
   <string name="bookmarks_empty_view_msg">Tidak ada markah</string>
   <string name="edit_bookmark">Ubah</string>
   <string name="open_folder">Open folder</string>
+  <string name="rate_app_feedback_url">https://qsurvey.mozilla.com/s3/Firefox-Rocket-Input</string>
 </resources>
