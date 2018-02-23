@@ -165,32 +165,11 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         });
     }
-    private void openFolder(final View view, final long rowId){
-        for (int i = 0; i< mDownloadInfo.size();i++){
-            DownloadInfo downloadInfo = mDownloadInfo.get(i);
-            if (rowId == downloadInfo.getRowId()){
-                File file = new File(downloadInfo.getFileUri());
-                Log.e("Download",downloadInfo.getFileUri());
-                if(file == null){
-                    Log.e("Download","file not exist");
-                    return;
-                }
-                Uri fileUri = FileProvider.getUriForFile(mContext, BuildConfig.APPLICATION_ID+".provider.fileprovider",file);
-                //Uri uri = Uri.parse("/storage/emulated/0/Download/");
-                //Intent intent = new Intent(Intent.ACTION_VIEW);
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                intent.setDataAndType(fileUri, "*/*");
-                Log.e("Download",fileUri.toString());
-                try {
-                    mContext.startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
+    private void openFolder(){
+        try {
+            mContext.startActivity(new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
         }
     }
     private void addItem(DownloadInfo downloadInfo) {
@@ -310,7 +289,7 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                                     return true;
                                 case R.id.open_folder:
                                     Log.e("Download","entercase");
-                                    openFolder(view, rowid);
+                                    openFolder();
                                     popupMenu.dismiss();
                                     return true;
                                 case R.id.cancel:
