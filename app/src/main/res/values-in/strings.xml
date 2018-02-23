@@ -206,4 +206,5 @@
   <string name="my_shot_on_boarding_message">Lihat tangkapan layar Anda di sini!</string>
   <string name="my_shot_on_boarding_category_message">Untuk meningkatkan pengalaman produk, kami mengumpulkan informasi tentang kategori tangkapan layar Anda.</string>
   <string name="open_folder">Open folder</string>
+  <string name="rate_app_feedback_url">https://qsurvey.mozilla.com/s3/Firefox-Rocket-Input</string>
 </resources>
