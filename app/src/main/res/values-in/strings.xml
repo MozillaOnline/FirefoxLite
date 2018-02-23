@@ -174,4 +174,5 @@
   <string name="new_background_tab_hint">Tab baru dibuka</string>
   <string name="new_background_tab_switch">Tukar</string>
   <string name="open_folder">Open folder</string>
+  <string name="rate_app_feedback_url">https://qsurvey.mozilla.com/s3/Firefox-Rocket-Input</string>
 </resources>
