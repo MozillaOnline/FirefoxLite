@@ -6,10 +6,13 @@
 package org.mozilla.focus.webkit;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -380,7 +383,30 @@ public class WebkitView extends NestedWebView implements TabView {
 
                 if (downloadCallback != null) {
                     final Download download = new Download(url, userAgent, contentDisposition, mimetype, contentLength, false);
-                    downloadCallback.onDownloadStart(download);
+
+                    AlertDialog.Builder localBuilder = new AlertDialog.Builder(getContext());
+                    localBuilder.setTitle("Rocket将要下载此文件" );
+                    localBuilder.setMessage("是否允许此次下载" );
+                    localBuilder.setPositiveButton("是" , new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+                        {
+
+                            downloadCallback.onDownloadStart(download);
+                        }
+                    });
+                    localBuilder.setNegativeButton("取消", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface paramAnonymousDialogInterface, int paramAnonymousInt)
+                        {
+                            return;
+                        }
+                    });
+
+                    localBuilder.setCancelable(false).create();
+
+                    localBuilder.show();
+
                 }
             }
         };
