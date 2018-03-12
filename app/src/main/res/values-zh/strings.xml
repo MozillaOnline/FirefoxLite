@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<resources>
+    <!-- Label used for buttons, e.g. in dialogs -->
+    <string name="action_cancel">取消</string>
+    <!-- Label used for buttons, e.g. in dialogs -->
+    <string name="action_ok">确认</string>
+
+    <!-- This text is shown in the URL bar when it's empty -->
+    <string name="urlbar_hint">输入网址或关键词</string>
+
+    <string name="menu_settings">设置</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_help">帮助</string>
+    <string name="menu_rights">您的权力</string>
+    <string name="menu_give_feedback">发送反馈</string>
+    <string name="menu_share_with_friends">分享给他人</string>
+
+    <!-- This is the title of a dialog that shows all the share targets (apps or contacts) when
+         sharing an URL. -->
+    <string name="share_dialog_title">分享</string>
+
+    <!-- This is the label of an action we offer when the user selects text in other third-party apps.
+         Clicking this action will launch Rocket and perform a search in the default search engine. -->
+    <string name="text_selection_search_action">用 {{app_name}} 搜索</string>
+
+    <!-- Content of about Rocket. Argument 1 is the major body of the content #about_content_body.
+         Argument 2,4,6,8 is the urls.
+         Argument 3,5,7,9 is the Label of the urls. -->
+
+    <!-- Content of about Rocket. Argument 1 is the app name of the content. i.e.x. Firefox Rocket -->
+    <string name="about_content_body">%1$s 是一个由 Mozilla 出品的快速，轻量的浏览器。我们致力于打造一个健康，开发的互联网。</string>
+    <string name="about_link_learn_more">了解更多</string>
+    <string name="about_link_support">技术支持</string>
+    <string name="about_link_your_rights">您的权力 / 许可协议</string>
+    <string name="about_link_privacy">隐私政策</string>
+
+    <!-- This label is shown below the name of the default search engine in settings -->
+    <string name="preference_search_engine_default">默认搜索引擎</string>
+
+    <string name="preference_language">语言</string>
+    <!-- This is shown when the user hasn't set a Rocket specific language, i.e. when Rocket
+         is using the system default language. -->
+    <string name="preference_language_systemdefault">系统默认</string>
+
+    <!-- This is the title of the dialog for selecting a new default search engine -->
+    <string name="preference_dialog_title_search_engine">默认搜索引擎</string>
+
+    <string name="preference_data_saving_block_images">无图模式</string>
+
+    <!-- Settings Privacy and storage-->
+    <string name="preference_privacy_storage_clear_browsing_data">清除隐私数据</string>
+    <string name="preference_privacy_storage_save_downloads_to">保存文件至 </string>
+
+    <!-- This preference does not set Rocket as the default browser but instead links to Android's
+     "default apps" screen or if not supported by this Android version to a SUMO page describing
+     how to set Rocket as a default browser -->
+    <string name="preference_default_browser">设为默认浏览器</string>
+
+    <string name="preference_turbo_mode">加速模式</string>
+
+    <string name="preference_mozilla_telemetry">发送统计数据</string>
+
+    <!-- Item in Preferences that shows the app name wants to send telemetry. Parameter 1 is the app name, i.e. Firefox Rocket. -->
+    <string name="preference_mozilla_telemetry_summary">Mozilla 保证只收集能帮助我们改进 %1$s 所需的信息，旨在为所有人提供一个更好的产品。</string>
+    <string name="preference_learn_more">了解更多</string>
+
+    <!-- Item in Preferences that shows the about page. Parameter 1 is the app name, i.e. Firefox Rocket. -->
+    <string name="preference_about">关于 %1$s</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Clear text in URL bar -->
+    <string name="content_description_clear_input">清空地址栏</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Clicking on the website overlay
+     while in typing mode will dismiss and go back to the browser. This text will be read when the
+     overlay if it gain focus. -->
+    <string name="content_description_dismiss_input">取消输入</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Lock icon showed in the URL bar for
+     https pages.. -->
+    <string name="content_description_lock">连接安全</string>
+
+    <!-- This text is not visible. Instead it will be read by the accessibility service once we start
+     loading a website -->
+    <string name="accessibility_announcement_loading">加载中</string>
+
+    <!-- This text is not visible. Instead it will be read by the accessibility service once we
+     finished loading a website -->
+    <string name="accessibility_announcement_loading_finished">网页加载完成</string>
+
+    <!-- Content description (not visible, for screen readers etc.): "Three dot" menu button. -->
+    <string name="content_description_menu">更多选项</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Navigate forward (browsing history) -->
+    <string name="content_description_forward">前进</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Reload current website -->
+    <string name="content_description_reload">刷新</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Navigate back (browsing history) -->
+    <string name="content_description_back">后退</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Stop loading the current website. This button will turn into the refresh button once loading has been completed (see content_description_reload) -->
+    <string name="content_description_stop">停止加载</string>
+
+    <!-- Content description (not visible, for screen readers etc.): Custom Tab exit button - closes the custom tab and returns to the previous app. -->
+    <string name="content_description_customtab_exit">回到前一个应用</string>
+
+    <!-- Content description (not visible, for screen readers etc.): This is the description for the switch in the menu that temporarily disables/enables
+         content blocking for the current session -->
+    <string name="content_description_blocking_switch">屏蔽跟踪</string>
+
+    <!-- This text is the title of a dialog shown if no app could be found for a custom link protocol. -->
+    <string name="external_app_prompt_no_app_title">使用其他应用打开此链接</string>
+    <!-- This text is shown in a dialog if no app could be found for a custom link protocol. Argument 1 is the name of the app (i.e. Firefox Rocket) and %2$s is the name of
+         the app store installed on the device (usually that's Google Play). -->
+    <string name="external_app_prompt_no_app">找不到可以打开此链接的应用，可以离开 %1$s 前往 %2$s 搜索可打开此链接的应用。</string>
+
+
+    <!-- The page html title (i.e. the <title> tag content) -->
+    <string name="error_page_title">无法显示此网页</string>
+    <string name="error_page_recover_a">请检查您是否已连接到互联网</string>
+    <string name="error_page_recover_b">检查地址栏中的网址</string>
+    <string name="error_page_button">重试</string>
+    <string name="error_page_title_unsupported_scheme">无法理解该地址</string>
+    <string name="error_page_content_text_unsupported_scheme">您可能需要安装其他应用打开此地址</string>
+
+
+    <!-- Label used in the contextmenu shown when long-pressing on a link -->
+    <string name="contextmenu_link_share">分享链接</string>
+    <!-- Label used in the contextmenu shown when long-pressing on a link -->
+    <string name="contextmenu_link_copy">复制链接地址</string>
+    <!-- Label used in the contextmenu shown when long-pressing on an image -->
+    <string name="contextmenu_image_share">分享图像</string>
+    <!-- Label used in the contextmenu shown when long-pressing on an image -->
+    <string name="contextmenu_image_copy">复制图像地址</string>
+    <!-- Label used in the contextmenu shown when long-pressing on an image -->
+    <string name="contextmenu_image_save">保存图像</string>
+
+    <!-- First run tour -->
+    <!-- title for first page of FirstRun, Argument 1 will be formatted by product name -->
+    <string name="first_run_page1_title">感谢您选择 %1$s</string>
+    <string name="first_run_page1_text">由致力于建立一个自由且开放的网络的非营利组织Mozilla打造。</string>
+    <string name="first_run_page2_title">前所未有的快</string>
+    <string name="first_run_page2_text">Use turbo mode to block tracking ads so you can browse at blazing speeds. If sites seem broken, just tap off the turbo mode switch in the menu.</string>
+    <string name="first_run_page3_title">省流量 = 省钱</string>
+    <string name="first_run_page4_title">无比强大的截图功能</string>
+    <string name="first_run_page4_text">截取整个网页，离线查看截图，还可以点击截图回到原始网页。</string>
+
+    <string name="firstrun_close_button">知道了！</string>
+    <string name="firstrun_skip_button">跳过</string>
+    <string name="firstrun_next_button">下一步</string>
+
+    <!-- Menu labels -->
+    <!-- Zerda Need l10n -->
+    <string name="label_menu_download">下载</string>
+    <string name="label_menu_clear_cache">清除缓存</string>
+    <string name="label_menu_history">历史记录</string>
+    <string name="label_menu_share">分享</string>
+    <string name="label_menu_my_shots">我的截屏</string>
+    <string name="label_menu_capture_page">截取网页</string>
+    <string name="label_menu_turbo_mode">加速模式</string>
+    <string name="label_menu_block_ads">广告拦截</string>
+    <string name="label_menu_block_image">隐藏图像</string>
+    <string name="label_menu_settings">设置</string>
+    <string name="label_menu_exit">退出</string>
+
+    <string name="permission_dialog_setting">设置</string>
+    <string name="permission_dialog_not_now">稍后</string>
+    <string name="permission_dialog_msg_location">缺少权限，请允许 Firefox Rocket 使用您的位置权限。</string>
+    <string name="permission_toast_location">无法获取您的位置信息， 请在系统设置中允许 Firefox Rocket 使用您的位置权限。</string>
+    <string name="permission_dialog_msg_storage">缺少权限，请允许 Firefox Rocket 使用您的位置权限。</string>
+    <string name="permission_toast_storage">存储不可用，请在系统设置中允许 Firefox Rocket 使用您的存储权限。</string>
+
+    <!-- When the webpage request access to geolocation a dialog will popup.
+        This is the title of the permission request dialog. Argument 1 is the url of the website. -->
+    <string name="geolocation_dialog_message">%1$s \n需要使用您的位置权限，您是否允许</string>
+    <string name="geolocation_dialog_allow">允许</string>
+    <string name="geolocation_dialog_block">禁止</string>
+
+    <!-- Setting Clear browsing data dialog-->
+    <string name="setting_dialog_clear_data">清除数据</string>
+    <string name="setting_dialog_cancel">取消</string>
+    <string name="setting_dialog_browsing_history">浏览历史记录</string>
+    <string name="setting_dialog_search_history">搜索历史记录</string>
+    <string name="setting_dialog_form_history">表单历史记录</string>
+    <string name="setting_dialog_cookies">Cookies</string>
+    <string name="setting_dialog_cache">缓存</string>
+
+    <!-- Download list-->
+    <string name="no_downloads">无下载文件</string>
+    <string name="download_started">下载中...</string>
+    <string name="download_file_not_supported">不支持该下载协议</string>
+    <string name="cannot_find_the_file">找不到文件</string>
+    <string name="cannot_delete_the_file">无法删除该文件。</string>
+    <string name="download_completed">%1$s 下载完成</string>
+    <string name="download_deleted">%1$s 已被删除</string>
+    <string name="download_cancel">下载已取消</string>
+    <string name="undo">撤销</string>
+    <string name="open">打开</string>
+
+    <!-- Download status-->
+    <!-- File download status is paused -->
+    <string name="pause">暂停</string>
+    <!-- File download status is pending -->
+    <string name="pending">等待</string>
+    <!-- File download status is running -->
+    <string name="running">下载中</string>
+    <!-- File download status is successful -->
+    <string name="successful">成功</string>
+    <!-- File download status is failed -->
+    <string name="failed">失败</string>
+    <!-- File download status is unknown -->
+    <string name="unknown">未知</string>
+
+    <!-- Setting data saving path dialog -->
+    <string name="setting_dialog_sd_card">SD卡</string>
+    <string name="setting_dialog_internal_storage">内部存储</string>
+
+    <!--BrowsingHistoryActivity-->
+    <string name="browsing_history_clear_btn">清除浏览历史记录</string>
+    <string name="browsing_history_empty_view_msg">无浏览历史记录</string>
+    <string name="browsing_history_date_today">今天</string>
+    <string name="browsing_history_date_yesterday">昨天</string>
+    <string name="browsing_history_menu_delete">删除</string>
+    <string name="browsing_history_dialog_confirm_clear_message">清除所有浏览历史记录？</string>
+    <string name="browsing_history_dialog_btn_clear">清除</string>
+
+    <!-- Remove the item from Download file panel -->
+    <string name="remove_from_list">从列表中移除</string>
+
+    <!-- Remove the item from Download file panel and delete the file -->
+    <string name="delete_file">删除文件</string>
+
+    <!--Long Screenshot-->
+    <string name="screenshot_saved">截图已保存</string>
+    <string name="screenshot_failed">截图失败</string>
+    <string name="screenshot_illustration">正在截取整个网页...</string>
+
+    <!-- Snack bar message -->
+    <string name="message_fallback_save_to_primary_external">未检测到SD卡，文件保存至内部存储。</string>
+    <string name="message_start_to_save_to_removable_storage">文件保存至SD卡</string>
+    <string name="message_removable_storage_space_not_enough">SD卡已满，文件保存至内部存储。</string>
+
+    <!-- ScreenshotGridFragment-->
+    <string name="screenshot_grid_empty_text_title">无截图</string>
+
+    <!-- This string is followed by the image of the button, keep the trailing whitespace.
+        Final result: 'Tap [image] on the menu to capture an entire web page'. -->
+    <string name="screenshot_grid_empty_text_msg_prefix">点按菜单上的&#160;</string>
+
+    <!-- This string is preceded by the image of the button, keep the leading whitespace.
+        Final result: 'Tap [image] on the menu to capture an entire web page'. -->
+    <string name="screenshot_grid_empty_text_msg_postfix">&#160;&#160;来截取整个网页。</string>
+
+    <string name="screenshot_image_viewer_dialog_title">信息</string>
+    <string name="screenshot_image_viewer_dialog_info_time1">日期: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_resolution1">分辨率: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_size1">大小: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_title1">标题: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_url1">链接: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_delete_msg">删除该图片？</string>
+
+    <string name="screenshot_on_boarding_text_msg">点按菜单中的截图按钮来拍摄整个页面的截图。\n快速、简单——随时回看整个页面！</string>
+    <string name="screenshot_on_boarding_btn_got_it">了解了！</string>
+
+    <!-- Title for file picker when user trying to upload a file -->
+    <string name="file_picker_title">选择上传文件</string>
+
+    <!-- Toast message -->
+    <string name="message_enable_turbo_mode">启用加速模式</string>
+    <string name="message_disable_turbo_mode">禁用加速模式</string>
+    <string name="message_enable_block_image">隐藏图像</string>
+    <string name="message_disable_block_image">显示图像</string>
+    <string name="message_clear_cache_fail">无法删除缓存</string>
+    <string name="message_storage_unavailable_cancel_download">无法访问存储空间。下载已取消。</string>
+
+    <!-- Message indicate how much cache file cause disk storage was cleared.
+        Argument 1 is the amount, i.e. 15.0 MB cache cleared -->
+    <string name="message_cleared_cached">%1$s 缓存已清除</string>
+    <string name="message_cleared_browsing_data">浏览记录已清除</string>
+    <string name="message_deleted_screenshot">截图已删除</string>
+    <string name="message_cannot_find_screenshot">无法显示该截图</string>
+
+    <!-- Remove Top site item -->
+    <string name="remove">移除</string>
+
+    <!--In-app Promotion, Rate the App-->
+    <string name="rate_app_dialog_text_title">喜欢 {{app_name}} 吗？</string>
+    <string name="rate_app_dialog_text_content">感谢您选用我们的产品，您的</string>
+    <string name="rate_app_dialog_btn_go_rate">是的, 5星好评！</string>
+    <string name="rate_app_dialog_btn_feedback">不, 发送反馈。</string>
+
+    <!--In-app Promotion, Share app-->
+    <string name="share_app_dialog_text_title">与朋友分享 {{app_name}} ！</string>
+    <string name="share_app_dialog_text_content">- 快速，轻量\n- 省流量\n- 强大的截图功能</string>
+    <string name="share_app_dialog_btn_share">分享</string>
+    <string name="share_app_promotion_text">嘿，来试试这个出自 Mozilla 的超快轻量级浏览器吧！{{app_name}} {{share_app_google_play_url}}</string>
+
+    <string name="rate_app_feedback_url">mozilla.com.cn/</string>
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)-->
+    <string name="your_rights_content1"><![CDATA[%1$s 是由 Mozilla 和其他贡献者提供的自由且开源软件。]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the MPL (e.g. https://www.mozilla.org/en-US/MPL/) -->
+    <string name="your_rights_content2"><![CDATA[%1$s 根据 <a href="%2$s">Mozilla 公共许可证</a>以及其他开源许可证向您提供。]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the trademark policy (e.g. https://www.mozilla.org/foundation/trademarks/policy/) -->
+    <string name="your_rights_content3"><![CDATA[您没有得到 Mozilla 基金会或任何其他方面（包括 Mozilla、Firefox 或 %1$s 的名称或标志）的商标授权。更多信息参见<a href="%2$s">此处</a>。]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the list of licenses used by the dependencies.-->
+    <string name="your_rights_content4"><![CDATA[%1$s 的其他源代码可按各种自由和开源软件<a href="%2$s">许可证</a>使用。]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the GPL
+    %3$s will be replaced with a URL linking to the tracking protection wiki page (e.g. https://wiki.mozilla.org/Security/Tracking_protection#Lists) -->
+    <string name="your_rights_content5"><![CDATA[%1$s 还使用 Disconnect 公司提供的黑名单，该黑名单为该公司的独立作品，按 <a href="%2$s">GNU 通用公共许可证第三版</a>提供，可在<a href="%3$s">这里</a>找到。]]></string>
+
+    <!-- Title for survey notification posted after launching the app on the 3rd time
+    %1$s will be replaced with an emoticon -->
+    <string name="survey_notification_title">我们需要你！%1$s</string>
+
+    <!-- Subtitle for survey notification posted after launching the app on the 3rd time -->
+    <string name="survey_notification_description">为用户打造一个更好的产品</string>
+    <string name="first_run_page3_text">如果您屏蔽了图像，那么流量节约则更加显著。</string>
+    <string name="open_folder">打开文件夹</string>
+
+</resources>
