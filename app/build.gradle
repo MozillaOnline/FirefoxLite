@@ -40,7 +40,7 @@ android {
         applicationId "org.mozilla"
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
-        resConfigs "en", "in"
+        resConfigs "en", "in", "zh"
         versionCode Versions.version_code
         versionName Versions.version_name
         testInstrumentationRunner "org.mozilla.focus.test.runner.CustomTestRunner"
@@ -545,6 +545,8 @@ def getTranslatedLocales() {
                 return "in"
             case "he":
                 return "iw"
+            case "zh-CN":
+                return "zh"
             default:
                 return it
         }
