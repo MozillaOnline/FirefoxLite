@@ -431,3 +431,111 @@
 
     <string name="first_run_page3_text">Blocking tracking ads not only speeds up browsing, it saves data. Save even more when you block images.</string>
 </resources>
+
+
+    <!-- Remove the item from Download file panel and delete the file -->
+    <string name="delete_file">Delete file</string>
+    <string name="open_folder">Open Folder</string>
+
+    <!--Long Screenshot-->
+    <string name="screenshot_saved">Screenshot saved</string>
+    <string name="screenshot_failed">Failed to capture screenshot</string>
+    <string name="screenshot_illustration">Capturing screenshot of entire page…</string>
+
+    <!-- Snack bar message -->
+    <string name="message_fallback_save_to_primary_external">No SD card detected. File was saved to internal storage.</string>
+    <string name="message_start_to_save_to_removable_storage">File saved to SD card</string>
+    <string name="message_removable_storage_space_not_enough">SD card is almost full. File was saved to internal storage.</string>
+
+    <!-- ScreenshotGridFragment-->
+    <string name="screenshot_grid_empty_text_title">No screenshots</string>
+
+    <!-- This string is followed by the image of the button, keep the trailing whitespace.
+        Final result: 'Tap [image] on the menu to capture an entire web page'. -->
+    <string name="screenshot_grid_empty_text_msg_prefix">Tap&#160;</string>
+
+    <!-- This string is preceded by the image of the button, keep the leading whitespace.
+        Final result: 'Tap [image] on the menu to capture an entire web page'. -->
+    <string name="screenshot_grid_empty_text_msg_postfix">&#160;&#160;on the menu to capture\nan entire web page.</string>
+
+    <string name="screenshot_image_viewer_dialog_title">Info</string>
+    <string name="screenshot_image_viewer_dialog_info_time1">Date: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_resolution1">Resolution: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_size1">Size: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_title1">Title: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_info_url1">URL: %1$s</string>
+    <string name="screenshot_image_viewer_dialog_delete_msg">Delete this image?</string>
+
+    <string name="screenshot_on_boarding_text_msg">Tap the screenshot button in the menu to capture the whole page.\nFast, easy - come back to the page at anytime!</string>
+    <string name="screenshot_on_boarding_btn_got_it">Got it!</string>
+
+    <!-- Title for file picker when user trying to upload a file -->
+    <string name="file_picker_title">Choose a file to upload</string>
+
+    <!-- Toast message -->
+    <string name="message_enable_turbo_mode">Turbo mode enabled</string>
+    <string name="message_disable_turbo_mode">Turbo mode disabled</string>
+    <string name="message_enable_block_image">Now blocking images</string>
+    <string name="message_disable_block_image">Now showing images</string>
+    <string name="message_clear_cache_fail">Unable to clear cache</string>
+    <string name="message_storage_unavailable_cancel_download">Storage inaccessible. Download canceled.</string>
+
+    <!-- Message indicate how much cache file cause disk storage was cleared.
+        Argument 1 is the amount, i.e. 15.0 MB cache cleared -->
+    <string name="message_cleared_cached">%1$s cache cleared</string>
+    <string name="message_cleared_browsing_data">Browsing data cleared</string>
+    <string name="message_deleted_screenshot">Screenshot deleted</string>
+    <string name="message_cannot_find_screenshot">Cannot display the screenshot</string>
+
+    <!-- Remove Top site item -->
+    <string name="remove">Remove</string>
+
+    <!--In-app Promotion, Rate the App-->
+    <string name="rate_app_dialog_text_title">Love {{app_name}}?</string>
+    <string name="rate_app_dialog_text_content">Thank you for choosing our product. Your feedback is important to us.</string>
+    <string name="rate_app_dialog_btn_go_rate">Yes, rate 5 stars!</string>
+    <string name="rate_app_dialog_btn_feedback">No, send feedback.</string>
+
+    <string name="rate_app_feedback_url">https://qsurvey.mozilla.com/s3/Firefox-Rocket-Input/</string>
+
+    <!--In-app Promotion, Share app-->
+    <string name="share_app_dialog_text_title">Share {{app_name}} with friends!</string>
+    <string name="share_app_dialog_text_content">- Fast and lightweight\n- Data saving\n- Powerful screenshots</string>
+    <string name="share_app_dialog_btn_share">Share</string>
+    <string name="share_app_google_play_url" translatable="false">https://mzl.la/2kScptw</string>
+    <string name="share_app_promotion_text">Hey, check out this fast and lightweight browser from Mozilla. {{app_name}} {{share_app_google_play_url}}</string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)-->
+    <string name="your_rights_content1"><![CDATA[%1$s is free and open source software made by Mozilla and other contributors.]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the MPL (e.g. https://www.mozilla.org/en-US/MPL/) -->
+    <string name="your_rights_content2"><![CDATA[%1$s is made available to you under the terms of the <a href="%2$s">Mozilla Public License</a> and other open source licenses.]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the trademark policy (e.g. https://www.mozilla.org/foundation/trademarks/policy/) -->
+    <string name="your_rights_content3"><![CDATA[You are not granted any rights or licenses to the trademarks of the Mozilla Foundation or any party, including the Mozilla, Firefox or %1$s names or logos. Additional information may be found <a href="%2$s">here</a>.]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the list of licenses used by the dependencies.-->
+    <string name="your_rights_content4"><![CDATA[Additional source code for %1$s is available under various other free and open source <a href="%2$s">licenses</a>.]]></string>
+
+    <!-- Text shown in the "Your rights" screen.
+    %1$s will be replaced with the name of the app (e.g. Firefox Rocket)
+    %2$s will be replaced with a URL linking to the GPL
+    %3$s will be replaced with a URL linking to the tracking protection wiki page (e.g. https://wiki.mozilla.org/Security/Tracking_protection#Lists) -->
+    <string name="your_rights_content5"><![CDATA[%1$s also uses blocklists provided by Disconnect, Inc. as separate and independent works under the <a href="%2$s">GNU General Public License v3</a>, and available <a href="%3$s">here</a>.]]></string>
+
+    <!-- Title for survey notification posted after launching the app on the 3rd time
+    %1$s will be replaced with an emoticon -->
+    <string name="survey_notification_title">We need you! %1$s</string>
+
+    <!-- Subtitle for survey notification posted after launching the app on the 3rd time -->
+    <string name="survey_notification_description">Shape a better product for Indonesia</string>
+
+    <string name="survey_notification_url" translatable="false">https://qsurvey.mozilla.com/s3/Rocket-Existing-User-Survey&amp;sglocale=%1$s</string>
+</resources>
