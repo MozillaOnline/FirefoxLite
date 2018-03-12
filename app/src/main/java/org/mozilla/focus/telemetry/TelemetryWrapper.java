@@ -48,7 +48,7 @@ import java.util.HashMap;
 import static org.mozilla.focus.telemetry.TelemetryWrapper.Value.SETTINGS;
 
 public final class TelemetryWrapper {
-    static final String TELEMETRY_APP_NAME_ZERDA = "Zerda";
+    static final String TELEMETRY_APP_NAME_ZERDA = "Zerda_cn";
 
     private static final int TOOL_BAR_CAPTURE_TELEMETRY_VERSION = 3;
     private static final int RATE_APP_NOTIFICATION_TELEMETRY_VERSION = 2;

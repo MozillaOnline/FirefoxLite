@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -31,6 +30,7 @@ import org.mozilla.focus.download.GetImgHeaderTask;
 import org.mozilla.focus.fragment.BrowserFragment;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.UrlUtils;
+
 import org.mozilla.rocket.tabs.Tab;
 import org.mozilla.rocket.tabs.TabView;
 import org.mozilla.rocket.tabs.TabsSession;
@@ -105,11 +105,7 @@ public class WebContextMenu {
     private static void setupMenuForHitTarget(final @NonNull boolean inPrivate,
                                               final @NonNull Dialog dialog,
                                               final @NonNull NavigationView navigationView,
-<<<<<<< HEAD
                                               final @NonNull DownloadCallback callback,
-=======
-                                              final @NonNull TabView.Callback callback,
->>>>>>> refactor: rename interface IWebView -> TabView
                                               final @NonNull TabView.HitTarget hitTarget) {
         navigationView.inflateMenu(R.menu.menu_browser_context);
 
