@@ -26,12 +26,13 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "org.mozilla"
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
+        resConfigs "en", "in", "zh-rCN"
         versionCode Versions.version_code
         versionName Versions.version_name
         testInstrumentationRunner "org.mozilla.focus.test.runner.CustomTestRunner"
@@ -365,6 +366,7 @@ android.applicationVariants.all { variant ->
         }
     }
 }
+
 
 tasks.whenTaskAdded { task ->
     if (name.contains("compile")) {

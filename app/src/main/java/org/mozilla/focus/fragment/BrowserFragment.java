@@ -57,7 +57,6 @@ import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.permission.PermissionHandle;
 import org.mozilla.focus.permission.PermissionHandler;
 import org.mozilla.focus.screenshot.CaptureRunnable;
-
 import org.mozilla.focus.tabs.TabCounter;
 import org.mozilla.focus.tabs.tabtray.TabTray;
 import org.mozilla.focus.tabs.Tab;
@@ -70,12 +69,11 @@ import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.FileChooseAction;
 import org.mozilla.focus.utils.IntentUtils;
 import org.mozilla.focus.utils.Settings;
-
 import org.mozilla.focus.utils.SupportUtils;
-import org.mozilla.threadutils.ThreadUtils;
 import org.mozilla.focus.utils.ViewUtils;
 import org.mozilla.focus.web.WebViewProvider;
-
+import org.mozilla.focus.utils.UrlUtils;
+import org.mozilla.focus.web.DownloadCallback;
 import org.mozilla.focus.widget.AnimatedProgressBar;
 import org.mozilla.focus.widget.BackKeyHandleable;
 import org.mozilla.focus.widget.FindInPage;
@@ -120,9 +118,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
     private int systemVisibility = ViewUtils.SYSTEM_UI_VISIBILITY_NONE;
 
     private DownloadCallback downloadCallback = new DownloadCallback();
-
     private FindInPage findInPage;
-
     private static final int BUNDLE_MAX_SIZE = 300 * 1000; // 300K
 
     private ViewGroup webViewSlot;
@@ -409,7 +405,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         initialiseNormalBrowserUi();
 
         webViewSlot = (ViewGroup) view.findViewById(R.id.webview_slot);
-
         sessionManager = TabsSessionProvider.getOrThrow(getActivity());
 
         sessionManager.register(this.managerObserver, this);
@@ -419,6 +414,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         if (tabCounter != null && isTabRestoredComplete()) {
             tabCounter.setCount(sessionManager.getTabsCount());
         }
+
 
         return view;
     }
@@ -577,6 +573,8 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
      * @param listener The listener to notify of load state changes. Only a weak reference will be kept,
      *                 no more calls will be sent once the listener is garbage collected.
      */
+
+
     public void setIsLoadingListener(final LoadStateListener listener) {
         loadStateListenerWeakReference = new WeakReference<>(listener);
     }
@@ -761,7 +759,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             tab.setBlockingEnabled(enabled);
         }
     }
-
 
     public void loadUrl(@NonNull final String url, boolean openNewTab) {
     /**
@@ -1069,9 +1066,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                 backgroundTransition.startTransition(ANIMATION_DURATION);
 
                 siteIdentity.setImageLevel(isSecure ? SITE_LOCK : SITE_GLOBE);
-
             historyInserter.onTabFinished(tab);
-
         }
 
         @Override
@@ -1093,6 +1088,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             if (!isForegroundTab(tab)) {
                 return;
             }
+
 
             hideFindInPage();
             if (sessionManager.getFocusSession() != null) {
@@ -1120,7 +1116,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             }
 
             return IntentUtils.handleExternalUri(getContext(), url);
-
         }
 
         @Override
@@ -1201,6 +1196,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                                                        final String origin,
                                                        final GeolocationPermissions.Callback callback) {
             if (!isForegroundTab(tab) || !isPopupWindowAllowed()) {
+            if (!isForegroundTab(tab)) {
                 return;
             }
 
