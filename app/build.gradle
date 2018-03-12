@@ -42,13 +42,13 @@ android {
 
         }
     }
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "org.mozilla"
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
-        resConfigs "en", "in"
+        resConfigs "en", "in", "zh-rCN"
         versionCode Versions.version_code
         versionName Versions.version_name
         testInstrumentationRunner "org.mozilla.focus.test.runner.CustomTestRunner"
@@ -489,7 +489,7 @@ def getEnabledLocales() {
     // en-US is the default language (in "values") and therefore needs to be added separately
     langs << "\"en-US\""
     // Remove zh-CN since we have it in our source code but we currently don't want it packaged.
-    langs.remove("\"zh-CN\"")
+    //langs.remove("\"zh-CN\"")
 
     return langs
 }
@@ -553,6 +553,8 @@ def getTranslatedLocales() {
                 return "in"
             case "he":
                 return "iw"
+            case "zh-CN":
+                return "zh"
             default:
                 return it
         }

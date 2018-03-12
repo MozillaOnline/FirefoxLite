@@ -250,9 +250,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
              if ((site != null) && (parent instanceof FragmentListener)) {
                 ScreenNavigator.get(v.getContext()).showBrowserScreen(site.getUrl(), true, false);
                 ViewParent viewParent = v.getParent();
-             if (viewParent instanceof ViewGroup) {
+             	if (viewParent instanceof ViewGroup) {
                     int index = ((ViewGroup) v.getParent()).indexOfChild(v);
                     TelemetryWrapper.clickTopSiteOn(index);
+					}
                 }
             }else{
                 //Start AddTopsiteActivity
