@@ -38,7 +38,7 @@ import org.mozilla.telemetry.storage.FileTelemetryStorage;
 import org.mozilla.telemetry.storage.TelemetryStorage;
 
 public final class TelemetryWrapper {
-    private static final String TELEMETRY_APP_NAME_ZERDA = "Zerda";
+    private static final String TELEMETRY_APP_NAME_ZERDA = "Zerda_cn";
 
     private TelemetryWrapper() {
     }

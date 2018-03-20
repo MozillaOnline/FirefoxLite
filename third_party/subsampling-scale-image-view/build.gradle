@@ -3,6 +3,31 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tools
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        beta {
+            initWith release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            def userName = System.getenv("USER")
+            versionNameSuffix applicationIdSuffix
+        }
+        // Use a separate buildType for coverage: testCoverageEnabled produces slower code (4-5x slower
+        // in places that I've benchmarked), and more importantly seems to break debugging with Android Studio
+        // for some developers (i.e. variables can't be inspected or seen).
+        coverage {
+            initWith debug
+            testCoverageEnabled true
+            matchingFallbacks = ["debug"]
+        }
+    }
 }
 
 dependencies {

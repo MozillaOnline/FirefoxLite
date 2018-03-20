@@ -70,7 +70,6 @@ import org.mozilla.focus.utils.ShortcutUtils;
 import org.mozilla.focus.utils.StorageUtils;
 import org.mozilla.focus.utils.UrlUtils;
 import org.mozilla.focus.web.BrowsingSession;
-import org.mozilla.focus.web.IWebView;
 import org.mozilla.focus.tabs.TabView;
 import org.mozilla.focus.web.WebViewProvider;
 import org.mozilla.focus.widget.FragmentListener;
@@ -469,7 +468,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
 
                 TelemetryWrapper.menuBlockImageChangeTo(blockingImages);
                 break;
-            case R.id.menu_turbomode:
+            case R.id.menu_speedmode:
                 //  Toggle
                 final boolean turboEnabled = !isTurboEnabled();
                 Settings.getInstance(this).setTurboMode(turboEnabled);
@@ -654,7 +653,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
             if (browserFragment != null) {
                 browserFragment.setContentBlockingEnabled(turboEnabled);
             }
-            menu.findViewById(R.id.menu_turbomode).setSelected(turboEnabled);
+            menu.findViewById(R.id.menu_speedmode).setSelected(turboEnabled);
         } else if (this.getResources().getString(R.string.pref_key_performance_block_images).equals(key)) {
             final boolean blockingImages = isBlockingImages();
             BrowserFragment browserFragment = getBrowserFragment();

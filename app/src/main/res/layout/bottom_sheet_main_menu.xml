@@ -121,13 +121,13 @@
         </FrameLayout>
         <FrameLayout
             style="@style/MenuButtonContainer"
-            android:id="@+id/menu_turbomode"
+            android:id="@+id/menu_speedmode"
             android:visibility="invisible">
             <LinearLayout
                 style="@style/MenuButtonGroup">
                 <View
                     style="@style/MenuToggleIcon"
-                    android:background="@drawable/menu_turbomode"/>
+                    android:background="@drawable/menu_speedmode"/>
                 <TextView
                     style="@style/MenuToggleText"
                     android:text="@string/label_menu_turbo_mode"/>
