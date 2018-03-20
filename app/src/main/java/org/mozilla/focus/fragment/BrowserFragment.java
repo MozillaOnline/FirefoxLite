@@ -61,7 +61,6 @@ import org.mozilla.focus.menu.WebContextMenu;
 import org.mozilla.focus.permission.PermissionHandle;
 import org.mozilla.focus.permission.PermissionHandler;
 import org.mozilla.focus.screenshot.CaptureRunnable;
-<<<<<<< HEAD
 import org.mozilla.focus.tabs.SiteIdentity;
 import org.mozilla.focus.tabs.Tab;
 import org.mozilla.focus.tabs.TabCounter;
@@ -87,6 +86,7 @@ import org.mozilla.focus.utils.ThreadUtils;
 import org.mozilla.focus.utils.UrlUtils;
 import org.mozilla.focus.web.BrowsingSession;
 import org.mozilla.focus.web.Download;
+import org.mozilla.focus.web.DownloadCallback;
 import org.mozilla.focus.widget.AnimatedProgressBar;
 import org.mozilla.focus.widget.BackKeyHandleable;
 import org.mozilla.focus.widget.FragmentListener;
@@ -118,7 +118,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
     private int systemVisibility = NONE;
 
     private DownloadCallback downloadCallback = new DownloadCallback();
-
 
     private static final int BUNDLE_MAX_SIZE = 300 * 1000; // 300K
 
@@ -399,7 +398,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         initialiseNormalBrowserUi();
 
         webViewSlot = (ViewGroup) view.findViewById(R.id.webview_slot);
-
         tabsSession = TabsSessionProvider.getOrThrow(getActivity());
 
         tabsSession.addTabsViewListener(this.tabsContentListener);
@@ -409,6 +407,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         if (tabCounter != null && isTabRestoredComplete()) {
             tabCounter.setCount(tabsSession.getTabsCount());
         }
+
 
         return view;
     }
@@ -553,6 +552,8 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
      * @param listener The listener to notify of load state changes. Only a weak reference will be kept,
      *                 no more calls will be sent once the listener is garbage collected.
      */
+
+
     public void setIsLoadingListener(final LoadStateListener listener) {
         loadStateListenerWeakReference = new WeakReference<>(listener);
     }
@@ -734,7 +735,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             tab.setBlockingEnabled(enabled);
         }
     }
-
 
     public void loadUrl(@NonNull final String url, boolean openNewTab) {
     /**
@@ -1028,9 +1028,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                 backgroundTransition.startTransition(ANIMATION_DURATION);
 
                 siteIdentity.setImageLevel(isSecure ? SITE_LOCK : SITE_GLOBE);
-
             historyInserter.onTabFinished(tab);
-
         }
 
         @Override
@@ -1052,7 +1050,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             if (!isForegroundTab(tab)) {
                 return;
             }
-
 
             if (tabsSession.getFocusTab() != null) {
                 final String currentUrl = tabsSession.getFocusTab().getUrl();
@@ -1079,7 +1076,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             }
 
             return IntentUtils.handleExternalUri(getContext(), url);
-
         }
 
         @Override
@@ -1160,6 +1156,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                                                        final String origin,
                                                        final GeolocationPermissions.Callback callback) {
             if (!isForegroundTab(tab) || !isPopupWindowAllowed()) {
+            if (!isForegroundTab(tab)) {
                 return;
             }
 
