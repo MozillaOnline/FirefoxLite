@@ -177,4 +177,6 @@
   <string name="new_background_tab_hint">已打开新标签页</string>
   <string name="new_background_tab_switch">切换过去</string>
   <string name="rate_app_feedback_url">http://mozilla.com.cn</string>
+  <string name="open_folder">打开文件夹</string>
+  <string name="contextmenu_open_in_new_tab">新标签页打开</string>
 </resources>
