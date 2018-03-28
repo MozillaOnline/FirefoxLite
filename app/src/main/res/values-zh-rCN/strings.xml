@@ -190,4 +190,6 @@
   <string name="tab_tray_close_tabs_btn_text">关闭全部</string>
   <string name="tab_tray_close_tabs_dialog_msg">关闭所有标签页？</string>
   <string name="rate_app_feedback_url">http://mozilla.com.cn</string>
+  <string name="open_folder">打开文件夹</string>
+  <string name="contextmenu_open_in_new_tab">新标签页打开</string>
 </resources>
