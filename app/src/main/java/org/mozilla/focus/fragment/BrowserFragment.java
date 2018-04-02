@@ -753,14 +753,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         return true;
     }
 
-    public void setBlockingEnabled(boolean enabled) {
-        final List<Tab> tabs = tabsSession.getTabs();
-        for (final Tab tab : tabs) {
-            tab.setBlockingEnabled(enabled);
-        }
-    }
 
-    public void loadUrl(@NonNull final String url, boolean openNewTab) {
     /**
      * @param url                 target url
      * @param openNewTab          whether to load url in a new tab or not
@@ -1057,7 +1050,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                 // The URL which is supplied in onTabFinished() could be fake (see #301), but webview's
                 // URL is always correct _except_ for error pages
                 updateUrlFromWebView(tab);
-            	Log.e("url","page finish"+urlView.getText().toString());
+                Log.e("url", "page finish" + urlView.getText().toString());
 
                 updateIsLoading(false);
 
@@ -1066,6 +1059,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                 backgroundTransition.startTransition(ANIMATION_DURATION);
 
                 siteIdentity.setImageLevel(isSecure ? SITE_LOCK : SITE_GLOBE);
+            }
             historyInserter.onTabFinished(tab);
         }
 
@@ -1196,7 +1190,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                                                        final String origin,
                                                        final GeolocationPermissions.Callback callback) {
             if (!isForegroundTab(tab) || !isPopupWindowAllowed()) {
-            if (!isForegroundTab(tab)) {
                 return;
             }
 
