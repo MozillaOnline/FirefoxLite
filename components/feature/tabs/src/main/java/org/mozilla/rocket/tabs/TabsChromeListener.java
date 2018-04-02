@@ -31,16 +31,7 @@ public interface TabsChromeListener {
     int FACTOR_NO_FOCUS = 5;
     int FACTOR_BACK_EXTERNAL = 6;
 
-<<<<<<< HEAD
-    @IntDef({FACTOR_UNKNOWN,
-            FACTOR_TAB_ADDED,
-            FACTOR_TAB_REMOVED,
-            FACTOR_TAB_SWITCHED,
-            FACTOR_NO_FOCUS,
-            FACTOR_BACK_EXTERNAL})
-=======
     @IntDef({FACTOR_UNKNOWN, FACTOR_TAB_ADDED, FACTOR_TAB_REMOVED, FACTOR_TAB_SWITCHED, FACTOR_NO_FOCUS, FACTOR_BACK_EXTERNAL})
->>>>>>> update string/telemetry
     @interface Factor {
     }
 

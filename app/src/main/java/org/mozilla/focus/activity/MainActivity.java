@@ -397,7 +397,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
         if (!requestPinShortcutSupported) {
             pinShortcut.setVisibility(View.GONE);
         }
-        menu.findViewById(R.id.menu_turbomode).setSelected(isTurboEnabled());
+        menu.findViewById(R.id.menu_speedmode).setSelected(isTurboEnabled());
         menu.findViewById(R.id.menu_blockimg).setSelected(isBlockingImages());
     }
 
