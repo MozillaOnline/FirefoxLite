@@ -843,14 +843,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         return true;
     }
 
-    public void setBlockingEnabled(boolean enabled) {
-        final List<Tab> tabs = tabsSession.getTabs();
-        for (final Tab tab : tabs) {
-            tab.setBlockingEnabled(enabled);
-        }
-    }
 
-    public void loadUrl(@NonNull final String url, boolean openNewTab) {
     /**
      * @param url                 target url
      * @param openNewTab          whether to load url in a new tab or not
@@ -1154,7 +1147,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                 Log.w(BROWSER_FRAGMENT_TAG, "No context to use, abort callback handleExternalUrl");
                 return false;
             }
-
+        }
             return IntentUtils.handleExternalUri(getContext(), url);
 
         }
