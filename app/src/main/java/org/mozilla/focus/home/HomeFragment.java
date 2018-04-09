@@ -144,6 +144,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private final SessionManagerObserver observer = new SessionManagerObserver();
     private int MAX_TOPSITES = 8;
     private final Site ADD_SITE = new Site();
+    public Context parentActivity;
 
     private RecyclerView banner;
     private LinearLayoutManager bannerLayoutManager;
@@ -173,6 +174,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         super.onCreate(bundle);
         this.presenter = new TopSitesPresenter();
         this.presenter.setView(this);
+        parentActivity = getActivity();
     }
 
     private void showBanner(boolean enabled) {
@@ -561,6 +563,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
              	if (viewParent instanceof ViewGroup) {
                     int index = ((ViewGroup) v.getParent()).indexOfChild(v);
                     TelemetryWrapper.clickTopSiteOn(index);
+                    TelemetryWrapper.clickTopSiteOn(site.getUrl());
+                    Log.e("HttpCNTracking","clickTopsiteOn");
 					}
                 }
             }else{
@@ -991,6 +995,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         public void updateFailingUrl(@NonNull Session session, @org.jetbrains.annotations.Nullable String url, boolean updateFromError) {
             // do nothing
         }
+
     }
 
     private interface DoWithThemeManager {

@@ -78,6 +78,7 @@ public class TopSitesUtils {
     }
 
 
+
     public static List<Site> paresJsonToList(Context context, JSONArray jsonArray) {
         List<Site> defaultSites = new ArrayList<>();
         try {

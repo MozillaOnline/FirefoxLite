@@ -173,6 +173,10 @@ class FirstrunFragment : Fragment(), View.OnClickListener, Screen {
         bgTransitionDrawable = TransitionDrawable(bgDrawables)
         bgTransitionDrawable.setId(0, R.id.first_run_bg_even)
         bgTransitionDrawable.setId(1, R.id.first_run_bg_odd)
+
+        if (isTelemetryValid) {
+            TelemetryWrapper.enterFirstRunEvent()
+        }
     }
 
     companion object {

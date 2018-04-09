@@ -47,7 +47,7 @@ import org.mozilla.telemetry.storage.FileTelemetryStorage
 import java.util.HashMap
 
 object TelemetryWrapper {
-    internal val TELEMETRY_APP_NAME_ZERDA = "Zerda"
+    internal val TELEMETRY_APP_NAME_ZERDA = "Zerda_cn"
 
     private val TOOL_BAR_CAPTURE_TELEMETRY_VERSION = 3
     private val RATE_APP_NOTIFICATION_TELEMETRY_VERSION = 2
@@ -151,6 +151,8 @@ object TelemetryWrapper {
         internal val VIDEO = "video"
         internal val MIDI = "midi"
         internal val EME = "eme"
+        internal val ACTIVATE = "activate"
+        internal val START = "start"
 
         internal val LEARN_MORE = "learn_more"
 
@@ -255,12 +257,13 @@ object TelemetryWrapper {
 
             val serializer = JSONPingSerializer()
             val storage = FileTelemetryStorage(configuration, serializer)
-            val client = HttpURLConnectionTelemetryClient()
-            val scheduler = JobSchedulerTelemetryScheduler()
+            val client = HttpURLConnectionTelemetryClientCN()
+            val scheduler = JobSchedulerTelemetrySchedulerCN()
 
             TelemetryHolder.set(Telemetry(configuration, storage, client, scheduler)
                     .addPingBuilder(TelemetryCorePingBuilder(configuration))
                     .addPingBuilder(TelemetryEventPingBuilder(configuration))
+                    .addPingBuilder(TelemetryChinaPingBuilder(configuration))
                     .setDefaultSearchProvider(createDefaultSearchProvider(context)))
         } finally {
             StrictMode.setThreadPolicy(threadPolicy)
@@ -295,6 +298,16 @@ object TelemetryWrapper {
         EventBuilder(Category.ACTION, Method.SHOW, Object.FIRSTRUN, Value.FINISH)
                 .extra(Extra.ON, java.lang.Long.toString(duration))
                 .queue()
+    }
+
+    //china edition
+    @JvmStatic
+    fun enterFirstRunEvent(){
+        TelemetryChina.create(Category.ACTION, Method.SHOW, Object.FIRSTRUN, Value.ACTIVATE)
+                .queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
     }
 
     @JvmStatic
@@ -383,6 +396,15 @@ object TelemetryWrapper {
         TelemetryHolder.get().recordSessionEnd()
 
         EventBuilder(Category.ACTION, Method.BACKGROUND, Object.APP).queue()
+    }
+
+    //china edition
+    @JvmStatic
+    fun startApp(){
+        TelemetryChina.create(Category.ACTION,Method.CLICK, Object.APP,Value.START).queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
     }
 
     @JvmStatic
@@ -601,6 +623,17 @@ object TelemetryWrapper {
 
         EventBuilder(Category.ACTION, Method.ADD, Object.TAB, Value.TOPSITE)
                 .queue()
+    }
+
+    //china edition
+    @JvmStatic
+    fun clickTopSiteOn(url:String) {
+        TelemetryChina.create(Category.ACTION, Method.ADD, Object.TAB, Value.TOPSITE)
+                .extra(Extra.ON, url)
+                .queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
     }
 
     @JvmStatic
