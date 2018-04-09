@@ -124,6 +124,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 =======
     private int MAX_TOPSITES = 8;
     private final Site ADD_SITE = new Site();
+    public Context parentActivity;
 
 >>>>>>> Topsites
     private final TabsChromeListener tabsChromeListener = new TabsChromeListener();
@@ -144,6 +145,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         super.onCreate(bundle);
         this.presenter = new TopSitesPresenter();
         this.presenter.setView(this);
+        parentActivity = getActivity();
     }
 
     private void showBanner(boolean enabled) {
@@ -433,7 +435,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         ADD_SITE.setId(0);
         ADD_SITE.setViewCount(0);
         //Change the icon later
-        Bitmap bitmap = TopSitesUtils.getIconFromAssets(getContext(),"ic_add.png");
+        if(parentActivity==null){
+            Log.e("TopsitesHome","getActivity null");
+        }
+        Bitmap bitmap = TopSitesUtils.getIconFromAssets(parentActivity,"ic_add.png");
         ADD_SITE.setFavIcon(bitmap);
         if (this.topSiteAdapter == null) {
             Log.e("Topsite","adapter null");
@@ -516,6 +521,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
              	if (viewParent instanceof ViewGroup) {
                     int index = ((ViewGroup) v.getParent()).indexOfChild(v);
                     TelemetryWrapper.clickTopSiteOn(index);
+                    TelemetryWrapper.clickTopSiteOn(site.getUrl());
+                    Log.e("HttpCNTracking","clickTopsiteOn");
 					}
                 }
             }else{
@@ -833,6 +840,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         public void onGeolocationPermissionsShowPrompt(@NonNull Tab tab, String origin, GeolocationPermissions.Callback callback) {
             // do nothing
         }
+
     }
 
     private interface DoWithThemeManager {
