@@ -19,6 +19,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -197,6 +198,9 @@ public class FirstrunFragment extends Fragment implements View.OnClickListener {
         bgTransitionDrawable = new TransitionDrawable(bgDrawables);
         bgTransitionDrawable.setId(0, R.id.first_run_bg_even);
         bgTransitionDrawable.setId(1, R.id.first_run_bg_odd);
+        if (isTelemetryValid) {
+            TelemetryWrapper.enterFirstRunEvent();
+        }
     }
 
 }

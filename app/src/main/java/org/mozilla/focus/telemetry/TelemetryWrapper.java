@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.webkit.PermissionRequest;
 
 import org.mozilla.focus.BuildConfig;
@@ -125,6 +126,8 @@ public final class TelemetryWrapper {
 
         private static final String ENTER = "enter";
         private static final String EXIT = "exit";
+        private static final String START = "start";
+        private static final String ACTIVATE = "activate";
         private static final String GEOLOCATION = "geolocation";
         private static final String AUDIO = "audio";
         private static final String VIDEO = "video";
@@ -137,6 +140,7 @@ public final class TelemetryWrapper {
         public static final String POSITIVE = "positive";
         public static final String NEGATIVE = "negative";
         public static final String SHARE = "share";
+
     }
 
     private static class Extra {
@@ -213,16 +217,43 @@ public final class TelemetryWrapper {
                             resources.getString(R.string.pref_key_locale))
                     .setCollectionEnabled(telemetryEnabled)
                     .setUploadEnabled(telemetryEnabled);
+            /*final TelemetryConfiguration configuration2 = new TelemetryConfiguration(context)
+                    .setServerEndpoint("http://m.g-fox.cn/cmonline.gif?")
+                    .setAppName(TELEMETRY_APP_NAME_ZERDA)
+                    .setUpdateChannel(BuildConfig.BUILD_TYPE)
+                    .setPreferencesImportantForTelemetry(
+                            resources.getString(R.string.pref_key_search_engine),
+                            resources.getString(R.string.pref_key_turbo_mode),
+                            resources.getString(R.string.pref_key_performance_block_images),
+                            resources.getString(R.string.pref_key_default_browser),
+                            resources.getString(R.string.pref_key_storage_save_downloads_to),
+                            resources.getString(R.string.pref_key_webview_version),
+                            resources.getString(R.string.pref_key_locale))
+                    .setCollectionEnabled(telemetryEnabled)
+                    .setUploadEnabled(telemetryEnabled);*/
 
             final TelemetryPingSerializer serializer = new JSONPingSerializer();
             final TelemetryStorage storage = new FileTelemetryStorage(configuration, serializer);
-            final TelemetryClient client = new HttpURLConnectionTelemetryClient();
-            final TelemetryScheduler scheduler = new JobSchedulerTelemetryScheduler();
+            //final TelemetryClient client = new HttpURLConnectionTelemetryClient();
+            //final TelemetryScheduler scheduler = new JobSchedulerTelemetryScheduler();
+            final TelemetryClient client = new HttpURLConnectionTelemetryClientCN();
+            final TelemetryScheduler scheduler = new JobSchedulerTelemetrySchedulerCN();
+            //TelemetryHolder holder1 = new TelemetryHolder();
+            //TelemetryHolder holder2 = new TelemetryHolder();
 
             TelemetryHolder.set(new Telemetry(configuration, storage, client, scheduler)
                     .addPingBuilder(new TelemetryCorePingBuilder(configuration))
                     .addPingBuilder(new TelemetryEventPingBuilder(configuration))
+                    .addPingBuilder(new TelemetryChinaPingBuilder(configuration))
                     .setDefaultSearchProvider(createDefaultSearchProvider(context)));
+            /*holder1.set(new Telemetry(configuration, storage, client, scheduler)
+                    .addPingBuilder(new TelemetryCorePingBuilder(configuration))
+                    .addPingBuilder(new TelemetryEventPingBuilder(configuration))
+                    .setDefaultSearchProvider(createDefaultSearchProvider(context)));*/
+            /*holder2.set(new Telemetry(configuration, storage, client, scheduler)
+                    .addPingBuilder(new TelemetryCorePingBuilder(configuration))
+                    .addPingBuilder(new TelemetryEventPingBuilder(configuration))
+                    .setDefaultSearchProvider(createDefaultSearchProvider(context)));*/
         } finally {
             StrictMode.setThreadPolicy(threadPolicy);
         }
@@ -257,6 +288,14 @@ public final class TelemetryWrapper {
         TelemetryEvent.create(Category.ACTION, Method.SHOW, Object.FIRSTRUN, Value.FINISH)
                 .extra(Extra.ON, Long.toString(duration))
                 .queue();
+    }
+    //China edition
+    public static void enterFirstRunEvent(){
+        TelemetryChina.create(Category.ACTION, Method.SHOW, Object.FIRSTRUN, Value.ACTIVATE)
+                .queue();
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload();
     }
 
     public static void browseIntentEvent() {
@@ -300,6 +339,14 @@ public final class TelemetryWrapper {
         TelemetryHolder.get().recordSessionEnd();
 
         TelemetryEvent.create(Category.ACTION, Method.BACKGROUND, Object.APP).queue();
+    }
+
+    // china edition
+    public static void startApp(){
+        TelemetryChina.create(Category.ACTION,Method.CLICK,Object.APP,Value.START).queue();
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload();
     }
 
     public static void stopMainActivity() {
@@ -475,6 +522,15 @@ public final class TelemetryWrapper {
                 .queue();
     }
 
+    //China edition
+    public static void clickTopSiteOn(String url) {
+        TelemetryChina.create(Category.ACTION, Method.ADD, Object.TAB, Value.TOPSITE)
+                .extra(Extra.ON, url)
+                .queue();
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload();
+    }
     public static void removeTopSite(boolean isDefault) {
         TelemetryEvent.create(Category.ACTION, Method.REMOVE, Object.HOME, Value.LINK)
                 .extra(Extra.DEFAULT, Boolean.toString(isDefault))

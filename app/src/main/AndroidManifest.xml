@@ -172,6 +172,12 @@
             android:name="org.mozilla.focus.components.RelocateService"
             android:enabled="true"
             android:exported="false" />
+
+        <service
+            android:name="org.mozilla.focus.telemetry.TelemetryJobServiceCN"
+            android:enabled="true"
+            android:permission= "android.permission.BIND_JOB_SERVICE"
+            android:exported="false" />
     </application>
 
 </manifest>
