@@ -1,10 +1,6 @@
 package org.mozilla.rocket.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.google.firebase.inappmessaging.FirebaseInAppMessaging
 import kotlinx.coroutines.launch
 import org.mozilla.focus.telemetry.TelemetryWrapper
@@ -34,14 +30,7 @@ import org.mozilla.rocket.home.topsites.ui.Site
 import org.mozilla.rocket.home.topsites.ui.SitePage
 import org.mozilla.rocket.msrp.data.Mission
 import org.mozilla.rocket.msrp.data.MissionProgress
-import org.mozilla.rocket.msrp.domain.CheckInMissionUseCase
-import org.mozilla.rocket.msrp.domain.CompleteJoinMissionOnboardingUseCase
-import org.mozilla.rocket.msrp.domain.GetContentHubClickOnboardingEventUseCase
-import org.mozilla.rocket.msrp.domain.GetIsFxAccountUseCase
-import org.mozilla.rocket.msrp.domain.HasUnreadMissionsUseCase
-import org.mozilla.rocket.msrp.domain.IsMsrpAvailableUseCase
-import org.mozilla.rocket.msrp.domain.LastReadMissionIdUseCase
-import org.mozilla.rocket.msrp.domain.RefreshMissionsUseCase
+import org.mozilla.rocket.msrp.domain.*
 import org.mozilla.rocket.util.ToastMessage
 
 class HomeViewModel(
@@ -117,6 +106,7 @@ class HomeViewModel(
             completeHomeOnboardingUseCase()
             contentServicesOnboardingTimeSpent = System.currentTimeMillis()
             if (isFirstRun) {
+                TelemetryWrapper.enterFirstRunEvent()
                 TelemetryWrapper.showFirstRunContextualHint("onboarding_2_content_services_news_shopping_games")
             } else {
                 TelemetryWrapper.showWhatsnewContextualHint("onboarding_2_content_services_news_shopping_games")
@@ -220,6 +210,7 @@ class HomeViewModel(
         val topSitePosition = position + pageIndex * TOP_SITES_PER_PAGE
         val isAffiliate = site is Site.FixedSite
         TelemetryWrapper.clickTopSiteOn(topSitePosition, title, isAffiliate)
+        TelemetryWrapper.clickTopSiteOn(site.url)
     }
 
     fun onTopSiteLongClicked(site: Site, position: Int): Boolean =

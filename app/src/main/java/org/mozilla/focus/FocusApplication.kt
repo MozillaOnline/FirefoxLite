@@ -17,7 +17,6 @@ import org.mozilla.focus.notification.NotificationUtil
 import org.mozilla.focus.screenshot.ScreenshotManager
 import org.mozilla.focus.search.SearchEngineManager
 import org.mozilla.focus.telemetry.TelemetryWrapper
-import org.mozilla.focus.utils.AdjustHelper
 import org.mozilla.focus.utils.AppConstants
 import org.mozilla.rocket.di.AppComponent
 import org.mozilla.rocket.di.AppModule
@@ -86,6 +85,7 @@ open class FocusApplication : LocaleAwareApplication() {
         SearchEngineManager.getInstance().init(this)
 
         TelemetryWrapper.init(this)
+        TelemetryWrapper.startApp()
         //AdjustHelper.setupAdjustIfNeeded(this)
 
         BrowsingHistoryManager.getInstance().init(this)
