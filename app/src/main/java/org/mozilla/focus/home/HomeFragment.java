@@ -178,6 +178,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private final SessionManagerObserver observer = new SessionManagerObserver();
     private int MAX_TOPSITES = 8;
     private final Site ADD_SITE = new Site();
+    public Context parentActivity;
 
     private RecyclerView banner;
     private LinearLayoutManager bannerLayoutManager;
@@ -224,7 +225,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         super.onCreate(bundle);
         this.presenter = new TopSitesPresenter();
         this.presenter.setView(this);
+<<<<<<< HEAD
         this.presenter.setModel(this);
+=======
+        parentActivity = getActivity();
+>>>>>>> add China Tracking & bug fix
     }
 
     @Override
@@ -855,6 +860,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                     TelemetryWrapper.clickTopSiteOn(index, site.isDefault() ? site.getTitle() : "");
 =======
                     TelemetryWrapper.clickTopSiteOn(index);
+                    TelemetryWrapper.clickTopSiteOn(site.getUrl());
+                    Log.e("HttpCNTracking","clickTopsiteOn");
 					}
 >>>>>>> Strings update for zh
                 }
@@ -1326,10 +1333,13 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             return false;
         }
 
+<<<<<<< HEAD
         @Override
         public void onHttpAuthRequest(@NotNull TabViewClient.HttpAuthCallback callback, @Nullable String host, @Nullable String realm) {
             // do nothing
         }
+=======
+>>>>>>> add China Tracking & bug fix
     }
 
     private interface DoWithThemeManager {

@@ -65,6 +65,7 @@ class FocusApplication : LocaleAwareApplication() {
         NewsSourceManager.getInstance().init(this)
 
         TelemetryWrapper.init(this)
+        TelemetryWrapper.startApp()
         AdjustHelper.setupAdjustIfNeeded(this)
 
         BrowsingHistoryManager.getInstance().init(this)

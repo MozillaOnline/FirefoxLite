@@ -50,7 +50,7 @@ import org.mozilla.threadutils.ThreadUtils
 import java.util.HashMap
 
 object TelemetryWrapper {
-    private const val TELEMETRY_APP_NAME_ZERDA = "Zerda"
+    private const val TELEMETRY_APP_NAME_ZERDA = "Zerda_cn"
 
     private const val TOOL_BAR_CAPTURE_TELEMETRY_VERSION = 3
     private const val RATE_APP_NOTIFICATION_TELEMETRY_VERSION = 3
@@ -163,6 +163,8 @@ object TelemetryWrapper {
         internal const val VIDEO = "video"
         internal const val MIDI = "midi"
         internal const val EME = "eme"
+        internal const val ACTIVATE = "activate"
+        internal const val START = "start"
 
         internal const val LEARN_MORE = "learn_more"
 
@@ -294,12 +296,13 @@ object TelemetryWrapper {
 
             val serializer = JSONPingSerializer()
             val storage = FileTelemetryStorage(configuration, serializer)
-            val client = HttpURLConnectionTelemetryClient()
-            val scheduler = JobSchedulerTelemetryScheduler()
+            val client = HttpURLConnectionTelemetryClientCN()
+            val scheduler = JobSchedulerTelemetrySchedulerCN()
 
             TelemetryHolder.set(Telemetry(configuration, storage, client, scheduler)
                     .addPingBuilder(TelemetryCorePingBuilder(configuration))
                     .addPingBuilder(TelemetryEventPingBuilder(configuration))
+                    .addPingBuilder(TelemetryChinaPingBuilder(configuration))
                     .setDefaultSearchProvider(createDefaultSearchProvider(context)))
         } finally {
             StrictMode.setThreadPolicy(threadPolicy)
@@ -347,6 +350,16 @@ object TelemetryWrapper {
                 .queue()
     }
 
+    //china edition
+    @JvmStatic
+    fun enterFirstRunEvent(){
+        TelemetryChina.create(Category.ACTION, Method.SHOW, Object.FIRSTRUN, Value.ACTIVATE)
+                .queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
+    }
+
     @TelemetryDoc(
             name = "App is launched by Launcher",
             category = Category.ACTION,
@@ -354,6 +367,7 @@ object TelemetryWrapper {
             `object` = Object.APP,
             value = Value.LAUNCHER,
             extras = [])
+
     @JvmStatic
     fun launchByAppLauncherEvent() {
         EventBuilder(Category.ACTION, Method.LAUNCH, Object.APP, Value.LAUNCHER).queue()
@@ -478,6 +492,15 @@ object TelemetryWrapper {
         TelemetryHolder.get().recordSessionEnd()
 
         EventBuilder(Category.ACTION, Method.BACKGROUND, Object.APP).queue()
+    }
+
+    //china edition
+    @JvmStatic
+    fun startApp(){
+        TelemetryChina.create(Category.ACTION,Method.CLICK, Object.APP,Value.START).queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
     }
 
     @JvmStatic
@@ -982,6 +1005,17 @@ object TelemetryWrapper {
                 .queue()
     }
 
+    //china edition
+    @JvmStatic
+    fun clickTopSiteOn(url:String) {
+        TelemetryChina.create(Category.ACTION, Method.ADD, Object.TAB, Value.TOPSITE)
+                .extra(Extra.ON, url)
+                .queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
+    }
+
     @TelemetryDoc(
             name = "Remove Top Site",
             category = Category.ACTION,
@@ -989,6 +1023,8 @@ object TelemetryWrapper {
             `object` = Object.HOME,
             value = Value.LINK,
             extras = [TelemetryExtra(name = Extra.DEFAULT, value = "true,false")])
+
+
     @JvmStatic
     fun removeTopSite(isDefault: Boolean) {
         EventBuilder(Category.ACTION, Method.REMOVE, Object.HOME, Value.LINK)
