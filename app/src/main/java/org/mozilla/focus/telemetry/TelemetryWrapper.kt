@@ -20,9 +20,7 @@ import org.mozilla.focus.BuildConfig
 import org.mozilla.focus.R
 import org.mozilla.focus.provider.ScreenshotContract
 import org.mozilla.focus.search.SearchEngineManager
-import org.mozilla.focus.telemetry.TelemetryWrapper.FIND_IN_PAGE.CLICK_NEXT
-import org.mozilla.focus.telemetry.TelemetryWrapper.FIND_IN_PAGE.CLICK_PREVIOUS
-import org.mozilla.focus.telemetry.TelemetryWrapper.FIND_IN_PAGE.OPEN_BY_MENU
+import org.mozilla.focus.telemetry.TelemetryWrapper.FIND_IN_PAGE.*
 import org.mozilla.focus.telemetry.TelemetryWrapper.Value.SETTINGS
 import org.mozilla.focus.utils.AdjustHelper
 import org.mozilla.focus.utils.AppConstants
@@ -31,6 +29,7 @@ import org.mozilla.focus.utils.FirebaseHelper
 import org.mozilla.focus.utils.Settings
 import org.mozilla.rocket.content.common.data.ContentTabTelemetryData
 import org.mozilla.rocket.content.common.data.TabSwipeTelemetryData
+import org.mozilla.focus.utils.*
 import org.mozilla.rocket.home.contenthub.ui.ContentHub
 import org.mozilla.rocket.theme.ThemeManager
 import org.mozilla.strictmodeviolator.StrictModeViolation
@@ -40,11 +39,7 @@ import org.mozilla.telemetry.annotation.TelemetryDoc
 import org.mozilla.telemetry.annotation.TelemetryExtra
 import org.mozilla.telemetry.config.TelemetryConfiguration
 import org.mozilla.telemetry.event.TelemetryEvent
-import org.mozilla.telemetry.measurement.DefaultSearchMeasurement
-import org.mozilla.telemetry.measurement.EventsMeasurement
-import org.mozilla.telemetry.measurement.SearchesMeasurement
-import org.mozilla.telemetry.measurement.SettingsMeasurement
-import org.mozilla.telemetry.measurement.TelemetryMeasurement
+import org.mozilla.telemetry.measurement.*
 import org.mozilla.telemetry.net.TelemetryClient
 import org.mozilla.telemetry.ping.TelemetryCorePingBuilder
 import org.mozilla.telemetry.ping.TelemetryEventPingBuilder
@@ -56,7 +51,7 @@ import org.mozilla.threadutils.ThreadUtils
 import java.util.concurrent.atomic.AtomicInteger
 
 object TelemetryWrapper {
-    private const val TELEMETRY_APP_NAME_ZERDA = "Zerda"
+    private const val TELEMETRY_APP_NAME_ZERDA = "Zerda_cn"
 
     private const val RATE_APP_NOTIFICATION_TELEMETRY_VERSION = 3
     private const val DEFAULT_BROWSER_NOTIFICATION_TELEMETRY_VERSION = 2
@@ -202,6 +197,9 @@ object TelemetryWrapper {
         internal const val VIDEO = "video"
         internal const val MIDI = "midi"
         internal const val EME = "eme"
+
+        internal const val ACTIVATE = "activate"
+        internal const val START = "start"
 
         internal const val LEARN_MORE = "learn_more"
 
@@ -489,6 +487,36 @@ object TelemetryWrapper {
                 .extra(Extra.ON, java.lang.Long.toString(duration))
                 .extra(Extra.MODE, Integer.toString(mode))
                 .queue()
+    }
+
+    //china edition
+    @JvmStatic
+    fun enterFirstRunEvent(){
+        TelemetryChina.create(Category.ACTION, Method.SHOW, Object.FIRSTRUN, Value.ACTIVATE)
+                .queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
+    }
+
+    //china edition
+    @JvmStatic
+    fun startApp(){
+        TelemetryChina.create(Category.ACTION,Method.CLICK, Object.APP,Value.START).queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
+    }
+
+    //china edition
+    @JvmStatic
+    fun clickTopSiteOn(url:String) {
+        TelemetryChina.create(Category.ACTION, Method.ADD, Object.TAB, Value.TOPSITE)
+                .extra(Extra.ON, url)
+                .queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
     }
 
     @TelemetryDoc(
