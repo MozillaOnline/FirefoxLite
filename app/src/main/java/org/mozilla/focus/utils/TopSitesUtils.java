@@ -93,6 +93,9 @@ public class TopSitesUtils {
     }
 
     public static Bitmap getIconFromAssets(Context context, String fileName) {
+        if(context==null){
+            Log.e("Topsites","context is null");
+        }
         AssetManager assetManager = context.getAssets();
 
         InputStream istream;
