@@ -6,10 +6,8 @@
 package org.mozilla.focus.home;
 
 import android.app.Activity;
-<<<<<<< HEAD
 import android.content.BroadcastReceiver;
-=======
->>>>>>> Topsites
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -24,12 +22,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-<<<<<<< HEAD
 import android.support.v7.widget.SnapHelper;
 import android.text.TextUtils;
-=======
+
 import android.util.Log;
->>>>>>> Topsites
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +54,7 @@ import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.network.SocketTags;
 import org.mozilla.focus.provider.QueryHandler;
 import org.mozilla.focus.tabs.TabCounter;
+import org.mozilla.focus.tabs.TabsChromeListener;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConfigWrapper;
 import org.mozilla.focus.utils.FileUtils;
@@ -706,7 +703,12 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             String [] s = data.getStringExtra("result").split(" ",4);
             Site newSite = new Site();
             newSite.setTitle(s[0]);
-            newSite.setUrl(s[1]);
+            if(!UrlUtils.isHttpOrHttps(s[1])){
+                String url = "http://"+s[1];
+                newSite.setUrl(url);
+            }else{
+                newSite.setUrl(s[1]);
+            }
             //newSite.setFavIcon(s[2]);
             //Change to default icon later
             Bitmap bitmap;
