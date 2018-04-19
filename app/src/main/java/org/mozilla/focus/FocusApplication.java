@@ -38,7 +38,7 @@ public class FocusApplication extends LocaleAwareApplication {
 
         TelemetryWrapper.init(this);
         TelemetryWrapper.startApp();
-        AdjustHelper.setupAdjustIfNeeded(this);
+      //  AdjustHelper.setupAdjustIfNeeded(this);
 
         BrowsingHistoryManager.getInstance().init(this);
         ScreenshotManager.getInstance().init(this);
