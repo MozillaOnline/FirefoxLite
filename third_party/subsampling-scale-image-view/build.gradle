@@ -6,6 +6,7 @@ android {
     defaultConfig {
         minSdkVersion = 10
 	}
+
     buildTypes {
         release {
             minifyEnabled true
