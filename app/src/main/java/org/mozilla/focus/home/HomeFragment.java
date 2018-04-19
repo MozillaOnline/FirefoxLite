@@ -42,6 +42,7 @@ import org.mozilla.focus.provider.QueryHandler;
 import org.mozilla.focus.tabs.Tab;
 import org.mozilla.focus.tabs.TabCounter;
 import org.mozilla.focus.tabs.TabView;
+import org.mozilla.focus.tabs.TabsChromeListener;
 import org.mozilla.focus.tabs.TabsSession;
 import org.mozilla.focus.tabs.TabsSessionProvider;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
@@ -423,7 +424,12 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             String [] s = data.getStringExtra("result").split(" ",4);
             Site newSite = new Site();
             newSite.setTitle(s[0]);
-            newSite.setUrl(s[1]);
+            if(!UrlUtils.isHttpOrHttps(s[1])){
+                String url = "http://"+s[1];
+                newSite.setUrl(url);
+            }else{
+                newSite.setUrl(s[1]);
+            }
             //newSite.setFavIcon(s[2]);
             //Change to default icon later
             Bitmap bitmap;
