@@ -17,6 +17,7 @@ import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import org.mozilla.focus.BuildConfig;
 import org.mozilla.focus.R;
 import org.mozilla.focus.utils.Settings;
 import org.mozilla.focus.webkit.DefaultWebView;
@@ -49,6 +50,10 @@ public class WebViewProvider {
         WebView.enableSlowWholeDocumentDraw();
         final WebkitView webkitView = new WebkitView(context, attrs);
         final WebSettings settings = webkitView.getSettings();
+        // Turn on mixed content
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP) {
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE);
+        }
 
         setupView(webkitView);
         configureDefaultSettings(context, settings, webkitView);
