@@ -2,6 +2,7 @@
   {
     "id": -1,
 <<<<<<< HEAD
+<<<<<<< HEAD
     "url": "http://m.tribunnews.com/",
     "title": "Tribunnews",
     "favicon": "ic_tribunnews.png",
@@ -43,6 +44,9 @@
     "viewCount": 6
 =======
     "url": "https://m.baidu.com/?from=1000969a&normalload=1#",
+=======
+    "url": "https://m.baidu.com/?from=1000969d",
+>>>>>>> change baidu url
     "title": "百度",
     "favicon": "baidu.png",
     "viewCount": 20
