@@ -6,7 +6,6 @@ import android.view.WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import org.mozilla.focus.R
 import org.mozilla.focus.navigation.ScreenNavigator
 import org.mozilla.focus.repository.BookmarkRepository
 import org.mozilla.focus.telemetry.TelemetryWrapper
@@ -24,6 +23,7 @@ import org.mozilla.rocket.util.ToastMessage
 import org.mozilla.rocket.util.ToastMessage.Companion.LENGTH_LONG
 import org.mozilla.urlutils.UrlUtils
 import kotlin.concurrent.thread
+
 
 class ChromeViewModel(
     private val settings: Settings,
@@ -233,7 +233,7 @@ class ChromeViewModel(
     fun toggleBookmark() {
         if (isCurrentUrlBookmarked.value == true) {
             deleteBookmark()
-            showToast.value = ToastMessage(R.string.bookmark_removed, duration = LENGTH_LONG)
+            showToast.value = ToastMessage(org.mozilla.focus.R.string.bookmark_removed, duration = LENGTH_LONG)
         } else {
             val itemId = addBookmark()
             if (itemId != null) {
@@ -263,14 +263,14 @@ class ChromeViewModel(
     fun onTurboModeToggled() {
         val toEnable = !settings.shouldUseTurboMode()
         settings.setTurboMode(toEnable)
-        showToast.value = ToastMessage(if (toEnable) R.string.message_enable_turbo_mode else R.string.message_disable_turbo_mode)
+        showToast.value = ToastMessage(if (toEnable) org.mozilla.focus.R.string.message_enable_turbo_mode else org.mozilla.focus.R.string.message_disable_turbo_mode)
         TelemetryWrapper.menuTurboChangeTo(toEnable)
     }
 
     fun onBlockImageToggled() {
         val toEnable = !settings.shouldBlockImages()
         settings.setBlockImages(toEnable)
-        showToast.value = ToastMessage(if (toEnable) R.string.message_enable_block_image else R.string.message_disable_block_image)
+        showToast.value = ToastMessage(if (toEnable) org.mozilla.focus.R.string.message_enable_block_image else org.mozilla.focus.R.string.message_disable_block_image)
         TelemetryWrapper.menuBlockImageChangeTo(toEnable)
     }
 
@@ -282,6 +282,10 @@ class ChromeViewModel(
         settings.setHasUnreadMyShot(false)
         showScreenshots.call()
         TelemetryWrapper.clickMenuCapture()
+    }
+
+    fun showCheckUpdate(){
+       // launchActivity<CheckUpdateActivity>()
     }
 
     fun onSurveyNotificationPosted() {

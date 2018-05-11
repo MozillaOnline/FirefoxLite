@@ -19,6 +19,7 @@
     <string name="menu_rights">Your Rights</string>
     <string name="menu_give_feedback">Give feedback</string>
     <string name="menu_share_with_friends">Share with friends</string>
+    <string name="menu_check_updates">Check updates</string>
 
     <!-- This is the title of a dialog that shows all the share targets (apps or contacts) when
          sharing an URL. -->
@@ -254,6 +255,7 @@
     <string name="label_menu_my_shots">My shots</string>
     <string name="label_menu_capture_page">Capture page</string>
     <string name="label_menu_turbo_mode">Turbo mode</string>
+    <string name="label_menu_check_update">Update</string>
     <!-- Menu text for night mode. -->
     <string name="label_menu_night_mode">Night mode</string>
     <string name="label_menu_block_ads">Block Ads</string>

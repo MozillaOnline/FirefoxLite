@@ -9,6 +9,7 @@
   <string name="menu_rights">您的权利</string>
   <string name="menu_give_feedback">提供反馈</string>
   <string name="menu_share_with_friends">与朋友分享</string>
+  <string name="menu_check_updates">检查更新</string>
   <string name="share_dialog_title">分享</string>
   <string name="find_in_page_input">页内查找</string>
   <string name="find_in_page_result">%1$d/%2$d</string>
@@ -425,4 +426,5 @@
   <string name="msrp_reward_challenge_error">啊呀！出错了</string>
   <string name="msrp_activitykilled_snackbar_button">兑换</string>
   <string name="msrp_activitykilled_snackbar_body">您赢得了一张代金券！</string>
+  <string name="label_menu_check_update">检查更新</string>
 </resources>
