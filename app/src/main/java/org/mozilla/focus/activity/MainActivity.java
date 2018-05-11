@@ -121,6 +121,8 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
     private View pinShortcut;
     private View snackBarContainer;
     private View privateModeButton;
+    private View checkUpdateButton;
+
 
     private ScreenNavigator screenNavigator;
 
@@ -372,6 +374,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
         stopIcon = menu.findViewById(R.id.action_stop);
         pinShortcut = menu.findViewById(R.id.action_pin_shortcut);
         myshotButton = menu.findViewById(R.id.menu_screenshots);
+        checkUpdateButton = menu.findViewById(R.id.menu_checkUpdate);
         final boolean requestPinShortcutSupported = ShortcutManagerCompat.isRequestPinShortcutSupported(this);
         if (!requestPinShortcutSupported) {
             pinShortcut.setVisibility(View.GONE);
@@ -518,6 +521,10 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
                 driveDefaultBrowser();
                 onPreferenceClicked();
                 TelemetryWrapper.clickMenuSettings();
+                break;
+            case R.id.menu_checkUpdate:
+                Intent intent = new Intent(this,CheckUpdateActivity.class);
+                startActivity(intent);
                 break;
             case R.id.menu_exit:
                 onExitClicked();
