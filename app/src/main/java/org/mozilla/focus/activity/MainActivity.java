@@ -133,6 +133,8 @@ public class MainActivity extends BaseActivity implements FragmentListener,
     private View turboModeButton;
     private View blockImageButton;
     private View privateModeIndicator;
+    private View checkUpdateButton;
+
 
     private ScreenNavigator screenNavigator;
 
@@ -392,6 +394,7 @@ public class MainActivity extends BaseActivity implements FragmentListener,
         stopIcon = menu.findViewById(R.id.action_stop);
         pinShortcut = menu.findViewById(R.id.action_pin_shortcut);
         myshotButton = menu.findViewById(R.id.menu_screenshots);
+        checkUpdateButton = menu.findViewById(R.id.menu_checkUpdate);
         final boolean requestPinShortcutSupported = ShortcutManagerCompat.isRequestPinShortcutSupported(this);
         if (!requestPinShortcutSupported) {
             pinShortcut.setVisibility(View.GONE);
@@ -596,6 +599,10 @@ public class MainActivity extends BaseActivity implements FragmentListener,
                 driveDefaultBrowser();
                 onPreferenceClicked();
                 TelemetryWrapper.clickMenuSettings();
+                break;
+            case R.id.menu_checkUpdate:
+                Intent intent = new Intent(this,CheckUpdateActivity.class);
+                startActivity(intent);
                 break;
             case R.id.menu_exit:
                 onExitClicked();
