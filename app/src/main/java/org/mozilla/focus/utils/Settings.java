@@ -28,6 +28,7 @@ public class Settings {
     private static Settings instance;
     private static final boolean BLOCK_IMAGE_DEFAULT = false;
     //private static final boolean TURBO_MODE_DEFAULT = true;
+    private static final boolean NIGHT_MODE_DEFAULT = false;
     private static final boolean TURBO_MODE_DEFAULT = false;
     private static final boolean DID_SHOW_RATE_APP_DEFAULT = false;
     private static final boolean DID_SHOW_SHARE_APP_DEFAULT = false;
@@ -58,6 +59,17 @@ public class Settings {
     public void setBlockImages(boolean blockImages) {
         final String key = getPreferenceKey(R.string.pref_key_performance_block_images);
         preferences.edit().putBoolean(key, blockImages).apply();
+    }
+
+    public boolean shouldUseNightMode() {
+        return preferences.getBoolean(
+                resources.getString(R.string.pref_key_performance_night_mode),
+                NIGHT_MODE_DEFAULT);
+    }
+
+    public void setNightMode(boolean nightModeEnable) {
+        final String key = getPreferenceKey(R.string.pref_key_performance_night_mode);
+        preferences.edit().putBoolean(key, nightModeEnable).apply();
     }
 
     public boolean shouldShowFirstrun() {

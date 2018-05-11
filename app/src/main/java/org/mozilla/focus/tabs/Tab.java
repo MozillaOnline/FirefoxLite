@@ -129,6 +129,12 @@ public class Tab {
         }
     }
 
+    public void setNightModeEnabled(boolean enabled) {
+        if (tabView != null) {
+            tabView.setNightModeEnabled(enabled);
+        }
+    }
+
     public boolean hasParentTab() {
         return !isFromExternal() && !TextUtils.isEmpty(getParentId());
     }

@@ -108,6 +108,20 @@
         </FrameLayout>
         <FrameLayout
             style="@style/MenuButtonContainer"
+            android:id="@+id/menu_nightmode"
+            android:visibility="visible">
+            <LinearLayout
+                style="@style/MenuButtonGroup">
+                <View
+                    style="@style/MenuToggleIcon"
+                    android:background="@drawable/menu_speedmode"/>
+                <TextView
+                    style="@style/MenuToggleText"
+                    android:text="@string/label_menu_night_mode"/>
+            </LinearLayout>
+        </FrameLayout>
+        <FrameLayout
+            style="@style/MenuButtonContainer"
             android:id="@+id/menu_exit">
             <LinearLayout
                 style="@style/MenuButtonGroup">
@@ -119,6 +133,21 @@
                     android:text="@string/label_menu_exit"/>
             </LinearLayout>
         </FrameLayout>
+
+
+        <!-- a placeholder for layout -->
+        <!--<View-->
+            <!--style="@style/MenuButtonContainerSkeleton"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--tools:background="#33FF0000" />-->
+
+    </org.mozilla.focus.widget.EqualDistributeRow>
+    <org.mozilla.focus.widget.EqualDistributeRow
+        style="@style/MenuSheetRow"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="1dp"
+        tools:background="#3300FF00"
+        android:visibility="gone">
         <FrameLayout
             style="@style/MenuButtonContainer"
             android:id="@+id/menu_speedmode"
@@ -133,13 +162,6 @@
                     android:text="@string/label_menu_turbo_mode"/>
             </LinearLayout>
         </FrameLayout>
-
-        <!-- a placeholder for layout -->
-        <!--<View-->
-            <!--style="@style/MenuButtonContainerSkeleton"-->
-            <!--android:background="@android:color/transparent"-->
-            <!--tools:background="#33FF0000" />-->
-
     </org.mozilla.focus.widget.EqualDistributeRow>
 
     <View

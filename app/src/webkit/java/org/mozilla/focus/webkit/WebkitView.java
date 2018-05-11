@@ -9,12 +9,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
@@ -35,12 +38,20 @@ import org.mozilla.focus.tabs.TabViewClient;
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.FavIconUtils;
 import org.mozilla.focus.utils.FileUtils;
+import org.mozilla.focus.utils.IOUtils;
 import org.mozilla.focus.utils.SupportUtils;
 import org.mozilla.focus.utils.ThreadUtils;
 import org.mozilla.focus.utils.UrlUtils;
 import org.mozilla.focus.web.Download;
 import org.mozilla.focus.web.DownloadCallback;
 import org.mozilla.focus.web.WebViewProvider;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class WebkitView extends NestedWebView implements TabView {
     private static final String KEY_CURRENTURL = "currenturl";
@@ -180,6 +191,49 @@ public class WebkitView extends NestedWebView implements TabView {
 
         if (enable) {
             reloadOnAttached();
+        }
+    }
+
+    @Override
+    public void setNightModeEnabled(boolean enable) {
+        if (webViewClient.isNightModeEnabled() == enable) {
+            return;
+        }
+
+        webViewClient.setNightModeEnabled(enable);
+
+        if (!enable) {
+            reloadOnAttached();
+        } else {
+            setBackgroundColor(Color.BLACK);
+
+            // 京东 cannot be displayed correctly using "invert"
+            if(getUrl().contains("m.jd.com")){
+                evaluateJavascript("(function() { css = document.createElement('link'); css.id = 'moz_rocket'; css.rel = 'stylesheet'; css.href = 'data:text/css,html,link,textarea,select,button,menu,aside,img,strong, body,header,div,a,span,table,tr,td,th,tbody,p,form,input,ul,ol,li,dl,dt,dd,section,footer,nav,h1,h2,h3,h4,h5,h6,em,pre{background: #333 !important;color:#616161!important;border-color:#454530!important;text-shadow:0!important;-webkit-text-fill-color : none!important;}html a,html a *{color:#5a8498!important;text-decoration:underline!important;}html a:visited,html a:visited *,html a:active,html a:active *{color:#505f64!important;}html a:hover,html a:hover *{color:#cef!important;}html input,html select,html button,html textarea{background:#4d4c40!important;border:1px solid #5c5a46!important;border-top-color:#494533!important;border-bottom-color:#494533!important;}html input[type=button],html input[type=submit],html input[type=reset],html input[type=image],html button{border-top-color:#494533!important;border-bottom-color:#494533!important;}html input:focus,html select:focus,html option:focus,html button:focus,html textarea:focus{background:#5c5b3e!important;color:#fff!important;border-color:#494100 #635d00 #474531!important;outline:1px solid #041d29!important;}html input[type=button]:focus,html input[type=submit]:focus,html input[type=reset]:focus,html input[type=image]:focus,html button:focus{border-color:#494533 #635d00 #474100!important;}html input[type=radio]{background:none!important;border-color:#333!important;border-width:0!important;}html img[src],html input[type=image]{opacity:.5;}html img[src]:hover,html input[type=image]:hover{opacity:1;}html,html body {scrollbar-base-color: #4d4c40 !important;scrollbar-face-color: #5a5b3c !important;scrollbar-shadow-color: #5a5b3c !important;scrollbar-highlight-color: #5c5b3c !important;scrollbar-dlight-color: #5c5b3c !important;scrollbar-darkshadow-color: #474531 !important;scrollbar-track-color: #4d4c40 !important;scrollbar-arrow-color: #000 !important;scrollbar-3dlight-color: #6a6957 !important;}dt a{background-color: #333 !important;}'; document.getElementsByTagName('head')[0].appendChild(css);})(); ",null);
+
+            }else {
+                String js = "javascript: ("
+                        + "function () { "
+
+                        + "var css = 'html {-webkit-filter: hue-rotate(180deg) invert(100%) !important;}'+"
+                        + "          'html {background:#222222 !important;}'+"
+                        + "          'img,video {-webkit-filter: brightness(80%) invert(100%) hue-rotate(180deg) !important;}',"
+
+                        + "head = document.getElementsByTagName('head')[0],"
+                        + "style = document.createElement('style');"
+
+                        + "style.type = 'text/css';"
+                        + "if (style.styleSheet){"
+                        + "style.styleSheet.cssText = css;"
+                        + "} else {"
+                        + "style.appendChild(document.createTextNode(css));"
+                        + "}"
+
+                        //injecting the css to the head
+                        + "head.appendChild(style);"
+                        + "}());";
+                evaluateJavascript(js, null);
+            }
         }
     }
 

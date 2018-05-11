@@ -72,6 +72,8 @@ public interface TabView {
 
     void setImageBlockingEnabled(boolean enabled);
 
+    void setNightModeEnabled(boolean enabled);
+
     boolean isBlockingEnabled();
 
     void performExitFullScreen();

@@ -468,6 +468,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                 return;
             }
             current.detach();
+            webViewSlot.setBackgroundColor(Color.BLACK);
             webViewSlot.removeView(tabView.getView());
         }
     }
@@ -481,6 +482,7 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
             }
             final View inView = tabView.getView();
             webViewSlot.addView(inView);
+            webViewSlot.setBackgroundColor(Color.BLACK);
         }
     }
 
@@ -617,6 +619,14 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
         // for configuring blocking function of each tab.
         for (Tab tab : tabsSession.getTabs()) {
             tab.setImageBlockingEnabled(enabled);
+        }
+    }
+
+    public void setNightModeEnabled(boolean enabled) {
+        // TODO: Better if we can move this logic to some setting-like classes, and provider interface
+        // for configuring blocking function of each tab.
+        for (Tab tab : tabsSession.getTabs()) {
+            tab.setNightModeEnabled(enabled);
         }
     }
 

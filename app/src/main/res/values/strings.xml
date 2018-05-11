@@ -190,6 +190,7 @@
     <string name="label_menu_my_shots">My shots</string>
     <string name="label_menu_capture_page">Capture page</string>
     <string name="label_menu_turbo_mode">Turbo mode</string>
+    <string name="label_menu_night_mode">Night mode</string>
     <string name="label_menu_block_ads">Block Ads</string>
     <string name="label_menu_block_image">Block images</string>
     <string name="label_menu_settings">Settings</string>
@@ -302,6 +303,8 @@
     <string name="message_disable_turbo_mode">Turbo mode disabled</string>
     <string name="message_enable_block_image">Now blocking images</string>
     <string name="message_disable_block_image">Now showing images</string>
+    <string name="message_enable_night_mode">Night mode enabled</string>
+    <string name="message_disable_night_mode">Night mode disabled</string>
     <string name="message_clear_cache_fail">Unable to clear cache</string>
     <string name="message_storage_unavailable_cancel_download">Storage inaccessible. Download canceled.</string>
 

@@ -386,6 +386,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
         }
         menu.findViewById(R.id.menu_speedmode).setSelected(isTurboEnabled());
         menu.findViewById(R.id.menu_blockimg).setSelected(isBlockingImages());
+        menu.findViewById(R.id.menu_nightmode).setSelected(isNightModeEnabled());
     }
 
     @VisibleForTesting
@@ -414,6 +415,9 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
 
     private boolean isBlockingImages() {
         return Settings.getInstance(this).shouldBlockImages();
+    }
+    private boolean isNightModeEnabled(){
+        return Settings.getInstance(this).shouldUseNightMode();
     }
 
     private Fragment getTopHomeFragment() {
@@ -467,6 +471,15 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
                 Toast.makeText(this, stringResource, Toast.LENGTH_SHORT).show();
 
                 TelemetryWrapper.menuBlockImageChangeTo(blockingImages);
+                break;
+            case R.id.menu_nightmode:
+                //  Toggle
+                final boolean nightModeEnable = !isNightModeEnabled();
+                Settings.getInstance(this).setNightMode(nightModeEnable);
+
+                v.setSelected(nightModeEnable);
+                stringResource = nightModeEnable ? R.string.message_enable_night_mode : R.string.message_disable_night_mode;
+                Toast.makeText(this, stringResource, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_speedmode:
                 //  Toggle
@@ -661,6 +674,13 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
                 browserFragment.setImageBlockingEnabled(blockingImages);
             }
             menu.findViewById(R.id.menu_blockimg).setSelected(blockingImages);
+        } else if (this.getResources().getString(R.string.pref_key_performance_night_mode).equals(key)) {
+            final boolean nightModeEnabled = isNightModeEnabled();
+            BrowserFragment browserFragment = getBrowserFragment();
+            if (browserFragment != null) {
+                browserFragment.setNightModeEnabled(nightModeEnabled);
+            }
+            menu.findViewById(R.id.menu_nightmode).setSelected(nightModeEnabled);
         }
         // For turbo mode, a automatic refresh is done when we disable block image.
     }
