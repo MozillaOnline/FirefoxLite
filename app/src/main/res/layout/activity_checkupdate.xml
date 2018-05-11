@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:text="检查更新"
+        android:textColor="#0c0c0d"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"/>
+    <!--android:drawableStart="@drawable/ic_globe"
+    android:drawablePadding="6dp"-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#d7d7db"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/check_update"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_radiusborder"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:onClick="onCheckUpdateClicked"
+            android:text="检查更新" />
+
+        <Button
+            android:id="@+id/cancel_update"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:background="@drawable/button_radiusborder"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:onClick="onCancelUpdateClicked"
+            android:text="取消" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
