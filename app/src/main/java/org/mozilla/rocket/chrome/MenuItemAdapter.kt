@@ -31,6 +31,7 @@ class MenuItemAdapter(
             TYPE_DOWNLOADS -> MenuItem.TextImageItem(type, R.id.menu_download, R.string.label_menu_download, R.drawable.menu_download, theme.tintResId)
             TYPE_HISTORY -> MenuItem.TextImageItem(type, R.id.menu_history, R.string.label_menu_history, R.drawable.menu_history, theme.tintResId)
             TYPE_SCREENSHOTS -> MenuItem.TextImageItem(type, R.id.menu_screenshots, R.string.label_menu_my_shots, R.drawable.menu_my_shots_states, null)
+            TYPE_CHECK_UPDATE -> MenuItem.TextImageItem(type, R.id.menu_checkUpdate, R.string.label_menu_check_update, R.drawable.menu_upgrade, theme.tintResId)
             //TYPE_TURBO_MODE -> MenuItem.TextImageItem(type, R.id.menu_turbomode, R.string.label_menu_turbo_mode, R.drawable.menu_speedmode, theme.tintResId)
             TYPE_PRIVATE_BROWSING -> MenuItem.TextImageItem(type, R.id.btn_private_browsing, R.string.private_tab, R.drawable.private_browsing_mask_states, null)
             TYPE_NIGHT_MODE -> MenuItem.TextImageItem(type, R.id.menu_night_mode, R.string.label_menu_night_mode, R.drawable.icon_night_mode, theme.tintResId)
@@ -117,5 +118,7 @@ class MenuItemAdapter(
         const val TYPE_CLEAR_CACHE = 9
         const val TYPE_PREFERENCES = 10
         const val TYPE_EXIT_APP = 11
+        const val TYPE_CHECK_UPDATE = 12
+
     }
 }

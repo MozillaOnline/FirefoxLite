@@ -1,6 +1,7 @@
 package org.mozilla.rocket.menu
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,7 +12,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.Lazy
 import org.mozilla.fileutils.FileUtils
-import org.mozilla.focus.R
+import org.mozilla.focus.activity.CheckUpdateActivity
 import org.mozilla.focus.telemetry.TelemetryWrapper
 import org.mozilla.focus.telemetry.TelemetryWrapper.Extra_Value.MENU
 import org.mozilla.focus.utils.FormatUtils
@@ -27,6 +28,7 @@ import org.mozilla.rocket.content.view.MenuLayout
 import org.mozilla.rocket.extension.*
 import org.mozilla.rocket.nightmode.AdjustBrightnessDialog
 import javax.inject.Inject
+
 
 class MenuDialog : BottomSheetDialog {
 
@@ -63,12 +65,12 @@ class MenuDialog : BottomSheetDialog {
     }
 
     private fun initLayout() {
-        contentLayout = layoutInflater.inflate(R.layout.bottom_sheet_main_menu, null)
+        contentLayout = layoutInflater.inflate(org.mozilla.focus.R.layout.bottom_sheet_main_menu, null)
         setContentView(contentLayout)
     }
 
     private fun initMenu() {
-        val menuLayout = contentLayout.findViewById<MenuLayout>(R.id.menu_layout)
+        val menuLayout = contentLayout.findViewById<MenuLayout>(org.mozilla.focus.R.id.menu_layout)
         menuLayout.setOnItemClickListener(object : MenuLayout.OnItemClickListener {
             override fun onItemClick(type: Int, position: Int) {
                 cancel()
@@ -86,6 +88,7 @@ class MenuDialog : BottomSheetDialog {
                         TelemetryWrapper.clickMenuHistory()
                     }
                     MenuItemAdapter.TYPE_SCREENSHOTS -> chromeViewModel.showScreenshots()
+                    MenuItemAdapter.TYPE_CHECK_UPDATE -> showCheckUpdate()
                     //MenuItemAdapter.TYPE_TURBO_MODE -> chromeViewModel.onTurboModeToggled()
                     MenuItemAdapter.TYPE_PRIVATE_BROWSING -> {
                         chromeViewModel.togglePrivateMode.call()
@@ -146,13 +149,13 @@ class MenuDialog : BottomSheetDialog {
 
     private fun onDeleteClicked() {
         val diff = FileUtils.clearCache(context)
-        val stringId = if (diff < 0) R.string.message_clear_cache_fail else R.string.message_cleared_cached
+        val stringId = if (diff < 0) org.mozilla.focus.R.string.message_clear_cache_fail else org.mozilla.focus.R.string.message_cleared_cached
         val msg = context.getString(stringId, FormatUtils.getReadableStringFromFileSize(diff))
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
     private fun initBottomBar() {
-        val bottomBar = contentLayout.findViewById<BottomBar>(R.id.menu_bottom_bar)
+        val bottomBar = contentLayout.findViewById<BottomBar>(org.mozilla.focus.R.id.menu_bottom_bar)
         bottomBar.setOnItemClickListener(object : BottomBar.OnItemClickListener {
             override fun onItemClick(type: Int, position: Int) {
                 cancel()
@@ -241,6 +244,11 @@ class MenuDialog : BottomSheetDialog {
         bottomBarItemAdapter.setCanGoForward(hasFocus && chromeViewModel.canGoForward.value == true)
 
         menuViewModel.refresh()
+    }
+
+    private fun showCheckUpdate(){
+        val intent = Intent(context, CheckUpdateActivity::class.java)
+        startActivity(context,intent,null)
     }
 
     private fun showAdjustBrightness() {
