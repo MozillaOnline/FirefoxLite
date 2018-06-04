@@ -49,7 +49,6 @@ import org.mozilla.focus.locale.LocaleAwareAppCompatActivity;
 import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.notification.NotificationId;
 import org.mozilla.focus.notification.NotificationUtil;
-import org.mozilla.focus.notification.RocketMessagingService;
 import org.mozilla.focus.persistence.BookmarksDatabase;
 import org.mozilla.focus.persistence.TabModelStore;
 import org.mozilla.focus.repository.BookmarkRepository;
@@ -192,11 +191,11 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
                             false);
                     this.screenNavigator.showBrowserScreen(url, openInNewTab, true);
                 }
-            } else if (intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL) != null) {
+            }/* else if (intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL) != null) {
                 // This happens when the app is not running, and the user clicks on the push
                 // notification with payload "PUSH_OPEN_URL"
                 pendingUrl = intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL);
-            } else {
+            }*/ else {
                 if (Settings.getInstance(this).shouldShowFirstrun()) {
                     this.screenNavigator.addFirstRunScreen();
                 } else {
@@ -321,13 +320,13 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
             // We don't want to see any menu is visible when processing open url request from Intent.ACTION_VIEW
             dismissAllMenus();
             TabTray.dismiss(getSupportFragmentManager());
-        } else if (intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL) != null) {
+        } /*else if (intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL) != null) {
             // This happens when the app is running in background, and the user clicks on the push
             // notification with payload "PUSH_OPEN_URL"
             pendingUrl = intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL);
             dismissAllMenus();
             TabTray.dismiss(getSupportFragmentManager());
-        }
+        }*/
 
         // We do not care about the previous intent anymore. But let's remember this one.
         setIntent(unsafeIntent);

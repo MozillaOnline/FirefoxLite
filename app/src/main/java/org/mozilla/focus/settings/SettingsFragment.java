@@ -24,7 +24,6 @@ import org.mozilla.focus.locale.Locales;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.DialogUtils;
-import org.mozilla.focus.utils.FirebaseHelper;
 import org.mozilla.focus.widget.DefaultBrowserPreference;
 import org.mozilla.rocket.privately.PrivateMode;
 
@@ -76,7 +75,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             final Intent debugShare = new Intent();
             debugShare.setAction(Intent.ACTION_SEND);
             debugShare.setType("text/plain");
-            debugShare.putExtra(Intent.EXTRA_TEXT, FirebaseHelper.getFcmToken());
+            //debugShare.putExtra(Intent.EXTRA_TEXT, FirebaseHelper.getFcmToken());
             startActivity(Intent.createChooser(debugShare, "This token is only for QA to test in Nightly and debug build"));
             return true;
         }

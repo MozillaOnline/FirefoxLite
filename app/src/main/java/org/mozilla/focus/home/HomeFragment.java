@@ -409,7 +409,6 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         timer.cancel();
         timer = null;
 =======
-        updateTopSitesData(getContext());
 >>>>>>> Topsites
     }
 
@@ -689,7 +688,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         }
     }
 
-    public void updateTopSitesData(Context context) {
+    public void updateTopSitesData() {
         initDefaultSites();
         BrowsingHistoryManager.getInstance().queryTopSites(TOP_SITES_QUERY_LIMIT, TOP_SITES_QUERY_MIN_VIEW_COUNT, mTopSitesQueryListener);
     }
@@ -698,7 +697,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REFRESH_REQUEST_CODE) {
-            updateTopSitesData(getContext());
+            updateTopSitesData();
         }else if(requestCode == 999&&resultCode==1001){
             String [] s = data.getStringExtra("result").split(" ",4);
             Site newSite = new Site();
