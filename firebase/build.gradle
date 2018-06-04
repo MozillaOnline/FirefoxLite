@@ -10,6 +10,33 @@ android {
 
 
     buildTypes {
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //matchingFallbacks = ["firebase"]
+            //signingConfig signingConfigs.config
+        }
+        beta {
+            initWith release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ["release"]
+            //signingConfig signingConfigs.config
+        }
+        debug {
+            def userName = System.getenv("USER")
+            versionNameSuffix applicationIdSuffix
+            //matchingFallbacks = ["firebase_no_op"]
+        }
+        // Use a separate buildType for coverage: testCoverageEnabled produces slower code (4-5x slower
+        // in places that I've benchmarked), and more importantly seems to break debugging with Android Studio
+        // for some developers (i.e. variables can't be inspected or seen).
+        coverage {
+            initWith debug
+            testCoverageEnabled true
+            //matchingFallbacks = ["debug", "firebase_no_op"]
+        }
         firebase {
 
             resValue "string", "default_web_client_id", SystemEnv.default_web_client_id ?: ""

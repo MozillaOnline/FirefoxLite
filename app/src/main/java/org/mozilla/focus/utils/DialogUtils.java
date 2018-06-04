@@ -73,7 +73,7 @@ public class DialogUtils {
                 telemetryFeedback(context, TelemetryWrapper.Value.POSITIVE);
             }
         });
-        final String title = FirebaseHelper.getRcString(context, FirebaseHelper.RATE_APP_DIALOG_TEXT_TITLE);
+      /*  final String title = FirebaseHelper.getRcString(context, FirebaseHelper.RATE_APP_DIALOG_TEXT_TITLE);
         if (title != null) {
             ((TextView) dialogView.findViewById(R.id.rate_app_dialog_text_title)).setText(title);
         }
@@ -81,7 +81,7 @@ public class DialogUtils {
         final String content = FirebaseHelper.getRcString(context, FirebaseHelper.RATE_APP_DIALOG_TEXT_CONTENT);
         if (content != null) {
             ((TextView) dialogView.findViewById(R.id.rate_app_dialog_text_content)).setText(content);
-        }
+        }*/
 
         dialogView.findViewById(R.id.dialog_rate_app_btn_feedback).setOnClickListener(new View.OnClickListener() {
             @Override
