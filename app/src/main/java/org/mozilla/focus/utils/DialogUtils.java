@@ -69,7 +69,9 @@ public class DialogUtils {
             dialog.dismiss();
             telemetryFeedback(context, TelemetryWrapper.Value.POSITIVE);
         });
-        final String title = AppConfigWrapper.getRateAppDialogTitle(context);
+
+       // final String title = AppConfigWrapper.getRateAppDialogTitle(context);
+      /*  final String title = FirebaseHelper.getRcString(context, FirebaseHelper.RATE_APP_DIALOG_TEXT_TITLE);
         if (title != null) {
             ((TextView) dialogView.findViewById(R.id.rate_app_dialog_textview_title)).setText(title);
         }
@@ -77,7 +79,7 @@ public class DialogUtils {
         final String content = AppConfigWrapper.getRateAppDialogContent(context);
         if (content != null) {
             ((TextView) dialogView.findViewById(R.id.rate_app_dialog_text_content)).setText(content);
-        }
+        }*/
 
         dialogView.findViewById(R.id.dialog_rate_app_btn_feedback).setOnClickListener(v -> {
             // Users set negative feedback, don't ask them to share in the future

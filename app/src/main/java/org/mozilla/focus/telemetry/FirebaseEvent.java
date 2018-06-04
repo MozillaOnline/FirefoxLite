@@ -12,7 +12,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 
-import org.mozilla.focus.utils.FirebaseHelper;
 import org.mozilla.rocket.util.LoggerWrapper;
 
 import java.util.HashMap;
@@ -120,9 +119,10 @@ class FirebaseEvent {
         if (context == null) {
             return;
         }
-        if (TelemetryWrapper.isTelemetryEnabled(context)) {
-            FirebaseHelper.event(context.getApplicationContext(), this.eventName, this.eventParam);
-        }
+        //if (TelemetryWrapper.isTelemetryEnabled(context)) {
+          //  FirebaseHelper.event(context.getApplicationContext(), this.eventName, this.eventParam);
+        //}
+
     }
 
     @VisibleForTesting

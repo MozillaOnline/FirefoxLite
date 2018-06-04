@@ -460,7 +460,6 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         }
         timer.cancel();
         timer = null;
-        updateTopSitesData(getContext());
     }
 
     @Override

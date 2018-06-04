@@ -85,7 +85,7 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            matchingFallbacks = ["firebase"]
+            //matchingFallbacks = ["firebase"]
             signingConfig signingConfigs.config
         }
         beta {
@@ -93,7 +93,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            matchingFallbacks = ["release", "firebase"]
+            matchingFallbacks = ["release"]
             signingConfig signingConfigs.config
         }
         debug {
@@ -211,7 +211,6 @@ dependencies {
     implementation project(':third_party:glide:library')
     kapt "com.github.bumptech.glide:compiler:${Versions.glide}"
 
-    implementation project(':firebase')
     implementation project(':feature-tabs')
     implementation project(':HttpRequest')
     implementation project(':httptask')
@@ -221,6 +220,7 @@ dependencies {
     implementation project(':logger')
     implementation project(':threadutils')
     implementation project(':cachedrequestloader')
+   // implementation project(':firebase')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
 
@@ -250,7 +250,7 @@ dependencies {
     implementation "org.mozilla.components:autocomplete:${Versions.android_components}"
 
     implementation "com.adjust.sdk:adjust-android:${Versions.adjust}"
-    implementation "com.google.android.gms:play-services-analytics:${Versions.firebase}" // Required by Adjust
+   // implementation "com.google.android.gms:play-services-analytics:${Versions.firebase}" // Required by Adjust
 
     implementation "com.airbnb.android:lottie:${Versions.lottie}"
 
@@ -353,7 +353,8 @@ android.applicationVariants.all { variant ->
         buildConfigField 'String', 'ADJUST_TOKEN', 'null'
         println("Not setting adjust token (Not a focus release build)")
     }
-    if (variant.buildType.name == "release" || variant.buildType.name == "firebase") {
+    //if (variant.buildType.name == "release" || variant.buildType.name == "firebase") {
+    if ( variant.buildType.name == "firebase") {
         variant.assemble.doFirst {
             if (SystemEnv.google_app_id == null || SystemEnv.default_web_client_id == null ||
                     SystemEnv.firebase_database_url == null || SystemEnv.gcm_defaultSenderId == null ||

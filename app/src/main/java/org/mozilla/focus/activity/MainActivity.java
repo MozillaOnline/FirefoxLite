@@ -304,7 +304,6 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
             dismissAllMenus();
             TabTray.dismiss(getSupportFragmentManager());
         }
-
         // We do not care about the previous intent anymore. But let's remember this one.
         setIntent(unsafeIntent);
     }

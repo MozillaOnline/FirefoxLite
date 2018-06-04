@@ -147,13 +147,13 @@
             android:screenOrientation="portrait" />
 
         <!-- This will either be an actual FCM messaging service, or a dummy service that do nothing-->
-        <service
+        <!--<service
             android:name="org.mozilla.focus.notification.RocketMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
-        <!-- Custom Tabs Service is currently not registering the intent-filter before its ready.
+        &lt;!&ndash; Custom -->Tabs Service is currently not registering the intent-filter before its ready.
              It should also be set to exported=true if you want to turn it on -->
         <service
             android:name="org.mozilla.focus.customtabs.CustomTabsService"
@@ -222,13 +222,6 @@
         <service
             android:name="org.mozilla.focus.components.RelocateService"
             android:exported="false" />
-
-        <provider
-            android:name="org.mozilla.focus.provider.FirebaseHelperProvider"
-            android:authorities="${applicationId}.provider.firebasehelperprovider"
-            android:enabled="true"
-            android:exported="false"
-            android:initOrder="100" />
 
         <service
             android:name="org.mozilla.focus.components.ComponentToggleService"
