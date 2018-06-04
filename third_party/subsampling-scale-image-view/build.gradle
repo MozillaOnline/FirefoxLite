@@ -7,11 +7,14 @@ android {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //matchingFallbacks = ["firebase"]
+            //signingConfig signingConfigs.config
         }
         beta {
             initWith release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            matchingFallbacks = ["release"]
         }
         debug {
             def userName = System.getenv("USER")
@@ -23,7 +26,7 @@ android {
         coverage {
             initWith debug
             testCoverageEnabled true
-            matchingFallbacks = ["debug"]
+            //matchingFallbacks = ["debug", "firebase_no_op"]
         }
     }
 }

@@ -17,7 +17,6 @@ import android.widget.TextView;
 import org.mozilla.focus.R;
 import org.mozilla.focus.activity.InfoActivity;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
-import org.mozilla.focus.utils.FirebaseHelper;
 import org.mozilla.focus.utils.SupportUtils;
 
 /**
@@ -53,7 +52,7 @@ public class TelemetrySwitchPreference extends Preference {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 TelemetryWrapper.setTelemetryEnabled(getContext(), isChecked);
                 // we should use the value from UI (isChecked) instead of relying on SharePreference.
-                FirebaseHelper.bind(getContext(), isChecked);
+                //FirebaseHelper.bind(getContext(), isChecked);
             }
         });
 

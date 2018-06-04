@@ -14,6 +14,7 @@ public class AppConfigWrapper {
     private static final boolean SURVEY_NOTIFICATION_ENABLED = false;
     static final int DRIVE_DEFAULT_BROWSER_FROM_MENU_SETTING_THRESHOLD = 2;
 
+/*
     public static long getRateAppNotificationLaunchTimeThreshold(Context context) {
         return FirebaseHelper.getRcLong(context, FirebaseHelper.RATE_APP_NOTIFICATION_THRESHOLD);
     }
@@ -30,6 +31,7 @@ public class AppConfigWrapper {
     public static long getRateDialogLaunchTimeThreshold(Context context) {
         return FirebaseHelper.getRcLong(context, FirebaseHelper.RATE_APP_DIALOG_THRESHOLD);
     }
+*/
 
     public static int getSurveyNotificationLaunchTimeThreshold() {
         return SURVEY_NOTIFICATION_POST_THRESHOLD;
