@@ -9,7 +9,6 @@
   <string name="menu_rights">您的权利</string>
   <string name="menu_give_feedback">提供反馈</string>
   <string name="menu_share_with_friends">与朋友分享</string>
-  <string name="menu_check_updates">检查更新</string>
   <string name="share_dialog_title">分享</string>
   <string name="text_selection_search_action">在 {{app_name}} 中搜索</string>
   <string name="about_content_body">%1$s 是由 Mozilla 出品的快速而轻量的浏览器。我们以营造健康、开放的互联网为己任。</string>
@@ -74,6 +73,7 @@
   <string name="firstrun_close_button">了解！</string>
   <string name="firstrun_skip_button">跳过</string>
   <string name="firstrun_next_button">下一步</string>
+  <string name="label_menu_bookmark">书签</string>
   <string name="label_menu_download">下载项</string>
   <string name="label_menu_clear_cache">清除缓存</string>
   <string name="label_menu_history">历史记录</string>
@@ -148,8 +148,6 @@
   <string name="screenshot_image_viewer_dialog_info_title1">标题：%1$s</string>
   <string name="screenshot_image_viewer_dialog_info_url1">网址：%1$s</string>
   <string name="screenshot_image_viewer_dialog_delete_msg">删除此图像？</string>
-  <string name="screenshot_on_boarding_text_msg">点按菜单中的截图按钮截取整个网页。\n快速、简单——还能随时回到原始网页！</string>
-  <string name="screenshot_on_boarding_btn_got_it">了解！</string>
   <string name="file_picker_title">选择要上传的文件</string>
   <string name="message_enable_turbo_mode">启用加速模式</string>
   <string name="message_disable_turbo_mode">禁用加速模式</string>
@@ -182,12 +180,22 @@
   <string name="survey_notification_title">我们需要你！%1$s</string>
   <string name="survey_notification_description">为用户打造更好的产品</string>
   <string name="new_background_tab_hint">已打开新标签页</string>
-  <string name="new_background_tab_switch">切换过去</string>
   <string name="setting_default_browser_notification_title">更改设置…</string>
   <string name="setting_default_browser_notification_text">这可能需要一段时间</string>
   <string name="setting_default_browser_notification_clickable_text">点按设为默认浏览器</string>
   <string name="tab_tray_close_tabs_btn_text">关闭全部</string>
   <string name="tab_tray_close_tabs_dialog_msg">关闭所有标签页？</string>
-  <string name="rate_app_feedback_url">http://mozilla.com.cn</string>
+  <string name="bookmark_saved">书签已保存</string>
+  <string name="bookmark_removed">书签已移除</string>
+  <string name="bookmark_saved_edit">编辑</string>
+  <string name="title_activity_edit_bookmark">编辑书签</string>
+  <string name="bookmark_edit_save">保存</string>
+  <string name="bookmark_edit_name">名称</string>
+  <string name="bookmark_edit_location">地址</string>
+  <string name="bookmark_edit_success">书签已更新</string>
+  <string name="bookmarks_empty_view_msg">无书签</string>
+  <string name="edit_bookmark">编辑</string>
   <string name="open_folder">打开文件夹</string>
+  <string name="rate_app_feedback_url">http://mozilla.com.cn</string>
+  <string name="menu_check_updates">检查更新</string>
 </resources>

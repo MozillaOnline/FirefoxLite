@@ -42,7 +42,8 @@ public class AppConfigWrapper {
     }
 
     public static boolean getMyshotUnreadEnabled(Context context) {
-        return FirebaseHelper.getRcBoolean(context, FirebaseHelper.ENABLE_MY_SHOT_UNREAD);
+        //return FirebaseHelper.getRcBoolean(context, FirebaseHelper.ENABLE_MY_SHOT_UNREAD);
+        return true;
     }
 
     public static boolean isSurveyNotificationEnabled() {

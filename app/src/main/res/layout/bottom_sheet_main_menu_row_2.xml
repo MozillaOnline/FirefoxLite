@@ -5,19 +5,18 @@
     android:layout_marginTop="1dp"
     tools:background="#3300FF00">
 
+
     <FrameLayout
-        android:id="@+id/menu_turbomode"
-        style="@style/MenuButtonContainer">
-
-        <LinearLayout style="@style/MenuButtonGroup">
-
+        style="@style/MenuButtonContainer"
+        android:id="@+id/menu_checkUpdate">
+        <LinearLayout
+            style="@style/MenuButtonGroup">
             <View
                 style="@style/MenuToggleIcon"
-                android:background="@drawable/menu_speedmode" />
-
+                android:background="@drawable/menu_upgrade"/>
             <TextView
                 style="@style/MenuToggleText"
-                android:text="@string/label_menu_turbo_mode" />
+                android:text="@string/menu_check_updates"/>
         </LinearLayout>
     </FrameLayout>
 
