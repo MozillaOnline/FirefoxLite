@@ -7,15 +7,15 @@
 258:158 AppleJavaExtensions
 417:38 jaxen
 456:46 xml-apis
-503:46 kotlin-annotation-processing-gradle
-643:46 compiler
-690:46 kotlin-compiler-embeddable
-737:62 kotlin-metadata
-800:46 migration
-847:84 kotlin-compiler-lite
-3208:46 kotlin-stdlib
-979:46 javapoet
+830:46 compiler
+596:46 javapoet
 2945:46 annotations
+783:46 kotlin-annotation-processing-gradle
+877:46 kotlin-compiler-embeddable
+924:62 kotlin-metadata
+987:46 migration
+1034:84 kotlin-compiler-lite
+3208:46 kotlin-stdlib
 1166:46 sqlite-jdbc
 2658:46 common
 1307:46 kotlin-script-runtime
@@ -62,4 +62,3 @@
 3560:38 saxon
 3599:46 jcommander
 3646:46 gson
-
