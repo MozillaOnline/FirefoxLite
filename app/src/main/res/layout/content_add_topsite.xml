@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/sharedColorAppPaletteWhite"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="org.mozilla.focus.activity.AddTopsiteActivity"
+    tools:showIn="@layout/activity_addtopsite">
+
+    <android.support.constraint.ConstraintLayout style="@style/NewEditTextBackgroundStyle">
+
+        <EditText
+            android:id="@+id/topsite_name"
+            style="@style/NewEditTextInputStyle" />
+
+        <TextView
+            android:id="@+id/topsite_name_label"
+            style="@style/NewEditTextLabelStyle"
+            android:text="@string/bookmark_edit_name"
+            app:layout_constraintBottom_toTopOf="@+id/topsite_name"
+            app:layout_constraintLeft_toLeftOf="@+id/topsite_name"
+            app:layout_constraintTop_toTopOf="@+id/topsite_name" />
+
+        <ImageButton
+            android:id="@+id/topsite_name_clear"
+            style="@style/NewEditTextClearStyle"
+            android:onClick="onTopsiteNameClearClicked"
+            app:layout_constraintBottom_toBottomOf="@+id/topsite_name"
+            app:layout_constraintEnd_toEndOf="@+id/topsite_name"
+            app:layout_constraintTop_toTopOf="@+id/topsite_name"
+            tools:ignore="ContentDescription" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout style="@style/NewEditTextBackgroundStyle">
+
+        <EditText
+            android:id="@+id/topsite_url"
+            android:inputType="textUri"
+            style="@style/NewEditTextInputStyle" />
+
+        <TextView
+            android:id="@+id/topsite_url_label"
+            style="@style/NewEditTextLabelStyle"
+            android:text="@string/bookmark_edit_location"
+            app:layout_constraintBottom_toTopOf="@+id/topsite_url"
+            app:layout_constraintLeft_toLeftOf="@+id/topsite_url"
+            app:layout_constraintTop_toTopOf="@+id/topsite_url" />
+
+        <ImageButton
+            android:id="@+id/topsite_url_clear"
+            style="@style/NewEditTextClearStyle"
+            android:onClick="onTopsiteUrlClearClicked"
+            app:layout_constraintBottom_toBottomOf="@+id/topsite_url"
+            app:layout_constraintEnd_toEndOf="@+id/topsite_url"
+            app:layout_constraintTop_toTopOf="@+id/topsite_url"
+            tools:ignore="ContentDescription" />
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -1,1 +1,1 @@
-{ "default": ["google", "yahoo", "duckduckgo"], "id": ["google", "yahoo-id", "duckduckgo"]}
+{"default": ["baidu","google",  "taobao", "wikipedia-zh-CN", "bing"]}

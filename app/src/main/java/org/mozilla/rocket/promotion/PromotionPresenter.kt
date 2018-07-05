@@ -49,9 +49,9 @@ class PromotionModel {
             history.add(Settings.Event.AppCreate)
         }
         appCreateCount = history.getCount(Settings.Event.AppCreate)
-        rateAppDialogThreshold = AppConfigWrapper.getRateDialogLaunchTimeThreshold(context)
+        /*rateAppDialogThreshold = AppConfigWrapper.getRateDialogLaunchTimeThreshold(context)
         rateAppNotificationThreshold = AppConfigWrapper.getRateAppNotificationLaunchTimeThreshold(context)
-        shareAppDialogThreshold = AppConfigWrapper.getShareDialogLaunchTimeThreshold(context, didDismissRateDialog)
+        shareAppDialogThreshold = AppConfigWrapper.getShareDialogLaunchTimeThreshold(context, didDismissRateDialog)*/
 
         shouldShowPrivacyPolicyUpdate = newFeatureNotice.shouldShowPrivacyPolicyUpdate()
 
@@ -76,7 +76,7 @@ class PromotionPresenter {
                 return
             }
 
-            if (!promotionModel.didShowRateDialog && promotionModel.appCreateCount >= promotionModel.rateAppDialogThreshold) {
+            /*if (!promotionModel.didShowRateDialog && promotionModel.appCreateCount >= promotionModel.rateAppDialogThreshold) {
                 promotionViewContract.showRateAppDialog()
 
             } else if (promotionModel.didDismissRateDialog && !promotionModel.didShowRateAppNotification && promotionModel.appCreateCount >= promotionModel.rateAppNotificationThreshold) {
@@ -85,7 +85,7 @@ class PromotionPresenter {
             } else if (!promotionModel.didShowShareDialog && promotionModel.appCreateCount >= promotionModel.shareAppDialogThreshold) {
                 promotionViewContract.showShareAppDialog()
 
-            }
+            }*/
 
             if (promotionModel.isSurveyEnabled && promotionModel.appCreateCount >= AppConfigWrapper.getSurveyNotificationLaunchTimeThreshold()) {
                 promotionViewContract.postSurveyNotification()

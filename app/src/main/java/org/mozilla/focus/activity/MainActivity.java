@@ -123,7 +123,6 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
     private View privateModeButton;
     private View checkUpdateButton;
 
-
     private ScreenNavigator screenNavigator;
 
     private DialogFragment mDialogFragment;
