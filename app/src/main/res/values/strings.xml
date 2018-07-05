@@ -208,15 +208,21 @@
     <string name="first_run_page2_title">Browse faster than ever</string>
     <string name="first_run_page2_text">Use turbo mode to block tracking ads so you can browse at blazing speeds. If sites seem broken, just tap off the turbo mode switch in the menu.</string>
     <string name="first_run_page3_title">Save data = Save money</string>
+
     <string name="first_run_page3_text">Save on data costs by blocking tracking ads. Save even more when you enable image blocking.</string>
     <string name="first_run_page4_title">Screenshot the whole page</string>
     <string name="first_run_page4_text">Take screenshot of an entire page scroll. Read it offline without using data or tap it to revisit the web page.</string>
     <string name="first_run_page5_title">Next-level privacy</string>
     <string name="first_run_page5_text">Browse without a trace, and block a wide range of common web trackers by default. Ensure the security of your confidential data.</string>
+<<<<<<< HEAD
     <string name="first_run_page6_title">Discover new things</string>
     <!-- The %1$s here is a placeholder for "Life Feed", the %2$s is "Learn more" which is localized in preference_learn_more. Life Feed is an information panel covering content that might help our customers' life. It covers from the most popular topics to the hottest deals, including news, games, coupon...etc.-->
     <string name="first_run_page6_text">Just one flip, keep yourself updated with the “%1$s” - a variety of contents from the most popular topics to the hottest deals. %2$s</string>
    
+=======
+
+
+>>>>>>> bookmark & strings update
     <string name="first_run_upgrade_page_title">We heard your feedback!</string>
 
     <string name="new_name_upgrade_page_title">We have a new look!</string>
@@ -494,6 +500,8 @@
 
     <!-- This is the description of Themeing on-boarding dialog -->
     <string name="themetoy_onboarding_description">Double click on the home background to switch themes.</string>
+
+    <string name="title_activity_add_topsite">Add Topsite</string>
 
     <!-- Message shown for a few seconds after a bookmark is saved. -->
     <string name="bookmark_saved">Bookmark saved</string>

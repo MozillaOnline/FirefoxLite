@@ -135,7 +135,6 @@ public class MainActivity extends BaseActivity implements FragmentListener,
     private View privateModeIndicator;
     private View checkUpdateButton;
 
-
     private ScreenNavigator screenNavigator;
 
     private DialogFragment mDialogFragment;

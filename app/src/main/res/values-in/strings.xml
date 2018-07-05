@@ -236,4 +236,5 @@
   <string name="exp_survey_yes">YA</string>
   <string name="exp_survey_no">TIDAK</string>
   <string name="rate_app_feedback_url">https://qsurvey.mozilla.com/s3/Firefox-Rocket-Input</string>
+
 </resources>

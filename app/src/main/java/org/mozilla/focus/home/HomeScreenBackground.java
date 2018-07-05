@@ -49,7 +49,7 @@ public class HomeScreenBackground extends ThemedImageView implements ThemeManage
     void init() {
         final Rect rect = new Rect();
         ((Activity) getContext()).getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        //Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.home_pattern);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.home_pattern);
         paint = new Paint();
         Shader shader1 = new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
         int colors[] = {Color.parseColor("#99FFFFFF"), Color.parseColor("#4dFFFFFF"), Color.parseColor("#1aFFFFFF"), Color.parseColor("#00FFFFFF")};

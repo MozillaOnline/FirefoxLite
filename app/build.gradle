@@ -24,8 +24,6 @@ android {
             storePassword keystoreProperties['storePassword']
         }
     }
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "org.mozilla"
         minSdkVersion Versions.min_sdk
