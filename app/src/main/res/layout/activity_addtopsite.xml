@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/sharedColorAppPaletteWhite"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <TextView
+    android:layout_height="match_parent"
+    tools:context="org.mozilla.focus.activity.AddTopsiteActivity">
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:text="添加快速访问"
@@ -10,15 +13,53 @@
         android:gravity="center_vertical"
         android:drawableStart="@drawable/ic_globe"
         android:drawablePadding="6dp"
-        android:paddingLeft="8dp"/>
+        android:paddingLeft="8dp"/>-->
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/BookmarkActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/bookmarkEditToolbarBackground">
+
+            <ImageButton
+                android:id="@+id/cancel_topsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onCancelTopsiteClicked"
+                android:background="@color/bookmarkEditToolbarBackground"
+                android:src="@drawable/edit_close"
+                android:tint="@color/bookmark_edit_action_text"/>
+            <TextView
+                android:layout_marginLeft="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_activity_add_topsite"
+                android:textSize="20sp"
+                android:textColor="@color/bookmark_edit_action_text"/>
+            <Button
+                android:id="@+id/add_topsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onAddTopsiteClicked"
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_gravity="right"
+                android:text="添加"/>
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
 
 
-    <View
+   <!-- <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#d7d7db"/>
+        android:background="#d7d7db"/>-->
 
-    <EditText
+    <!--<EditText
         android:id="@+id/topsite_name"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
@@ -41,15 +82,17 @@
         android:layout_height="36dp"
         android:background="@drawable/txt_radiusborder"
         android:singleLine="true"
-        android:hint="请输入网址"/>
+        android:hint="请输入网址"/>-->
+    <include layout="@layout/content_add_topsite" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/sharedColorAppPaletteWhite"
         android:orientation="vertical">
 
 
-        <LinearLayout
+       <!-- <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -82,7 +125,7 @@
                 android:text="添加" />
 
 
-        </LinearLayout>
+        </LinearLayout>-->
 
 
 
@@ -104,6 +147,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/topsite_recyclerview"
+        android:background="@color/sharedColorAppPaletteWhite"
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:visibility="visible"

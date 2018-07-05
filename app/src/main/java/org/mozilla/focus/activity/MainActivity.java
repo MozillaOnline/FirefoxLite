@@ -114,12 +114,8 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
     private View refreshIcon;
     private View stopIcon;
     private View pinShortcut;
-<<<<<<< HEAD
     private View snackBarContainer;
-=======
     private View checkUpdateButton;
->>>>>>> updater
-
     private ScreenNavigator screenNavigator;
 
     private DialogFragment mDialogFragment;
@@ -401,7 +397,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
         if (!requestPinShortcutSupported) {
             pinShortcut.setVisibility(View.GONE);
         }
-        menu.findViewById(R.id.menu_speedmode).setSelected(isTurboEnabled());
+        menu.findViewById(R.id.menu_turbomode).setSelected(isTurboEnabled());
         menu.findViewById(R.id.menu_blockimg).setSelected(isBlockingImages());
     }
 
@@ -504,7 +500,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
 
                 TelemetryWrapper.menuBlockImageChangeTo(blockingImages);
                 break;
-            case R.id.menu_speedmode:
+            case R.id.menu_turbomode:
                 //  Toggle
                 final boolean turboEnabled = !isTurboEnabled();
                 Settings.getInstance(this).setTurboMode(turboEnabled);
@@ -734,7 +730,7 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
             if (browserFragment != null) {
                 browserFragment.setContentBlockingEnabled(turboEnabled);
             }
-            menu.findViewById(R.id.menu_speedmode).setSelected(turboEnabled);
+            menu.findViewById(R.id.menu_turbomode).setSelected(turboEnabled);
         } else if (this.getResources().getString(R.string.pref_key_performance_block_images).equals(key)) {
             final boolean blockingImages = isBlockingImages();
             BrowserFragment browserFragment = getBrowserFragment();
