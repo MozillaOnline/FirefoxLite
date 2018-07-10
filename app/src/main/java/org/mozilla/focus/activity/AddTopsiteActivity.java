@@ -53,7 +53,7 @@ public class AddTopsiteActivity extends AppCompatActivity{
         topsiteName = (EditText) findViewById(R.id.topsite_name);
         addTopsite = findViewById(R.id.add_topsite);
         cancelTopsite = findViewById(R.id.cancel_topsite);
-        hotList = findViewById(R.id.hot_list);
+        hotList = findViewById(R.id.title_hot_list);
         topsiteListView = (RecyclerView) findViewById(R.id.topsite_recyclerview);
         topsiteListView.setVisibility(View.VISIBLE);
         //historyFragment.getView().setVisibility(View.GONE);
@@ -137,6 +137,14 @@ public class AddTopsiteActivity extends AppCompatActivity{
     public void onCancelTopsiteClicked(View v){
         this.finish();
 
+    }
+
+    public void onTopsiteNameClearClicked(View v){
+        topsiteName.setText("");
+    }
+
+    public void onTopsiteUrlClearClicked(View v){
+        topsiteUrl.setText("");
     }
 
 
