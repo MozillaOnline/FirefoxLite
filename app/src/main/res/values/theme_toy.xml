@@ -13,12 +13,12 @@
 
     <style name="ThemeToy"/>
 
-    <style name="ThemeToyDefault" parent="ThemeToy.Light">
+    <style name="ThemeToy01" parent="ThemeToy.Light">
         <item name="themeGradientStart">@color/themeGradientStart</item>
         <item name="themeGradientEnd">@color/themeGradientEnd</item>
     </style>
 
-    <style name="ThemeToy01" parent="ThemeToy.Dark">
+    <style name="ThemeToyDefault" parent="ThemeToy.Dark">
         <item name="themeGradientStart">@color/themeGradientStart01</item>
         <item name="themeGradientEnd">@color/themeGradientEnd01</item>
     </style>
