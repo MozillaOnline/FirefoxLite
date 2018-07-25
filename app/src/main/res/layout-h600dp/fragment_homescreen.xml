@@ -34,6 +34,23 @@
         android:layout_below="@id/home_fragment_fake_input"
         android:layout_marginTop="@dimen/home_padding_url_bar_to_top_sites"/>
 
-    <include layout="@layout/fragment_homescreen_item_menu_button"/>
+    <include
+        android:id="@+id/arrow1"
+        layout="@layout/button_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/arrow2"
+        android:layout_centerHorizontal="true" />
+
+    <include
+        android:id="@+id/arrow2"
+        layout="@layout/button_content"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/arrow1" />
+
+    <include layout="@layout/fragment_homescreen_item_menu_button"
+        android:id="@+id/btn_menu_container"/>
 
 </org.mozilla.focus.widget.SwipeMotionLayout>

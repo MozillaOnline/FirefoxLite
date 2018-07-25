@@ -29,7 +29,7 @@ public class InterceptBehavior<V extends View> extends BottomSheetBehavior<V> {
         return intercept || super.onTouchEvent(parent, child, event);
     }
 
-    void setIntercept(boolean intercept) {
+    public void setIntercept(boolean intercept) {
         this.intercept = intercept;
     }
 }

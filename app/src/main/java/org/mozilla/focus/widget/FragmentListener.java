@@ -23,6 +23,7 @@ public interface FragmentListener {
         UPDATE_MENU, // no payload
         REFRESH_TOP_SITE, // no payload
         SHOW_TAB_TRAY, // no payload
+        SHOW_CONTENT
     }
 
     void onNotified(@NonNull Fragment from,

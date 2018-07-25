@@ -115,6 +115,7 @@ public final class TelemetryWrapper {
         static final String DEFAULT_BROWSER = "default_browser";
         static final String PROMOTE_SHARE = "promote_share";
         static final String THEMETOY = "themetoy";
+        static final String CONTENT = "content";
     }
 
     public static class Value {
@@ -476,6 +477,10 @@ public final class TelemetryWrapper {
 
     public static void showTabTrayToolbar() {
         new EventBuilder(Category.ACTION, Method.SHOW, Object.TABTRAY, Value.TOOLBAR).queue();
+    }
+
+    public static void showContentHome(){
+        new EventBuilder(Category.ACTION, Method.SHOW, Object.CONTENT, Value.HOME).queue();
     }
 
     public static void showMenuToolbar() {

@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.GeolocationPermissions;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -42,7 +43,6 @@ import org.mozilla.focus.provider.QueryHandler;
 import org.mozilla.focus.tabs.Tab;
 import org.mozilla.focus.tabs.TabCounter;
 import org.mozilla.focus.tabs.TabView;
-import org.mozilla.focus.tabs.TabsChromeListener;
 import org.mozilla.focus.tabs.TabsSession;
 import org.mozilla.focus.tabs.TabsSessionProvider;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
@@ -53,10 +53,7 @@ import org.mozilla.focus.widget.FragmentListener;
 import org.mozilla.focus.widget.SwipeMotionLayout;
 import org.mozilla.rocket.theme.ThemeManager;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -74,6 +71,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private TopSitesContract.Presenter presenter;
     private RecyclerView recyclerView;
     private View btnMenu;
+    private View btnContent;
+    private View arrow2;
     private View themeOnboardingLayer;
     private TabCounter tabCounter;
     private TextView fakeInput;
@@ -111,6 +110,16 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 
         this.btnMenu = view.findViewById(R.id.btn_menu);
         this.btnMenu.setOnClickListener(menuItemClickListener);
+
+        this.btnContent = view.findViewById(R.id.arrow1);
+        this.arrow2 = view.findViewById(R.id.arrow2);
+        final Animation fadeout = AnimationUtils.loadAnimation(getActivity(), R.anim.arrow_fade_out);
+        final Animation fadein = AnimationUtils.loadAnimation(getActivity(), R.anim.arrow_fade_in);
+        btnContent.startAnimation(fadeout);
+        arrow2.startAnimation(fadein);
+
+        this.btnContent.setOnClickListener(menuItemClickListener);
+        this.arrow2.setOnClickListener(menuItemClickListener);
 
         tabsSession = TabsSessionProvider.getOrThrow(getActivity());
         tabsSession.addTabsChromeListener(this.tabsChromeListener);
@@ -499,7 +508,17 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                             FRAGMENT_TAG);
                     TelemetryWrapper.showTabTrayHome();
                     break;
-
+                //todo: btn_content
+                case R.id.btn_content:
+                    listener.onNotified(HomeFragment.this, FragmentListener.TYPE.SHOW_CONTENT,
+                            null);
+                    TelemetryWrapper.showContentHome();
+                    break;
+                case R.id.arrow2:
+                    listener.onNotified(HomeFragment.this, FragmentListener.TYPE.SHOW_CONTENT,
+                            null);
+                    TelemetryWrapper.showContentHome();
+                    break;
                 default:
                     break;
             }
@@ -583,8 +602,13 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private class GestureListenerAdapter implements OnSwipeListener {
 
         @Override
-        public void onSwipeUp() {
+        /*public void onSwipeUp() {
             btnMenu.performClick();
+        }*/
+        public void onSwipeUp() {
+            /*Intent intent = new Intent(parentActivity, DisplayContentActivity.class);
+            startActivity(intent);*/
+            arrow2.performClick();
         }
 
         @Override
