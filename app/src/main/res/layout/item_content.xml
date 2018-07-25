@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_item_root_view"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <ImageView
+        android:id="@+id/content_item_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_globe" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- We need singleLine to make things work correctly on 5.0 devices -->
+        <TextView
+            android:id="@+id/content_item_title"
+            style="@style/DownloadListMainText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:textColor="@color/colorDownloadText"
+            android:textSize="20sp"
+            tools:ignore="Deprecation" />
+
+        <!-- We need singleLine to make things work correctly on 5.0 devices -->
+        <TextView
+            tools:ignore="Deprecation"
+            android:id="@+id/content_item_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:ellipsize="end"
+            android:textColor="@color/colorDownloadSubText"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+            tools:ignore="Deprecation"
+            android:id="@+id/content_item_source"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textColor="@color/sharedColorAppPaletteWhite5"
+            android:textSize="10sp" />
+
+            <TextView
+                tools:ignore="Deprecation"
+                android:id="@+id/content_item_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textColor="@color/sharedColorAppPaletteWhite5"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

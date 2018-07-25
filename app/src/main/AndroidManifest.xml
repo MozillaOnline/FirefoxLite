@@ -106,6 +106,13 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_add_topsite"/>
+
+        <activity
+            android:name="org.mozilla.focus.activity.DisplayContentActivity"
+            android:enabled="true"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="org.mozilla.focus.activity.CheckUpdateActivity"
             android:enabled="true"
