@@ -71,6 +71,7 @@ public class TabTrayFragment extends DialogFragment implements TabTrayContract.V
 
     private static final boolean ENABLE_BACKGROUND_ALPHA_TRANSITION = true;
     private static final boolean ENABLE_SWIPE_TO_DISMISS = true;
+    private static boolean privateModeEnabled = false;
 
     private static final float OVERLAY_ALPHA_FULL_EXPANDED = 0.50f;
 
@@ -158,7 +159,8 @@ public class TabTrayFragment extends DialogFragment implements TabTrayContract.V
                 privateModeBadge.setVisibility(hasPrivateTab ? View.VISIBLE : View.INVISIBLE);
             }
         });
-        privateModeBtn.setVisibility(PrivateMode.isEnable(getContext()) ? View.VISIBLE : View.INVISIBLE);
+       // privateModeBtn.setVisibility((!privateModeEnabled) ? View.VISIBLE : View.INVISIBLE);
+        privateModeBtn.setVisibility(View.VISIBLE);
         backgroundView = view.findViewById(R.id.root_layout);
         logoMan = backgroundView.findViewById(R.id.logo_man);
         imgPrivateBrowsing = view.findViewById(R.id.img_private_browsing);
@@ -219,6 +221,10 @@ public class TabTrayFragment extends DialogFragment implements TabTrayContract.V
                 TelemetryWrapper.privateModeTray();
                 startActivity(new Intent(getContext(), PrivateModeActivity.class));
                 getActivity().overridePendingTransition(R.anim.pb_enter, R.anim.pb_exit);
+                if(!privateModeEnabled){
+                    privateModeEnabled=true;
+                }
+
                 break;
 
             default:

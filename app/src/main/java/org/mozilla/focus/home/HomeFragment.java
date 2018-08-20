@@ -81,11 +81,9 @@ import org.mozilla.focus.provider.HistoryContract;
 import org.mozilla.focus.provider.HistoryDatabaseHelper;
 import org.mozilla.focus.provider.QueryHandler;
 import org.mozilla.focus.tabs.TabCounter;
-import org.mozilla.focus.tabs.TabsChromeListener;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConfigWrapper;
 import org.mozilla.focus.utils.DimenUtils;
-import org.mozilla.focus.utils.FirebaseHelper;
 import org.mozilla.focus.utils.OnSwipeListener;
 import org.mozilla.focus.utils.RemoteConfigConstants;
 import org.mozilla.focus.utils.Settings;
@@ -122,6 +120,7 @@ import org.mozilla.threadutils.ThreadUtils;
 import org.mozilla.urlutils.UrlUtils;
 
 
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 
@@ -147,6 +146,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 =======
 
 import java.util.UUID;
+
+
 
 
 public class HomeFragment extends LocaleAwareFragment implements TopSitesContract.View,
@@ -178,8 +179,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private SiteItemClickListener clickListener = new SiteItemClickListener();
     private TopSiteAdapter topSiteAdapter;
     private JSONArray orginalDefaultSites = null;
+
     private SessionManager sessionManager;
     private final SessionManagerObserver observer = new SessionManagerObserver();
+
+
     private int MAX_TOPSITES = 8;
     private final Site ADD_SITE = new Site();
     public Context parentActivity;
@@ -191,8 +195,12 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private Timer timer;
     private static final int SCROLL_PERIOD = 10000;
     private BannerConfigViewModel bannerConfigViewModel;
+<<<<<<< HEAD
     private ContentViewModel contentViewModel;
     final Observer<String[]> bannerObserver = this::setUpBannerFromConfig;
+=======
+    //final Observer<String[]> bannerObserver = this::setUpBannerFromConfig;
+>>>>>>> disable banner temporarily in version 3
     private String[] configArray;
     private LottieAnimationView downloadingIndicator;
     private ImageView downloadIndicator;
@@ -533,10 +541,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
             TelemetryWrapper.showSearchBarHome();
         });
-        this.banner = view.findViewById(R.id.banner);
-        bannerLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        banner.setLayoutManager(bannerLayoutManager);
-        SnapHelper snapHelper = new PagerSnapHelper() {
+       // this.banner = view.findViewById(R.id.banner);
+        //bannerLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        //banner.setLayoutManager(bannerLayoutManager);
+        /*SnapHelper snapHelper = new PagerSnapHelper() {
 
             private void sendTelemetry(int superRet, int velocityX) {
                 sendSwipeTelemetry(superRet, velocityX);
@@ -574,7 +582,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                 return superRet;
             }
         };
-        snapHelper.attachToRecyclerView(banner);
+        snapHelper.attachToRecyclerView(banner);*/
 
 <<<<<<< HEAD
         SwipeMotionLayout home_container = view.findViewById(R.id.home_container);
@@ -628,11 +636,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     public void onResume() {
         super.onResume();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(FirebaseHelper.FIREBASE_READY);
+        //intentFilter.addAction(FirebaseHelper.FIREBASE_READY);
         this.receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                initBanner(context);
+                //initBanner(context);
             }
         };
         Context context = getContext();
@@ -640,7 +648,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             LocalBroadcastManager.getInstance(context).registerReceiver(this.receiver, intentFilter);
         }
         updateTopSitesData();
-        setupBannerTimer();
+        //setupBannerTimer();
         setNightModeEnabled(Settings.getInstance(getActivity()).isNightModeEnable());
 
         View fragmentView = getView();
@@ -703,6 +711,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         if (context != null) {
             LocalBroadcastManager.getInstance(context).unregisterReceiver(this.receiver);
         }
+<<<<<<< HEAD
         timer.cancel();
         timer = null;
 <<<<<<< HEAD
@@ -719,6 +728,12 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 =======
         updateTopSitesData(getContext());
 >>>>>>> Topsites
+=======
+        //timer.cancel();
+        //timer = null;
+		updateTopSitesData(getContext());
+
+>>>>>>> disable banner temporarily in version 3
     }
 
     @Override
@@ -729,6 +744,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         Context context = getContext();
 
         bannerConfigViewModel = ViewModelProviders.of(this).get(BannerConfigViewModel.class);
+<<<<<<< HEAD
         bannerConfigViewModel.getConfig().observe(this, bannerObserver);
         initBanner(context);
 
@@ -754,13 +770,17 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         // creating a repository will also create a new subscription.
         // we deliberately create a new subscription again to load data aggressively.
         contentViewModel.loadMore();
+=======
+        //bannerConfigViewModel.getConfig().observe(this, bannerObserver);
+        //initBanner(getContext());
+>>>>>>> disable banner temporarily in version 3
     }
 
     @Override
     public void onDestroyView() {
         sessionManager.unregister(this.observer);
         doWithActivity(getActivity(), themeManager -> themeManager.unsubscribeThemeChange(homeScreenBackground));
-        bannerConfigViewModel.getConfig().removeObserver(bannerObserver);
+        //bannerConfigViewModel.getConfig().removeObserver(bannerObserver);
         super.onDestroyView();
     }
 

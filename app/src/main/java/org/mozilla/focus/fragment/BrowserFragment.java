@@ -62,11 +62,7 @@ import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.screenshot.CaptureRunnable;
 import org.mozilla.focus.tabs.TabCounter;
 import org.mozilla.focus.tabs.tabtray.TabTray;
-import org.mozilla.focus.tabs.Tab;
-import org.mozilla.focus.tabs.TabView;
-import org.mozilla.focus.tabs.TabsChromeListener;
-import org.mozilla.focus.tabs.TabsSession;
-import org.mozilla.focus.tabs.TabsViewListener;
+
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.FileChooseAction;
@@ -87,8 +83,12 @@ import org.mozilla.focus.web.WebViewProvider;
 >>>>>>> tabs: BrowserFragment involves TabsSession
 =======
 import org.mozilla.focus.utils.UrlUtils;
+<<<<<<< HEAD
 import org.mozilla.focus.web.DownloadCallback;
 >>>>>>> Strings update for zh
+=======
+
+>>>>>>> disable banner temporarily in version 3
 import org.mozilla.focus.widget.AnimatedProgressBar;
 import org.mozilla.focus.widget.BackKeyHandleable;
 import org.mozilla.focus.widget.FindInPage;

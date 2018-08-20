@@ -36,9 +36,9 @@ class PromotionModel {
 
     var showRateAppDialogFromIntent by Delegates.notNull<Boolean>()
 
-    constructor(context: Context, safeIntent: SafeIntent) : this(context, Settings.getInstance(context).eventHistory, NewFeatureNotice.getInstance(context), safeIntent)
+    constructor(context: Context, safeIntent: SafeIntent) : this( Settings.getInstance(context).eventHistory, NewFeatureNotice.getInstance(context), safeIntent)
     @VisibleForTesting
-    constructor(context: Context, history: Settings.EventHistory, newFeatureNotice: NewFeatureNotice, safeIntent: SafeIntent) {
+    constructor(history: Settings.EventHistory, newFeatureNotice: NewFeatureNotice, safeIntent: SafeIntent) {
 
         parseIntent(safeIntent)
 

@@ -92,19 +92,20 @@ android {
             matchingFallbacks = ["firebase"]
             signingConfig signingConfigs.config
         }
-        beta {
+        /*beta {
             initWith release
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             matchingFallbacks = ["release", "firebase"]
             signingConfig signingConfigs.config
-        }
+        }*/
         debug {
             def userName = System.getenv("USER")
             applicationIdSuffix ".debug." + userName
             versionNameSuffix applicationIdSuffix
-            matchingFallbacks = ["firebase_no_op"]
+            //matchingFallbacks = ["firebase_no_op"]
+            signingConfig signingConfigs.config
         }
         // Use a separate buildType for coverage: testCoverageEnabled produces slower code (4-5x slower
         // in places that I've benchmarked), and more importantly seems to break debugging with Android Studio
