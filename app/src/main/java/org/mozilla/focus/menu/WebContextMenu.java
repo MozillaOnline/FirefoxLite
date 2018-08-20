@@ -39,7 +39,6 @@ import org.mozilla.rocket.tabs.web.DownloadCallback;
 import org.mozilla.urlutils.UrlUtils;
 
 import java.util.List;
-import org.mozilla.focus.tabs.TabView;
 
 public class WebContextMenu {
     public static final String DEFAULT_DOWNLOAD_EXTENSION = ".bin";
@@ -50,7 +49,7 @@ public class WebContextMenu {
         return titleView;
     }
 
-   
+    public static Dialog show(final boolean inPrivate,
                               final @NonNull Activity activity,
                               final @NonNull DownloadCallback callback,
                               final @NonNull TabView.HitTarget hitTarget) {

@@ -73,11 +73,9 @@ import org.mozilla.focus.provider.HistoryContract;
 import org.mozilla.focus.provider.HistoryDatabaseHelper;
 import org.mozilla.focus.provider.QueryHandler;
 import org.mozilla.focus.tabs.TabCounter;
-import org.mozilla.focus.tabs.TabsChromeListener;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConfigWrapper;
 import org.mozilla.focus.utils.DimenUtils;
-import org.mozilla.focus.utils.FirebaseHelper;
 import org.mozilla.focus.utils.OnSwipeListener;
 import org.mozilla.focus.utils.RemoteConfigConstants;
 import org.mozilla.focus.utils.Settings;
@@ -100,6 +98,7 @@ import org.mozilla.rocket.util.LoggerWrapper;
 import org.mozilla.urlutils.UrlUtils;
 
 
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 
@@ -117,6 +116,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import java.util.UUID;
+
 
 
 import static org.mozilla.focus.navigation.ScreenNavigator.HOME_FRAGMENT_TAG;
@@ -144,8 +144,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private SiteItemClickListener clickListener = new SiteItemClickListener();
     private TopSiteAdapter topSiteAdapter;
     private JSONArray orginalDefaultSites = null;
+
     private SessionManager sessionManager;
     private final SessionManagerObserver observer = new SessionManagerObserver();
+
+
     private int MAX_TOPSITES = 8;
     private final Site ADD_SITE = new Site();
     public Context parentActivity;
@@ -157,7 +160,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private Timer timer;
     private static final int SCROLL_PERIOD = 10000;
     private BannerConfigViewModel bannerConfigViewModel;
-    final Observer<String[]> bannerObserver = this::setUpBannerFromConfig;
+  //  final Observer<String[]> bannerObserver = this::setUpBannerFromConfig;
 
     private Handler uiHandler = new Handler(Looper.getMainLooper()) {
 
@@ -372,10 +375,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
             TelemetryWrapper.showSearchBarHome();
         });
-        this.banner = view.findViewById(R.id.banner);
-        bannerLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        banner.setLayoutManager(bannerLayoutManager);
-        SnapHelper snapHelper = new PagerSnapHelper() {
+       // this.banner = view.findViewById(R.id.banner);
+        //bannerLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        //banner.setLayoutManager(bannerLayoutManager);
+        /*SnapHelper snapHelper = new PagerSnapHelper() {
 
             private void sendTelemetry(int superRet, int velocityX) {
                 final int itemCount = banner.getAdapter().getItemCount();
@@ -391,7 +394,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                 return superRet;
             }
         };
-        snapHelper.attachToRecyclerView(banner);
+        snapHelper.attachToRecyclerView(banner);*/
 
         SwipeMotionLayout home_container = (SwipeMotionLayout)view.findViewById(R.id.home_container);
         home_container.setOnSwipeListener(new GestureListenerAdapter());
@@ -419,11 +422,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     public void onResume() {
         super.onResume();
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(FirebaseHelper.FIREBASE_READY);
+        //intentFilter.addAction(FirebaseHelper.FIREBASE_READY);
         this.receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                initBanner(context);
+                //initBanner(context);
             }
         };
         Context context = getContext();
@@ -431,7 +434,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             LocalBroadcastManager.getInstance(context).registerReceiver(this.receiver, intentFilter);
         }
         updateTopSitesData();
-        setupBannerTimer();
+        //setupBannerTimer();
     }
 
     private void setupBannerTimer() {
@@ -458,8 +461,9 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         if (context != null) {
             LocalBroadcastManager.getInstance(context).unregisterReceiver(this.receiver);
         }
-        timer.cancel();
-        timer = null;
+        //timer.cancel();
+        //timer = null;
+
     }
 
     @Override
@@ -468,15 +472,15 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         doWithActivity(getActivity(), themeManager -> themeManager.subscribeThemeChange(homeScreenBackground));
 
         bannerConfigViewModel = ViewModelProviders.of(this).get(BannerConfigViewModel.class);
-        bannerConfigViewModel.getConfig().observe(this, bannerObserver);
-        initBanner(getContext());
+        //bannerConfigViewModel.getConfig().observe(this, bannerObserver);
+        //initBanner(getContext());
     }
 
     @Override
     public void onDestroyView() {
         sessionManager.unregister(this.observer);
         doWithActivity(getActivity(), themeManager -> themeManager.unsubscribeThemeChange(homeScreenBackground));
-        bannerConfigViewModel.getConfig().removeObserver(bannerObserver);
+        //bannerConfigViewModel.getConfig().removeObserver(bannerObserver);
         super.onDestroyView();
     }
 

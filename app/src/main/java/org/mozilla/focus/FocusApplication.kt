@@ -16,8 +16,8 @@ import org.mozilla.focus.notification.NotificationUtil
 import org.mozilla.focus.screenshot.ScreenshotManager
 import org.mozilla.focus.search.SearchEngineManager
 import org.mozilla.focus.telemetry.TelemetryWrapper
-import org.mozilla.focus.utils.AdjustHelper
 import org.mozilla.rocket.partner.PartnerActivator
+//import org.mozilla.focus.utils.AdjustHelper
 import org.mozilla.rocket.privately.PrivateMode.Companion.PRIVATE_PROCESS_NAME
 import org.mozilla.rocket.privately.PrivateMode.Companion.WEBVIEW_FOLDER_NAME
 import java.io.File
@@ -53,13 +53,14 @@ class FocusApplication : LocaleAwareApplication() {
         PreferenceManager.setDefaultValues(this, R.xml.settings, false)
 
         // Provide different strict mode penalty for ui testing and production code
-        Inject.enableStrictMode()
+        //Inject.enableStrictMode()
 
         SearchEngineManager.getInstance().init(this)
 
         TelemetryWrapper.init(this)
-        TelemetryWrapper.startApp()
         AdjustHelper.setupAdjustIfNeeded(this)
+        TelemetryWrapper.startApp()
+       // AdjustHelper.setupAdjustIfNeeded(this)
 
         BrowsingHistoryManager.getInstance().init(this)
         ScreenshotManager.getInstance().init(this)

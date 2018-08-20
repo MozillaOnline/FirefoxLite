@@ -21,12 +21,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import org.mozilla.focus.web.Download;
+import org.mozilla.rocket.tabs.web.Download;
+import org.mozilla.rocket.tabs.web.DownloadCallback;
 import org.mozilla.focus.BuildConfig;
 import org.mozilla.focus.R;
 import org.mozilla.focus.activity.ProxySelector;
 import org.mozilla.focus.utils.AppConstants;
-import org.mozilla.focus.web.DownloadCallback;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
