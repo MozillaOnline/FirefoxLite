@@ -3,8 +3,10 @@ object Versions {
     const val target_sdk = 27
     const val compile_sdk = 27
     const val build_tools = "27.0.3"
+
     const val version_code = 31
     const val version_name = "3.1.0"
+
     const val android_gradle_plugin = "3.1.3"
     const val dicedmelon_jacoco_plugin = "0.1.3"
     const val gms_oss_licenses_plugin = "0.9.1"
@@ -48,5 +50,5 @@ object SystemEnv {
 }
 
 object Localization {
-    val KEPT_LOCALE = arrayOf("in", "hi-rIN", "th", "tl", "su", "jv")
+    val KEPT_LOCALE = arrayOf("zh-rCN", "in", "hi-rIN", "th", "tl", "su", "jv")
 }

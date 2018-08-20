@@ -42,11 +42,8 @@ import org.json.JSONObject;
 import org.mozilla.focus.Inject;
 import org.mozilla.focus.R;
 import org.mozilla.focus.activity.MainActivity;
-<<<<<<< HEAD
-=======
 import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.activity.AddTopsiteActivity;
->>>>>>> Topsites
 import org.mozilla.focus.history.BrowsingHistoryManager;
 import org.mozilla.focus.history.model.Site;
 import org.mozilla.focus.locale.LocaleAwareFragment;
@@ -54,11 +51,9 @@ import org.mozilla.focus.navigation.ScreenNavigator;
 import org.mozilla.focus.network.SocketTags;
 import org.mozilla.focus.provider.QueryHandler;
 import org.mozilla.focus.tabs.TabCounter;
-import org.mozilla.focus.tabs.TabsChromeListener;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConfigWrapper;
 import org.mozilla.focus.utils.FileUtils;
-import org.mozilla.focus.utils.FirebaseHelper;
 import org.mozilla.focus.utils.OnSwipeListener;
 import org.mozilla.focus.utils.TopSitesUtils;
 import org.mozilla.focus.utils.UrlUtils;
@@ -74,25 +69,19 @@ import org.mozilla.rocket.tabs.TabsSessionProvider;
 import org.mozilla.rocket.theme.ThemeManager;
 import org.mozilla.rocket.util.Logger;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.lang.ref.WeakReference;
-=======
 import java.io.IOException;
 import java.io.InputStream;
->>>>>>> Topsites
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
-=======
 import java.util.UUID;
->>>>>>> Topsites
 
 public class HomeFragment extends LocaleAwareFragment implements TopSitesContract.View {
     private static final String TAG = "HomeFragment";
@@ -117,13 +106,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private TopSiteAdapter topSiteAdapter;
     private JSONArray orginalDefaultSites = null;
     private TabsSession tabsSession;
-<<<<<<< HEAD
-=======
+
     private int MAX_TOPSITES = 8;
     private final Site ADD_SITE = new Site();
     public Context parentActivity;
 
->>>>>>> Topsites
     private final TabsChromeListener tabsChromeListener = new TabsChromeListener();
     private RecyclerView banner;
     private LinearLayoutManager bannerLayoutManager;
@@ -234,7 +221,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         // 1. Read from cache first
         String[] fromCache = readFromCache(context);
         if (fromCache.length != 0) {
-            setUpBannerFromConfig(fromCache);
+            //setUpBannerFromConfig(fromCache);
         }
         // 2. Load item for next initialization
         String manifest = AppConfigWrapper.getBannerRootConfig(context);
@@ -249,7 +236,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                     return;
                 }
                 writeToCache(context, configArray);
-                setUpBannerFromConfig(configArray);
+                //setUpBannerFromConfig(configArray);
                 onRootConfigLoadedListener = null;
             };
             new LoadRootConfigTask(new WeakReference<>(onRootConfigLoadedListener)).execute(manifest, WebViewProvider.getUserAgentString(getActivity()), Integer.toString(SocketTags.BANNER));
@@ -321,10 +308,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
             TelemetryWrapper.showSearchBarHome();
         });
-        this.banner = view.findViewById(R.id.banner);
-        bannerLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
-        banner.setLayoutManager(bannerLayoutManager);
-        SnapHelper snapHelper = new PagerSnapHelper() {
+       // this.banner = view.findViewById(R.id.banner);
+        //bannerLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        //banner.setLayoutManager(bannerLayoutManager);
+        /*SnapHelper snapHelper = new PagerSnapHelper() {
 
             private void sendTelemetry(int superRet, int velocityX) {
                 final int itemCount = banner.getAdapter().getItemCount();
@@ -340,7 +327,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                 return superRet;
             }
         };
-        snapHelper.attachToRecyclerView(banner);
+        snapHelper.attachToRecyclerView(banner);*/
 
         SwipeMotionLayout home_container = (SwipeMotionLayout)view.findViewById(R.id.home_container);
         home_container.setOnSwipeListener(new GestureListenerAdapter());
@@ -365,13 +352,12 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     @Override
     public void onResume() {
         super.onResume();
-<<<<<<< HEAD
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(FirebaseHelper.FIREBASE_READY);
+        //intentFilter.addAction(FirebaseHelper.FIREBASE_READY);
         this.receiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                setUpBanner(context);
+                //setUpBanner(context);
             }
         };
         Context context = getContext();
@@ -379,7 +365,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             LocalBroadcastManager.getInstance(context).registerReceiver(this.receiver, intentFilter);
         }
         updateTopSitesData();
-        setupBannerTimer();
+        //setupBannerTimer();
     }
 
     private void setupBannerTimer() {
@@ -406,17 +392,16 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         if (context != null) {
             LocalBroadcastManager.getInstance(context).unregisterReceiver(this.receiver);
         }
-        timer.cancel();
-        timer = null;
-=======
->>>>>>> Topsites
+        //timer.cancel();
+        //timer = null;
+
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         doWithActivity(getActivity(), themeManager -> themeManager.subscribeThemeChange(homeScreenBackground));
-        setUpBanner(getContext());
+        //setUpBanner(getContext());
     }
 
     @Override
@@ -538,7 +523,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             final PopupMenu popupMenu = new PopupMenu(v.getContext(), v, Gravity.CLIP_HORIZONTAL);
             popupMenu.getMenuInflater().inflate(R.menu.menu_top_site_item, popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(item -> {
-<<<<<<< HEAD
+
                 switch (item.getItemId()) {
                     case R.id.remove:
                         if (site.getId() < 0) {
@@ -556,7 +541,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                     default:
                         throw new IllegalStateException("Unhandled menu item");
                 }
-=======
+
                     switch(item.getItemId()){
                         case R.id.remove:
                             if (site.getId() != 0) {
@@ -574,7 +559,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                         default:
                             throw new IllegalStateException("Unhandled menu item");
                     }
->>>>>>> Topsites
+
 
                 return true;
             });

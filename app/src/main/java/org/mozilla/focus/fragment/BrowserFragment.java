@@ -60,11 +60,7 @@ import org.mozilla.focus.screenshot.CaptureRunnable;
 import org.mozilla.focus.screenshot.ScreenshotManager;
 import org.mozilla.focus.tabs.TabCounter;
 import org.mozilla.focus.tabs.tabtray.TabTray;
-import org.mozilla.focus.tabs.Tab;
-import org.mozilla.focus.tabs.TabView;
-import org.mozilla.focus.tabs.TabsChromeListener;
-import org.mozilla.focus.tabs.TabsSession;
-import org.mozilla.focus.tabs.TabsViewListener;
+
 import org.mozilla.focus.telemetry.TelemetryWrapper;
 import org.mozilla.focus.utils.AppConstants;
 import org.mozilla.focus.utils.FileChooseAction;
@@ -72,7 +68,7 @@ import org.mozilla.focus.utils.IntentUtils;
 import org.mozilla.focus.utils.Settings;
 import org.mozilla.focus.utils.ThreadUtils;
 import org.mozilla.focus.utils.UrlUtils;
-import org.mozilla.focus.web.DownloadCallback;
+
 import org.mozilla.focus.widget.AnimatedProgressBar;
 import org.mozilla.focus.widget.BackKeyHandleable;
 import org.mozilla.focus.widget.FragmentListener;

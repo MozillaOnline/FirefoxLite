@@ -74,7 +74,6 @@ import org.mozilla.focus.utils.StorageUtils;
 import org.mozilla.focus.utils.SupportUtils;
 import org.mozilla.focus.utils.UrlUtils;
 import org.mozilla.focus.viewmodel.BookmarkViewModel;
-import org.mozilla.focus.tabs.TabView;
 import org.mozilla.focus.web.WebViewProvider;
 import org.mozilla.focus.widget.DefaultBrowserPreference;
 import org.mozilla.focus.widget.FragmentListener;
