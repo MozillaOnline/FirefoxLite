@@ -73,7 +73,7 @@
   <string name="first_run_page2_title">上网快上加快</string>
   <string name="first_run_page2_text">加速模式将过滤广告跟踪，上网更轻快。如果网页有问题，只需在菜单中的关掉加速模式。</string>
   <string name="first_run_page3_title">节省流量 = 节省金钱</string>
-  <string name="first_run_page3_text">拦截广告跟踪可节省流量，不载入图像还能再省更多。</string>
+  <string name="first_run_page3_text">不载入图像还能再省更多。</string>
   <string name="first_run_page4_title">截取整个页面</string>
   <string name="first_run_page4_text">不但能滚动截取整个网页、离线查看截图（无需流量），还可通过点击截图重新访问原网页。</string>
   <string name="first_run_page5_title">新一代隐私权保护</string>
@@ -231,6 +231,7 @@
   <string name="private_browsing_erase_message">清除隐私浏览历史</string>
   <string name="private_browsing_open_action">打开</string>
   <string name="private_browsing_erase_done">您的隐私浏览\n历史已被清除。</string>
+  <string name="enable_private_mode">隐私模式</string>
   <string name="my_shot_on_boarding_message">在这里查看您的截图！</string>
   <string name="my_shot_on_boarding_category_message">为了改善您的产品体验，我们会收集有关您的屏幕截图类别的信息。</string>
   <string name="btn_vpn">VPN 服务 7 天免费使用。立即安装，上网可以更私密、更安全。</string>
@@ -259,6 +260,9 @@
 =======
 
   <string name="menu_check_updates">检查更新</string>
+<<<<<<< HEAD
   <string name="open_folder">打开文件夹</string>
 >>>>>>> bookmark & strings update
+=======
+>>>>>>> fix crash on Samsung during deleting topsites & string changes
 </resources>

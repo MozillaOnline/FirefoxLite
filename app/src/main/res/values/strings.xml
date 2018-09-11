@@ -545,7 +545,7 @@
     <string name="private_browsing_open_action">OPEN</string>
     <!-- A message shown briefly after user have cleared the private browsing history via tapping the notification. -->
     <string name="private_browsing_erase_done">Your private browsing\nhistory has been erased.</string>
-
+    <string name="enable_private_mode">Enable Private Mode</string>
     <!-- Message shown when the user is using screenshot for the first time. Guide them how to go to "My shots". -->
     <string name="my_shot_on_boarding_message">View your screenshots here!</string>
     <!-- The notice shown along with the message when the user captures screenshot for the first time -->
@@ -567,6 +567,7 @@
     <!-- Text on survey feedback button. This means the user don't want this feature. "Nope" is an informal way to express "No". -->
     <string name="exp_survey_no">NOPE</string>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     <!-- Title on web auth dialog. This dialog hint user authentication is required to proceed to the website. -->
     <string name="http_auth_dialog_title">Authentication required</string>
@@ -577,6 +578,8 @@
 =======
     <string name="first_run_page3_text">Blocking tracking ads not only speeds up browsing, it saves data. Save even more when you block images.</string>
 >>>>>>> Hide turbo mode introduction
+=======
+>>>>>>> fix crash on Samsung during deleting topsites & string changes
 </resources>
 
 
