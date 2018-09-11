@@ -499,7 +499,7 @@
     <string name="private_browsing_open_action">OPEN</string>
     <!-- A message shown briefly after user have cleared the private browsing history via tapping the notification. -->
     <string name="private_browsing_erase_done">Your private browsing\nhistory has been erased.</string>
-
+    <string name="enable_private_mode">Enable Private Mode</string>
     <!-- Message shown when the user is using screenshot for the first time. Guide them how to go to "My shots". -->
     <string name="my_shot_on_boarding_message">View your screenshots here!</string>
     <!-- The notice shown along with the message when the user captures screenshot for the first time -->

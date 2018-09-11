@@ -214,6 +214,7 @@
   <string name="private_browsing_erase_message">清除隐私浏览历史</string>
   <string name="private_browsing_open_action">打开</string>
   <string name="private_browsing_erase_done">您的隐私浏览\n历史已被清除。</string>
+  <string name="enable_private_mode">隐私模式</string>
   <string name="my_shot_on_boarding_message">在这里查看您的截图！</string>
   <string name="my_shot_on_boarding_category_message">为了改善您的产品体验，我们会收集有关您的屏幕截图类别的信息。</string>
   <string name="exp_survey_wifi">我们计划整合“Free Wifi-Finder”来帮助您找到附近的高质量免费互联网接入节点。\n\n您感兴趣吗？</string>
