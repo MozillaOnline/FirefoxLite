@@ -55,7 +55,6 @@ class FocusApplication : LocaleAwareApplication() {
         SearchEngineManager.getInstance().init(this)
 
         TelemetryWrapper.init(this)
-        AdjustHelper.setupAdjustIfNeeded(this)
         TelemetryWrapper.startApp()
        // AdjustHelper.setupAdjustIfNeeded(this)
 

@@ -71,6 +71,6 @@
         android:contentDescription="You should only see this under Debug and Firebase build type"
         android:defaultValue="true"
         android:key="pref_key_private_mode_enabled"
-        android:title="Enable Private Mode" />
+        android:title="@string/enable_private_mode" />
 
 </PreferenceScreen>
