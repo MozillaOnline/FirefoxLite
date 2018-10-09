@@ -80,20 +80,14 @@ public class AppConfigWrapper {
         return "no firebase";
     }
 
-    public static long getFeatureSurvey(Context context) {
-        return FirebaseHelper.getRcLong(context, FirebaseHelper.FEATURE_SURVEY);
-    }
 
-    public static String getScreenshotCategoryUrl(Context context) {
-        return FirebaseHelper.getRcString(context, FirebaseHelper.SCREENSHOT_CATEGORY_MANIFEST);
-    }
-
-    public static String getVpnRecommenderUrl(Context context) {
+    /*public static String getVpnRecommenderUrl(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.VPN_RECOMMENDER_URL);
     }
 
     public static String getVpnRecommenderPackage(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.VPN_RECOMMENDER_PACKAGE);
+<<<<<<< HEAD
     }
 
     public static long getFirstLaunchWorkerTimer(Context context) {
@@ -141,4 +135,7 @@ public class AppConfigWrapper {
     static String getShareAppMessage(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.STR_SHARE_APP_DIALOG_MSG);
     }
+=======
+    }*/
+>>>>>>> beta 3.4
 }

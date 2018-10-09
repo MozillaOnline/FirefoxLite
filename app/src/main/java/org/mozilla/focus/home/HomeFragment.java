@@ -629,6 +629,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             }
         });
 
+
         return view;
     }
 
@@ -1098,7 +1099,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         }
     }
 
-    private void initFeatureSurveyViewIfNecessary(final View view) {
+    /*private void initFeatureSurveyViewIfNecessary(final View view) {
         final RemoteConfigConstants.SURVEY featureSurvey = RemoteConfigConstants.SURVEY.Companion.parseLong(AppConfigWrapper.getFeatureSurvey(getContext()));
         final ImageView imgSurvey = view.findViewById(R.id.home_wifi_vpn_survey);
         final Settings.EventHistory eventHistory = Settings.getInstance(getContext()).getEventHistory();
@@ -1153,7 +1154,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         } else {
             imgSurvey.setVisibility(View.GONE);
         }
-    }
+    }*/
 
     public void updateTopSitesData() {
         initDefaultSites();

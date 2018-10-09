@@ -76,8 +76,6 @@ import org.mozilla.focus.utils.StorageUtils;
 import org.mozilla.focus.utils.SupportUtils;
 import org.mozilla.focus.viewmodel.BookmarkViewModel;
 import org.mozilla.focus.web.GeoPermissionCache;
-import org.mozilla.focus.web.IWebView;
-import org.mozilla.focus.tabs.TabView;
 import org.mozilla.focus.web.WebViewProvider;
 import org.mozilla.focus.widget.FragmentListener;
 import org.mozilla.focus.widget.TabRestoreMonitor;
@@ -600,8 +598,8 @@ public class MainActivity extends BaseActivity implements FragmentListener,
                 TelemetryWrapper.clickMenuSettings();
                 break;
             case R.id.menu_checkUpdate:
-                Intent intent = new Intent(this,CheckUpdateActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(this,CheckUpdateActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.menu_exit:
                 onExitClicked();

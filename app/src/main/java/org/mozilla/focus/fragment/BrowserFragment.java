@@ -71,6 +71,7 @@ import org.mozilla.focus.utils.Settings;
 import org.mozilla.focus.utils.SupportUtils;
 import org.mozilla.focus.utils.ViewUtils;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.mozilla.focus.web.GeoPermissionCache;
 import org.mozilla.focus.web.HttpAuthenticationDialogBuilder;
 =======
@@ -87,6 +88,10 @@ import org.mozilla.focus.utils.UrlUtils;
 import org.mozilla.focus.web.DownloadCallback;
 >>>>>>> Strings update for zh
 =======
+=======
+import org.mozilla.focus.web.GeoPermissionCache;
+import org.mozilla.focus.web.WebViewProvider;
+>>>>>>> beta 3.4
 
 >>>>>>> disable banner temporarily in version 3
 import org.mozilla.focus.widget.AnimatedProgressBar;
