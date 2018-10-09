@@ -75,8 +75,6 @@ import org.mozilla.rocket.privately.PrivateModeActivity;
 import org.mozilla.urlutils.UrlUtils;
 import org.mozilla.focus.viewmodel.BookmarkViewModel;
 import org.mozilla.focus.web.GeoPermissionCache;
-import org.mozilla.focus.web.IWebView;
-import org.mozilla.focus.tabs.TabView;
 import org.mozilla.focus.web.WebViewProvider;
 import org.mozilla.focus.widget.FragmentListener;
 import org.mozilla.focus.widget.TabRestoreMonitor;
@@ -521,8 +519,8 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
                 TelemetryWrapper.clickMenuSettings();
                 break;
             case R.id.menu_checkUpdate:
-                Intent intent = new Intent(this,CheckUpdateActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(this,CheckUpdateActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.menu_exit:
                 onExitClicked();

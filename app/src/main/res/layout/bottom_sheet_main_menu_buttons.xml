@@ -29,6 +29,20 @@
     </FrameLayout>
 
     <FrameLayout
+        style="@style/MenuButtonContainer"
+        android:id="@+id/menu_checkUpdate">
+        <LinearLayout
+            style="@style/MenuButtonGroup">
+            <View
+                style="@style/MenuToggleIcon"
+                android:background="@drawable/menu_upgrade"/>
+            <TextView
+                style="@style/MenuToggleText"
+                android:text="@string/menu_check_updates"/>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
         android:id="@+id/menu_download"
         style="@style/MenuButtonContainer">
 

@@ -6,7 +6,6 @@ import android.net.Uri
 import android.support.annotation.CheckResult
 import org.mozilla.focus.activity.MainActivity
 import org.mozilla.focus.activity.SettingsActivity
-import org.mozilla.focus.notification.RocketMessagingService
 import org.mozilla.focus.utils.IntentUtils
 import org.mozilla.focus.utils.SupportUtils
 import org.mozilla.focus.telemetry.TelemetryWrapper
@@ -74,19 +73,19 @@ class LaunchIntentDispatcher {
              * This extra is passed by the Notification (either [RocketMessagingService.onRemoteMessage] or System tray
              * if we have this extra, we want to show this url in a new tab
              */
-            intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL)?.run {
+            /*intent.getStringExtra(RocketMessagingService.PUSH_OPEN_URL)?.run {
 
                 intent.data = Uri.parse(this)
                 intent.action = Intent.ACTION_VIEW
                 intent.setClass(context, MainActivity::class.java)
                 intent.putExtra(IntentUtils.EXTRA_OPEN_NEW_TAB, true)
-            }
+            }*/
 
             /**
              * This extra is passed by the Notification (either [RocketMessagingService.onRemoteMessage] or System tray
              *  Called by the internal app, doesn't count as a launch event
              * */
-            intent.getStringExtra(RocketMessagingService.PUSH_COMMAND)?.apply {
+            /*intent.getStringExtra(RocketMessagingService.PUSH_COMMAND)?.apply {
                 when (this) {
                     Command.SET_DEFAULT.value -> {
                         if (!IntentUtils.openDefaultAppsSettings(context)) {
@@ -98,7 +97,7 @@ class LaunchIntentDispatcher {
                         }
                     }
                 }
-            }
+            }*/
 
             /**
              *  When notification received in bg, the intent 's action is also ACTION_MAIN.(https://goo.gl/sMLZhZ )
