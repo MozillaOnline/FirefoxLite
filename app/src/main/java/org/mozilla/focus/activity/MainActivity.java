@@ -5,6 +5,7 @@
 
 package org.mozilla.focus.activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.PendingIntent;
@@ -18,6 +19,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,12 +27,14 @@ import android.support.annotation.UiThread;
 import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.content.pm.ShortcutManagerCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -91,6 +95,9 @@ import org.mozilla.rocket.theme.ThemeManager;
 import org.mozilla.urlutils.UrlUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.Locale;
 
@@ -530,6 +537,9 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
                 onBookmarksClicked();
                 TelemetryWrapper.clickMenuBookmark();
                 break;
+            case R.id.menu_backupBookmarks:
+                onBackupBookmarksClicked();
+                break;
             case R.id.action_next:
             case R.id.action_loading:
             case R.id.action_bookmark:
@@ -639,6 +649,60 @@ public class MainActivity extends LocaleAwareAppCompatActivity implements Fragme
 
     private void onBookmarksClicked() {
         showListPanel(ListPanelDialog.TYPE_BOOKMARKS);
+    }
+
+    private  void onBackupBookmarksClicked(){
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File rocket =  new File (sd.getAbsolutePath() + "/rocket/");
+            Log.e("MKDIRS",rocket.getAbsolutePath());
+            rocket.mkdirs();
+
+            if (sd.canWrite()) {
+                String currentDBPath =
+                        getDatabasePath("bookmarks.db").getAbsolutePath();
+                String backupDBPath = "bookmarks.db";
+                String currentDBPath2 =
+                        getDatabasePath("bookmarks.db-shm").getAbsolutePath();
+                String backupDBPath2 = "bookmarks.db-shm";
+                String currentDBPath3 =
+                        getDatabasePath("bookmarks.db-wal").getAbsolutePath();
+                String backupDBPath3 = "bookmarks.db-wal";
+                File currentDB = new File(currentDBPath);
+                File backupDB = new File(rocket, backupDBPath);
+                File currentDB2 = new File(currentDBPath2);
+                File backupDB2 = new File(rocket, backupDBPath2);
+                File currentDB3 = new File(currentDBPath3);
+                File backupDB3 = new File(rocket, backupDBPath3);
+
+                if (currentDB.exists()) {
+
+                    FileChannel src = new FileInputStream(currentDB).getChannel();
+                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                    FileChannel src2 = new FileInputStream(currentDB2).getChannel();
+                    FileChannel dst2 = new FileOutputStream(backupDB2).getChannel();
+                    FileChannel src3 = new FileInputStream(currentDB3).getChannel();
+                    FileChannel dst3 = new FileOutputStream(backupDB3).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+                    dst2.transferFrom(src2, 0, src2.size());
+                    src2.close();
+                    dst2.close();
+                    dst3.transferFrom(src3, 0, src3.size());
+                    src3.close();
+                    dst3.close();
+                    new  AlertDialog.Builder(this).setTitle("书签备份成功" ).setMessage("bookmarks.db文件已存储到sd/rocket目录下" ).setPositiveButton("OK" , null ).show();
+                }else{
+                    new  AlertDialog.Builder(this).setTitle("空的书签文件" ).setMessage("您尚未保存任何书签" ).setPositiveButton("OK" , null ).show();
+                }
+            }else{
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+            TelemetryWrapper.backupBookmarkEvent();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void onDownloadClicked() {

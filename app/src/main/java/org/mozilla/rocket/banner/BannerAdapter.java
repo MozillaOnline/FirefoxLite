@@ -1,11 +1,13 @@
 package org.mozilla.rocket.banner;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.mozilla.rocket.util.LoggerWrapper;
@@ -56,6 +58,19 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerViewHolder> {
             }
             this.DAOs.add(thisDAO);
         }
+    }
+
+    public BannerAdapter(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+        this.DAOs = new ArrayList<>();
+        BannerDAO thisDAO = new BannerDAO();
+        thisDAO.type = String.valueOf(BasicViewHolder.VIEW_TYPE);
+        thisDAO.id = "20190108";
+        Uri banner_notification = Uri.parse("file:///android_asset/banner_notification.jpg");
+        thisDAO.values = new JSONArray();
+        thisDAO.values.put(banner_notification);
+        thisDAO.values.put("http://mozilla.com.cn/thread-411520-1-1.html");
+        this.DAOs.add(thisDAO);
     }
 
     @Override

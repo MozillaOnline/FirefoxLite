@@ -98,6 +98,7 @@ object TelemetryWrapper {
         val TAB = "tab"
         val TABTRAY = "tab_tray"
         val CLOSE_ALL = "close_all"
+        val BACKUP = "backup"
 
         val SETTING = "setting"
         val APP = "app"
@@ -304,6 +305,16 @@ object TelemetryWrapper {
     @JvmStatic
     fun enterFirstRunEvent(){
         TelemetryChina.create(Category.ACTION, Method.SHOW, Object.FIRSTRUN, Value.ACTIVATE)
+                .queue()
+        TelemetryHolder.get()
+                .queuePing(TelemetryChinaPingBuilder.TYPE)
+                .scheduleUpload()
+    }
+
+    //china edition
+    @JvmStatic
+    fun backupBookmarkEvent(){
+        TelemetryChina.create(Category.ACTION, Method.CLICK, Object.BACKUP, Value.BOOKMARK)
                 .queue()
         TelemetryHolder.get()
                 .queuePing(TelemetryChinaPingBuilder.TYPE)
