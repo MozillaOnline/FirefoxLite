@@ -219,6 +219,7 @@
     <!-- Zerda Need l10n -->
     <!-- Menu text for bookmark -->
     <string name="label_menu_bookmark">Bookmarks</string>
+    <string name="label_menu_backupBookmark">Backup bookmarks</string>
     <string name="label_menu_download">Downloads</string>
     <!-- Menu text for find in page. -->
     <string name="label_menu_find_in_page">Find in page</string>
