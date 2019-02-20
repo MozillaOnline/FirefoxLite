@@ -208,7 +208,6 @@
     <string name="first_run_page2_title">Browse faster than ever</string>
     <string name="first_run_page2_text">Use turbo mode to block tracking ads so you can browse at blazing speeds. If sites seem broken, just tap off the turbo mode switch in the menu.</string>
     <string name="first_run_page3_title">Save data = Save money</string>
-    <string name="first_run_page3_text">Blocking tracking ads not only speeds up browsing, it saves data. Save even more when you block images.</string>
 
     <string name="first_run_page3_text">Save on data costs by blocking tracking ads. Save even more when you enable image blocking.</string>
     <string name="first_run_page4_title">Screenshot the whole page</string>

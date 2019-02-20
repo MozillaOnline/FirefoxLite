@@ -67,6 +67,7 @@ public class DownloadListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         if (mDownloadInfo == null) {
             mDownloadInfo = list;
         }
+    }
 
     @Override
     public int getItemViewType(int position) {

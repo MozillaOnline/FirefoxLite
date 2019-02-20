@@ -247,11 +247,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     @Override
     public void onStart() {
         super.onStart();
-        showCurrentBannerTelemetry();
+       // showCurrentBannerTelemetry();
         TelemetryWrapper.showHome();
     }
 
-    private void showCurrentBannerTelemetry() {
+    /*private void showCurrentBannerTelemetry() {
         if (banner.getVisibility() != View.VISIBLE || bannerLayoutManager == null) {
             return;
         }
@@ -266,7 +266,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             return;
         }
         TelemetryWrapper.showBannerReturn(id);
-    }
+    }*/
 
     private void showBanner(boolean enabled) {
         if (enabled) {
@@ -651,6 +651,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         updateTopSitesData();
         //setupBannerTimer();
         setNightModeEnabled(Settings.getInstance(getActivity()).isNightModeEnable());
+<<<<<<< HEAD
 
         View fragmentView = getView();
         if (fragmentView != null) {
@@ -686,6 +687,9 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         final Animation fadein = AnimationUtils.loadAnimation(getActivity(), R.anim.arrow_fade_in);
         Inject.startAnimation(arrow1, fadeout);
         Inject.startAnimation(arrow2, fadein);
+=======
+        //initFeatureSurveyViewIfNecessary(getView());
+>>>>>>> v1.0.11&enable firebase
     }
 
     private void setupBannerTimer() {
@@ -732,7 +736,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 =======
         //timer.cancel();
         //timer = null;
-		updateTopSitesData(getContext());
+		//updateTopSitesData(getContext());
 
 >>>>>>> disable banner temporarily in version 3
     }

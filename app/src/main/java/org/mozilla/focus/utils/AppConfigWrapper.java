@@ -46,26 +46,25 @@ public class AppConfigWrapper {
         return DRIVE_DEFAULT_BROWSER_FROM_MENU_SETTING_THRESHOLD;
     }
 
-    /*public static boolean isPrivateModeEnabled(Context context) {
+    public static boolean isPrivateModeEnabled(Context context) {
         return FirebaseHelper.getRcBoolean(context, FirebaseHelper.ENABLE_PRIVATE_MODE);
-    }*/
+    }
 
     public static boolean getMyshotUnreadEnabled(Context context) {
-        //return FirebaseHelper.getRcBoolean(context, FirebaseHelper.ENABLE_MY_SHOT_UNREAD);
-        return true;
+        return FirebaseHelper.getRcBoolean(context, FirebaseHelper.ENABLE_MY_SHOT_UNREAD);
     }
 
     public static boolean isSurveyNotificationEnabled() {
         return SURVEY_NOTIFICATION_ENABLED;
     }
 
-    /*public static String getRateAppDialogTitle(Context context) {
+    public static String getRateAppDialogTitle(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.RATE_APP_DIALOG_TEXT_TITLE);
-    }*/
+    }
 
-    /*public static String getRateAppDialogContent(Context context) {
+    public static String getRateAppDialogContent(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.RATE_APP_DIALOG_TEXT_CONTENT);
-    }*/
+    }
 
     public static String getRateAppPositiveString(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.RATE_APP_DIALOG_TEXT_POSITIVE);
@@ -76,17 +75,18 @@ public class AppConfigWrapper {
     }
 
     public static String getBannerRootConfig(Context context) {
-      //  return FirebaseHelper.getRcString(context, FirebaseHelper.BANNER_MANIFEST);
-        return "no firebase";
+        return FirebaseHelper.getRcString(context, FirebaseHelper.BANNER_MANIFEST);
+        //return "no firebase";
     }
 
 
-    /*public static String getVpnRecommenderUrl(Context context) {
+    public static String getVpnRecommenderUrl(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.VPN_RECOMMENDER_URL);
     }
 
     public static String getVpnRecommenderPackage(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.VPN_RECOMMENDER_PACKAGE);
+<<<<<<< HEAD
 <<<<<<< HEAD
     }
 
@@ -138,4 +138,7 @@ public class AppConfigWrapper {
 =======
     }*/
 >>>>>>> beta 3.4
+=======
+    }
+>>>>>>> v1.0.11&enable firebase
 }

@@ -1152,7 +1152,6 @@ public class BrowserFragment extends LocaleAwareFragment implements View.OnClick
                 Log.w(BROWSER_FRAGMENT_TAG, "No context to use, abort callback handleExternalUrl");
                 return false;
             }
-        }
             return IntentUtils.handleExternalUri(getContext(), url);
 
         }

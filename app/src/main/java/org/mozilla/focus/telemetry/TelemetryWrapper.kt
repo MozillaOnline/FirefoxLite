@@ -948,7 +948,7 @@ object TelemetryWrapper {
                 .extra(Extra.TO, java.lang.Boolean.toString(isAdd))
                 .queue()
         if (isAdd) {
-            AdjustHelper.trackEvent(EVENT_SAVE_BOOKMKARK)
+           // AdjustHelper.trackEvent(EVENT_SAVE_BOOKMKARK)
         }
     }
 
@@ -962,7 +962,7 @@ object TelemetryWrapper {
     @JvmStatic
     fun clickAddToHome() {
         EventBuilder(Category.ACTION, Method.PIN_SHORTCUT, Object.TOOLBAR, Value.LINK).queue()
-        AdjustHelper.trackEvent(EVENT_ADD_TO_HOMESCREEN)
+       // AdjustHelper.trackEvent(EVENT_ADD_TO_HOMESCREEN)
     }
 
     @TelemetryDoc(
@@ -982,7 +982,7 @@ object TelemetryWrapper {
                 .extra(Extra.CATEGORY, category)
                 .extra(Extra.CATEGORY_VERSION, Integer.toString(categoryVersion))
                 .queue()
-        AdjustHelper.trackEvent(EVENT_TAKE_SCREENSHOT)
+        //AdjustHelper.trackEvent(EVENT_TAKE_SCREENSHOT)
     }
 
     @TelemetryDoc(
@@ -1115,7 +1115,7 @@ object TelemetryWrapper {
     fun togglePrivateMode(enter: Boolean) {
         EventBuilder(Category.ACTION, Method.CHANGE, Object.PRIVATE_MODE, if (enter) Value.ENTER else Value.EXIT).queue()
         if (enter) {
-            AdjustHelper.trackEvent(EVENT_ENTER_PRIVATE_MODE)
+           // AdjustHelper.trackEvent(EVENT_ENTER_PRIVATE_MODE)
         }
     }
 
@@ -1688,7 +1688,7 @@ object TelemetryWrapper {
                 .queue()
 
         if (Value.SHARE == value) {
-            AdjustHelper.trackEvent(EVENT_SHARE_APP)
+           // AdjustHelper.trackEvent(EVENT_SHARE_APP)
         }
     }
 
@@ -2023,7 +2023,7 @@ object TelemetryWrapper {
 
     @JvmStatic
     fun clickDefaultBrowserInSetting() {
-        AdjustHelper.trackEvent(EVENT_SET_DEFAULT_BROWSER)
+       // AdjustHelper.trackEvent(EVENT_SET_DEFAULT_BROWSER)
     }
 
     @TelemetryDoc(

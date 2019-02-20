@@ -86,11 +86,11 @@ class FeatureSurveyViewHelper internal constructor(private val context: Context,
                     parentView.removeView(rootView)
                     isViewInit = false
                     // Open Play Store in a new tab
-                    val url = AppConfigWrapper.getVpnRecommenderUrl(context)
+                    /*val url = AppConfigWrapper.getVpnRecommenderUrl(context)
                     if (!TextUtils.isEmpty(url)) {
                         ScreenNavigator.get(context).showBrowserScreen(url, true, false)
                     }
-                    TelemetryWrapper.clickVpnRecommend(true)
+                    TelemetryWrapper.clickVpnRecommend(true)*/
                 } else {
                     textContent.text = context.getString(R.string.exp_survey_thanks, "\uD83D\uDE00")
                     btnYes.visibility = View.GONE

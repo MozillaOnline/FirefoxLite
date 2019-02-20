@@ -40,6 +40,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
 import org.mozilla.fileutils.FileUtils;
 import org.mozilla.focus.Inject;
 import org.mozilla.focus.R;
@@ -397,7 +399,7 @@ public class MainActivity extends BaseActivity implements FragmentListener,
             pinShortcut.setVisibility(View.GONE);
         }
 
-        turboModeButton = menu.findViewById(R.id.menu_turbomode);
+        //turboModeButton = menu.findViewById(R.id.menu_turbomode);
         //turboModeButton.setSelected(isTurboEnabled());
 
         blockImageButton = menu.findViewById(R.id.menu_blockimg);
@@ -424,7 +426,7 @@ public class MainActivity extends BaseActivity implements FragmentListener,
 
     private void updateMenu() {
 
-        turboModeButton.setSelected(isTurboEnabled());
+       // turboModeButton.setSelected(isTurboEnabled());
         blockImageButton.setSelected(isBlockingImages());
 
         final boolean isMyShotUnreadEnabled = AppConfigWrapper.getMyshotUnreadEnabled(this);
@@ -567,7 +569,8 @@ public class MainActivity extends BaseActivity implements FragmentListener,
                 final Settings settings = Settings.getInstance(this);
                 final boolean nightModeEnabled = !isNightModeEnabled(settings);
                 v.setSelected(nightModeEnabled);
-
+                //for test
+                //Crashlytics.getInstance().crash();
                 setNightModeEnabled(settings, nightModeEnabled);
                 showAdjustBrightnessIfNeeded(settings);
 
