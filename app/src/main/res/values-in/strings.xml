@@ -235,4 +235,5 @@
   <string name="exp_survey_thanks">Terima kasih untuk memberikan umpan balik kepada kami %1$s</string>
   <string name="exp_survey_yes">YA</string>
   <string name="exp_survey_no">TIDAK</string>
+  <string name="rate_app_feedback_url">https://qsurvey.mozilla.com/s3/Firefox-Rocket-Input</string>
 </resources>
