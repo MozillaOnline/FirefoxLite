@@ -1003,9 +1003,9 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             Iterator<Site> querySitesIterator = querySites.iterator();
             while (querySitesIterator.hasNext()) {
                 Site temp = querySitesIterator.next();
-                if(temp.getUrl()==null){
+                if(temp.getUrl()==null || topSite.getUrl()==null){
                     querySitesIterator.remove();
-                }else{
+                }else if(temp.getUrl()!=null && topSite.getUrl()!=null){
                     if (UrlUtils.urlsMatchExceptForTrailingSlash(topSite.getUrl(), temp.getUrl())) {
                         topSite.setViewCount(topSite.getViewCount()+ temp.getViewCount());
                         querySitesIterator.remove();

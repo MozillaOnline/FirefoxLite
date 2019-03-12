@@ -84,33 +84,35 @@ public class UrlUtils {
     }
 
     public static boolean urlsMatchExceptForTrailingSlash(final @NonNull String url1, final @NonNull String url2) {
-        int lengthDifference = url1.length() - url2.length();
+        if(url1!=null && url2!=null) {
+            int lengthDifference = url1.length() - url2.length();
 
-        if (lengthDifference == 0) {
-            // The simplest case:
-            return url1.equalsIgnoreCase(url2);
-        } else if (lengthDifference == 1) {
-            // url1 is longer:
-            return url1.charAt(url1.length() - 1) == '/' &&
-                    url1.regionMatches(true, 0, url2, 0, url2.length());
-        } else if (lengthDifference == -1) {
-            return url2.charAt(url2.length() - 1) == '/' &&
-                    url2.regionMatches(true, 0, url1, 0, url1.length());
-        } else if (lengthDifference == -7){
-            return url2.contains("http://") && (!(url1.contains("http://")));
-        } else if (lengthDifference == -8){
-            if(url2.contains("https://") && (!(url1.contains("https://")))){
-                return true;
-            }else if(url2.contains("http://") && (!(url1.contains("http://"))) && url2.charAt(url2.length() - 1) == '/'){
-                return true;
-            }else{
+            if (lengthDifference == 0) {
+                // The simplest case:
+                return url1.equalsIgnoreCase(url2);
+            } else if (lengthDifference == 1) {
+                // url1 is longer:
+                return url1.charAt(url1.length() - 1) == '/' &&
+                        url1.regionMatches(true, 0, url2, 0, url2.length());
+            } else if (lengthDifference == -1) {
+                return url2.charAt(url2.length() - 1) == '/' &&
+                        url2.regionMatches(true, 0, url1, 0, url1.length());
+            } else if (lengthDifference == -7) {
+                return url2.contains("http://") && (!(url1.contains("http://")));
+            } else if (lengthDifference == -8) {
+                if (url2.contains("https://") && (!(url1.contains("https://")))) {
+                    return true;
+                } else if (url2.contains("http://") && (!(url1.contains("http://"))) && url2.charAt(url2.length() - 1) == '/') {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else if (lengthDifference == -9) {
+                if (url2.contains("https://") && (!(url1.contains("https://"))) && url2.charAt(url2.length() - 1) == '/') {
+                    return true;
+                }
                 return false;
             }
-        }else if (lengthDifference == -9){
-            if(url2.contains("https://") && (!(url1.contains("https://"))) && url2.charAt(url2.length() - 1) == '/'){
-                return true;
-            }
-            return false;
         }
 
         return false;
