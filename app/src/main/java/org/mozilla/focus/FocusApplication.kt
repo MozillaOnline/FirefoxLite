@@ -16,17 +16,15 @@ import org.mozilla.focus.notification.NotificationUtil
 import org.mozilla.focus.screenshot.ScreenshotManager
 import org.mozilla.focus.search.SearchEngineManager
 import org.mozilla.focus.telemetry.TelemetryWrapper
-<<<<<<< HEAD
-import org.mozilla.focus.utils.AdjustHelper
 import org.mozilla.rocket.content.NewsSourceManager
-=======
->>>>>>> disable banner temporarily in version 3
 import org.mozilla.rocket.partner.PartnerActivator
-//import org.mozilla.focus.utils.AdjustHelper
 import org.mozilla.rocket.privately.PrivateMode.Companion.PRIVATE_PROCESS_NAME
 import org.mozilla.rocket.privately.PrivateMode.Companion.WEBVIEW_FOLDER_NAME
 import org.mozilla.rocket.privately.PrivateModeActivity
 import java.io.File
+
+//import org.mozilla.focus.utils.AdjustHelper
+
 
 class FocusApplication : LocaleAwareApplication() {
 

@@ -34,18 +34,12 @@ import java.util.List;
 
 class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
 
-<<<<<<< HEAD
-    private List<Site> sites = new ArrayList<>();
-    private final View.OnClickListener clickListener;
-    private final View.OnLongClickListener longClickListener;
     private final PinSiteManager pinSiteManager;
-=======
     List<Site> sites = new ArrayList<>();
     final View.OnClickListener clickListener;
     final View.OnLongClickListener longClickListener;
     private int MAX_TOPSITES = 8;
     private Site ADD_SITE = new Site();
->>>>>>> Topsites
 
     TopSiteAdapter(@NonNull List<Site> sites,
                    @Nullable View.OnClickListener clickListener,
@@ -66,13 +60,8 @@ class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
         return new SiteViewHolder(view);
     }
 
-<<<<<<< HEAD
     private int addWhiteToColorCode(int colorCode, @SuppressWarnings("SameParameterValue") float percentage) {
-        int result = (int) (colorCode + 0xFF * percentage / 2);
-=======
-    private int addWhiteToColorCode(int colorCode, float percentage) {
         int result = (int) ( colorCode + 0xFF * percentage / 2 );
->>>>>>> Topsites
         if (result > 0xFF) {
             result = 0xFF;
         }
@@ -156,6 +145,16 @@ class TopSiteAdapter extends RecyclerView.Adapter<SiteViewHolder> {
     void addSite(int index, @NonNull Site toAdd) {
         this.sites.add(index, toAdd);
         notifyItemInserted(index);
+    }
+
+    public void removeSite(@NonNull Site toRemove) {
+        for (int i = 0; i < this.sites.size(); i++) {
+            final Site site = this.sites.get(i);
+            if (site.getId() == toRemove.getId()) {
+                this.sites.remove(i);
+                notifyDataSetChanged();
+            }
+        }
     }
 
     public void setSites(@NonNull List<Site> sites) {

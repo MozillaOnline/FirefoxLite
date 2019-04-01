@@ -3,30 +3,14 @@ object Versions {
     const val target_sdk = 28
     const val compile_sdk = 28
     const val build_tools = "28.0.3"
-<<<<<<< HEAD
-    const val version_code = 1
-<<<<<<< HEAD
-<<<<<<< HEAD
+    const val version_code = 1300
     const val version_name = "1.3.0"
-=======
-    const val version_name = "1.1.2"
->>>>>>> Bump version name to 1.1.2
-=======
-    const val version_name = "1.1.3"
->>>>>>> Bump version name to 1.1.3
-=======
-    const val version_code = 1130
-    const val version_name = "1.1.3"
->>>>>>> V1.1.3
     const val android_gradle_plugin = "3.2.1"
     const val gms_oss_licenses_plugin = "0.9.3"
     const val support = "28.0.0"
     const val constraint = "1.1.2"
     const val arch_core = "1.1.1"
-<<<<<<< HEAD
     const val arch_work = "1.0.0-rc01"
-=======
->>>>>>> V1.1.3
     const val lifecycle = "1.1.1"
     const val room = "1.1.1"
     const val glide = "4.0.0"
@@ -68,8 +52,6 @@ object SystemEnv {
 
 object Localization {
     val KEPT_LOCALE = arrayOf("in", "hi-rIN", "th", "tl", "su", "jv", "vi", "zh-rTW")
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> V1.1.3
+
+

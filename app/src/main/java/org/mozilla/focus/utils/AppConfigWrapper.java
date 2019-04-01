@@ -86,8 +86,6 @@ public class AppConfigWrapper {
 
     public static String getVpnRecommenderPackage(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.VPN_RECOMMENDER_PACKAGE);
-<<<<<<< HEAD
-<<<<<<< HEAD
     }
 
     public static long getFirstLaunchWorkerTimer(Context context) {
@@ -135,10 +133,5 @@ public class AppConfigWrapper {
     static String getShareAppMessage(Context context) {
         return FirebaseHelper.getRcString(context, FirebaseHelper.STR_SHARE_APP_DIALOG_MSG);
     }
-=======
-    }*/
->>>>>>> beta 3.4
-=======
-    }
->>>>>>> v1.0.11&enable firebase
+
 }

@@ -293,13 +293,10 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:${Versions.leakcanary}"
     //firebaseImplementation "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanary}"
 
-<<<<<<< HEAD
     implementation project(':bhaskar')
     implementation project(':newspoint')
     implementation project(':partnerrepository')
-=======
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
->>>>>>> Topsites
 }
 
 // -------------------------------------------------------------------------------------------------

@@ -240,29 +240,13 @@
   <string name="exp_survey_thanks">感谢您提供反馈 %1$s</string>
   <string name="exp_survey_yes">是的，我想要</string>
   <string name="exp_survey_no">不需要</string>
-<<<<<<< HEAD
-<<<<<<< HEAD
   <string name="http_auth_dialog_title">需要验证身份</string>
   <string name="http_auth_dialog_user_name">用户名</string>
   <string name="http_auth_dialog_password">密码</string>
-=======
-=======
   <string name="title_activity_add_topsite">添加快速访问</string>
->>>>>>> bookmark & strings update
   <string name="rate_app_feedback_url">http://mozilla.com.cn</string>
-<<<<<<< HEAD
-  <string name="contextmenu_open_in_new_tab">新标签页打开</string>
->>>>>>> Strings update for zh
-=======
 
-<<<<<<< HEAD
->>>>>>> 2.0beta
-=======
 
   <string name="menu_check_updates">检查更新</string>
-<<<<<<< HEAD
-  <string name="open_folder">打开文件夹</string>
->>>>>>> bookmark & strings update
-=======
->>>>>>> fix crash on Samsung during deleting topsites & string changes
+
 </resources>

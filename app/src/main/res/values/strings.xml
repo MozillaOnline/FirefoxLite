@@ -209,20 +209,14 @@
     <string name="first_run_page2_text">Use turbo mode to block tracking ads so you can browse at blazing speeds. If sites seem broken, just tap off the turbo mode switch in the menu.</string>
     <string name="first_run_page3_title">Save data = Save money</string>
 
-    <string name="first_run_page3_text">Save on data costs by blocking tracking ads. Save even more when you enable image blocking.</string>
     <string name="first_run_page4_title">Screenshot the whole page</string>
     <string name="first_run_page4_text">Take screenshot of an entire page scroll. Read it offline without using data or tap it to revisit the web page.</string>
     <string name="first_run_page5_title">Next-level privacy</string>
     <string name="first_run_page5_text">Browse without a trace, and block a wide range of common web trackers by default. Ensure the security of your confidential data.</string>
-<<<<<<< HEAD
     <string name="first_run_page6_title">Discover new things</string>
     <!-- The %1$s here is a placeholder for "Life Feed", the %2$s is "Learn more" which is localized in preference_learn_more. Life Feed is an information panel covering content that might help our customers' life. It covers from the most popular topics to the hottest deals, including news, games, coupon...etc.-->
     <string name="first_run_page6_text">Just one flip, keep yourself updated with the “%1$s” - a variety of contents from the most popular topics to the hottest deals. %2$s</string>
-   
-=======
 
-
->>>>>>> bookmark & strings update
     <string name="first_run_upgrade_page_title">We heard your feedback!</string>
 
     <string name="new_name_upgrade_page_title">We have a new look!</string>
@@ -566,8 +560,6 @@
     <string name="exp_survey_yes">YES, PLEASE</string>
     <!-- Text on survey feedback button. This means the user don't want this feature. "Nope" is an informal way to express "No". -->
     <string name="exp_survey_no">NOPE</string>
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     <!-- Title on web auth dialog. This dialog hint user authentication is required to proceed to the website. -->
     <string name="http_auth_dialog_title">Authentication required</string>
@@ -575,11 +567,8 @@
     <string name="http_auth_dialog_user_name">Username</string>
     <!-- Text on an input password field in web auth dialog. This hint user to input password here. -->
     <string name="http_auth_dialog_password">Password</string>
-=======
     <string name="first_run_page3_text">Blocking tracking ads not only speeds up browsing, it saves data. Save even more when you block images.</string>
->>>>>>> Hide turbo mode introduction
-=======
->>>>>>> fix crash on Samsung during deleting topsites & string changes
+
 </resources>
 
 

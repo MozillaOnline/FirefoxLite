@@ -59,6 +59,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.google.android.gms.common.util.Strings;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -135,24 +136,16 @@ import java.util.List;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-<<<<<<< HEAD
 import static org.mozilla.rocket.widget.NewsSourcePreference.PREF_INT_NEWS_PRIORITY;
 
 public class HomeFragment extends LocaleAwareFragment implements TopSitesContract.View, TopSitesContract.Model,
         ScreenNavigator.HomeScreen, ContentPortalView.ContentPortalListener {
-=======
-
-import java.util.UUID;
 
 
-
-
-public class HomeFragment extends LocaleAwareFragment implements TopSitesContract.View,
-        ScreenNavigator.HomeScreen {
->>>>>>> Topsites
     private static final String TAG = "HomeFragment";
 
     public static final String TOPSITES_PREF = "topsites_pref";
@@ -195,12 +188,9 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private Timer timer;
     private static final int SCROLL_PERIOD = 10000;
     private BannerConfigViewModel bannerConfigViewModel;
-<<<<<<< HEAD
     private ContentViewModel contentViewModel;
     final Observer<String[]> bannerObserver = this::setUpBannerFromConfig;
-=======
     //final Observer<String[]> bannerObserver = this::setUpBannerFromConfig;
->>>>>>> disable banner temporarily in version 3
     private String[] configArray;
     private LottieAnimationView downloadingIndicator;
     private ImageView downloadIndicator;
@@ -237,11 +227,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         super.onCreate(bundle);
         this.presenter = new TopSitesPresenter();
         this.presenter.setView(this);
-<<<<<<< HEAD
         this.presenter.setModel(this);
-=======
         parentActivity = getActivity();
->>>>>>> add China Tracking & bug fix
     }
 
     @Override
@@ -584,11 +571,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         };
         snapHelper.attachToRecyclerView(banner);*/
 
-<<<<<<< HEAD
-        SwipeMotionLayout home_container = view.findViewById(R.id.home_container);
-=======
         SwipeMotionLayout home_container = (SwipeMotionLayout)view.findViewById(R.id.home_container);
->>>>>>> Topsites
         home_container.setOnSwipeListener(new GestureListenerAdapter());
 
         if (ThemeManager.shouldShowOnboarding(view.getContext())) {
@@ -651,11 +634,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         updateTopSitesData();
         //setupBannerTimer();
         setNightModeEnabled(Settings.getInstance(getActivity()).isNightModeEnable());
-<<<<<<< HEAD
 
         View fragmentView = getView();
         if (fragmentView != null) {
-            initFeatureSurveyViewIfNecessary(fragmentView);
+           // initFeatureSurveyViewIfNecessary(fragmentView);
         }
 
         playContentPortalAnimation();
@@ -687,9 +669,7 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         final Animation fadein = AnimationUtils.loadAnimation(getActivity(), R.anim.arrow_fade_in);
         Inject.startAnimation(arrow1, fadeout);
         Inject.startAnimation(arrow2, fadein);
-=======
         //initFeatureSurveyViewIfNecessary(getView());
->>>>>>> v1.0.11&enable firebase
     }
 
     private void setupBannerTimer() {
@@ -716,10 +696,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         if (context != null) {
             LocalBroadcastManager.getInstance(context).unregisterReceiver(this.receiver);
         }
-<<<<<<< HEAD
         timer.cancel();
         timer = null;
-<<<<<<< HEAD
         stopAnimation();
     }
 
@@ -730,15 +708,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         if (arrow2 != null && arrow2.getAnimation() != null) {
             arrow2.getAnimation().cancel();
         }
-=======
-        updateTopSitesData(getContext());
->>>>>>> Topsites
-=======
+        updateTopSitesData();
         //timer.cancel();
         //timer = null;
 		//updateTopSitesData(getContext());
 
->>>>>>> disable banner temporarily in version 3
     }
 
     @Override
@@ -749,7 +723,6 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         Context context = getContext();
 
         bannerConfigViewModel = ViewModelProviders.of(this).get(BannerConfigViewModel.class);
-<<<<<<< HEAD
         bannerConfigViewModel.getConfig().observe(this, bannerObserver);
         initBanner(context);
 
@@ -775,10 +748,8 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         // creating a repository will also create a new subscription.
         // we deliberately create a new subscription again to load data aggressively.
         contentViewModel.loadMore();
-=======
         //bannerConfigViewModel.getConfig().observe(this, bannerObserver);
         //initBanner(getContext());
->>>>>>> disable banner temporarily in version 3
     }
 
     @Override
@@ -791,20 +762,14 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
 
     @Override
     public void showSites(@NonNull List<Site> sites) {
-<<<<<<< HEAD
         TopSideComparator topSideComparator = new TopSideComparator();
         Collections.sort(sites, topSideComparator);
-
-        if (this.topSiteAdapter == null) {
-            this.topSiteAdapter = new TopSiteAdapter(sites, clickListener, clickListener, pinSiteManager);
-=======
         ADD_SITE.setId(0);
         ADD_SITE.setViewCount(0);
         ADD_SITE.setFavIconUri("//android_asset/topsites/icon/ic_add.png");
         if (this.topSiteAdapter == null) {
             Log.e("Topsite","adapter null");
-            this.topSiteAdapter = new TopSiteAdapter(sites, clickListener, clickListener);
->>>>>>> Topsites
+            this.topSiteAdapter = new TopSiteAdapter(sites, clickListener, clickListener, pinSiteManager);
             this.recyclerView.setAdapter(topSiteAdapter);
         } else {
             Log.e("Topsite","adapter Not null");
@@ -885,14 +850,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                 ViewParent viewParent = v.getParent();
              	if (viewParent instanceof ViewGroup) {
                     int index = ((ViewGroup) v.getParent()).indexOfChild(v);
-<<<<<<< HEAD
                     TelemetryWrapper.clickTopSiteOn(index, site.isDefault() ? site.getTitle() : "");
-=======
-                    TelemetryWrapper.clickTopSiteOn(index);
                     TelemetryWrapper.clickTopSiteOn(site.getUrl());
                     Log.e("HttpCNTracking","clickTopsiteOn");
 					}
->>>>>>> Strings update for zh
                 }
             }else{
                 //Start AddTopsiteActivity
@@ -993,13 +954,11 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             this.presenter.setSites(this.topSiteAdapter.sites);
         }
         List<Site> topSites = new ArrayList<>(this.presenter.getSites());
-<<<<<<< HEAD
 
         mergeHistorySiteToTopSites(historySites, topSites);
         mergePinSiteToTopSites(pinSiteManager.getPinSites(), topSites);
 
-=======
-        for (Site topSite: topSites) {
+        /*for (Site topSite: topSites) {
             Iterator<Site> querySitesIterator = querySites.iterator();
             while (querySitesIterator.hasNext()) {
                 Site temp = querySitesIterator.next();
@@ -1013,6 +972,15 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
                 }
 
             }
+        }*/
+        TopSideComparator topSideComparator = new TopSideComparator();
+        Collections.sort(topSites, topSideComparator);
+
+        if (topSites.size() > TOP_SITES_QUERY_LIMIT) {
+            List<Site> removeSites = topSites.subList(TOP_SITES_QUERY_LIMIT, topSites.size());
+            removeDefaultSites(removeSites);
+
+            topSites = topSites.subList(0, TOP_SITES_QUERY_LIMIT);
         }
 
         /*topSites.addAll(querySites);
@@ -1170,7 +1138,6 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
         }
     }
 
-<<<<<<< HEAD
     // TODO: Reduce complexity here, a possible solution is to use the HashMap for site list
     private void removeDuplicatedSites(List<Site> sites, Site site, OnRemovedListener listener) {
         final Iterator<Site> siteIterator = sites.iterator();
@@ -1186,8 +1153,6 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
     private interface OnRemovedListener {
         void onRemoved(Site site);
     }
-=======
->>>>>>> Topsites
 
     private static void parseCursorToSite(Cursor cursor, List<String> urls, List<byte[]> icons) {
         String url = cursor.getString(cursor.getColumnIndex(HistoryContract.BrowsingHistory.URL));
@@ -1367,13 +1332,10 @@ public class HomeFragment extends LocaleAwareFragment implements TopSitesContrac
             return false;
         }
 
-<<<<<<< HEAD
         @Override
         public void onHttpAuthRequest(@NotNull TabViewClient.HttpAuthCallback callback, @Nullable String host, @Nullable String realm) {
             // do nothing
         }
-=======
->>>>>>> add China Tracking & bug fix
     }
 
     private interface DoWithThemeManager {

@@ -10,11 +10,8 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
-<<<<<<< HEAD
 import android.support.annotation.RawRes;
-=======
 import android.util.Log;
->>>>>>> Topsites
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,13 +70,9 @@ public class TopSitesUtils {
     public static String loadDefaultSitesFromAssets(Context context, @RawRes int resId) {
         String json = "[]";
         try {
-<<<<<<< HEAD
-            InputStream is = context.getResources().openRawResource(resId);
-=======
 
             InputStream is = context.getResources().openRawResource(R.raw.topsites);
 
->>>>>>> Topsites
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -109,15 +102,14 @@ public class TopSitesUtils {
         try {
             if (jsonArray != null) {
                 for (int i = 0; i < jsonArray.length(); i++) {
-<<<<<<< HEAD
-                    JSONObject json_site = (JSONObject) jsonArray.get(i);
+
+                    /*JSONObject json_site = (JSONObject) jsonArray.get(i);
                     final long id = json_site.getLong(KEY_ID);
                     final String title = json_site.getString(KEY_TITLE);
                     final String url = json_site.getString(KEY_URL);
                     final long viewCount = json_site.getLong(KEY_VIEW_COUNT);
                     final long lastViewed = json_site.getLong(KEY_LAST_VIEW_TIMESTAMP);
-                    final String faviconUri = TOP_SITE_ASSET_PREFIX + json_site.getString(KEY_FAVICON);
-=======
+                    final String faviconUri = TOP_SITE_ASSET_PREFIX + json_site.getString(KEY_FAVICON);*/
                     JSONObject json_site = (JSONObject)jsonArray.get(i);
                     final long id = json_site.getLong("id");
                     final String title = json_site.getString("title");
@@ -125,7 +117,6 @@ public class TopSitesUtils {
                     final long viewCount = json_site.getLong("viewCount");
                     final long lastViewed = json_site.getLong("lastViewTimestamp");
                     final String faviconUri = TOP_SITE_ASSET_PREFIX + json_site.getString("favicon");
->>>>>>> Topsites
                     Site site = new Site(id, title, url, viewCount, lastViewed, faviconUri);
                     site.setDefault(true);
                     defaultSites.add(site);

@@ -1,52 +1,7 @@
 [
   {
-    "id": -1,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "url": "http://m.tribunnews.com/",
-    "title": "Tribunnews",
-    "favicon": "ic_tribunnews.png",
-    "viewCount": 16
-  },
-  {
     "id": -2,
-    "url": "https://m.youtube.com/",
-    "title": "Youtube",
-    "favicon": "ic_youtube.png",
-    "viewCount": 14
-  },
-  {
-    "id": -3,
-    "url": "https://detik.com/",
-    "title": "Detik",
-    "favicon": "ic_detik.png",
-    "viewCount": 12
-  },
-  {
-    "id": -4,
-    "url": "https://www.okezone.com/",
-    "title": "Okezone",
-    "favicon": "ic_okezone.png",
-    "viewCount": 10
-  },
-  {
-    "id": -5,
-    "url": "https://www.sindonews.com/",
-    "title": "SINDOnews",
-    "favicon": "ic_sindonews.png",
-    "viewCount": 8
-  },
-  {
-    "id": -6,
-    "url": "http://www.kompas.com/",
-    "title": "Kompas",
-    "favicon": "ic_kompas.png",
-    "viewCount": 6
-=======
-    "url": "https://m.baidu.com/?from=1000969a&normalload=1#",
-=======
     "url": "https://m.baidu.com/?from=1000969d",
->>>>>>> change baidu url
     "title": "百度",
     "favicon": "baidu.png",
     "viewCount": 20
@@ -85,6 +40,5 @@
     "title": "携程",
     "favicon": "ctrip.png",
     "viewCount": 8
->>>>>>> Topsites
   }
 ]
