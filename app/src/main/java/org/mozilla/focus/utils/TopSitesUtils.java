@@ -71,7 +71,7 @@ public class TopSitesUtils {
         String json = "[]";
         try {
 
-            InputStream is = context.getResources().openRawResource(R.raw.topsites);
+            InputStream is = context.getResources().openRawResource(resId);
 
             int size = is.available();
             byte[] buffer = new byte[size];

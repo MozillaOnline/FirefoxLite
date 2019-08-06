@@ -97,7 +97,8 @@ public class AppConfigWrapper {
     }
 
     public static boolean isLifeFeedEnabled(Context context) {
-        return FirebaseHelper.getRcBoolean(context, FirebaseHelper.ENABLE_LIFE_FEED);
+        //return FirebaseHelper.getRcBoolean(context, FirebaseHelper.ENABLE_LIFE_FEED);
+        return true;
     }
 
     public static String getLifeFeedProviderUrl(Context context, String provider) {
