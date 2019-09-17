@@ -81,7 +81,7 @@ open class FocusApplication : LocaleAwareApplication() {
 
         PreferenceManager.setDefaultValues(this, R.xml.settings, false)
 
-        enableStrictMode()
+        //enableStrictMode()
 
         SearchEngineManager.getInstance().init(this)
 
