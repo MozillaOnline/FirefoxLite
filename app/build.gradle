@@ -13,7 +13,7 @@ android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tools
     defaultConfig {
-        applicationId "org.mozilla.rocket"
+        applicationId "cn.mozilla.rocket"
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
         versionCode Versions.version_code
@@ -441,6 +441,7 @@ task checkTelemetryDocDirty() {
     }
 }
 
+<<<<<<< HEAD
 // -------------------------------------------------------------------------------------------------
 // Generate strings.xml with customized translated strings
 // -------------------------------------------------------------------------------------------------
@@ -448,3 +449,6 @@ task checkTelemetryDocDirty() {
 task updateCustomizedStrings(type: Exec) {
         commandLine 'python', '../tools/l10n/attach-local-strings.py'
 }
+=======
+//apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
+>>>>>>> Firebase config
