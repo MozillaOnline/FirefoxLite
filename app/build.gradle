@@ -13,7 +13,7 @@ android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tools
     defaultConfig {
-        applicationId "org.mozilla.rocket"
+        applicationId "cn.mozilla.rocket"
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
         versionCode Versions.version_code
@@ -421,3 +421,5 @@ task checkTelemetryDocDirty() {
         }
     }
 }
+
+//apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
