@@ -65,6 +65,7 @@ class MenuViewModel : ViewModel() {
             MenuItemAdapter.ItemData(MenuItemAdapter.TYPE_DOWNLOADS),
             MenuItemAdapter.ItemData(MenuItemAdapter.TYPE_HISTORY),
             MenuItemAdapter.ItemData(MenuItemAdapter.TYPE_SCREENSHOTS),
+            MenuItemAdapter.ItemData(MenuItemAdapter.TYPE_CHECK_UPDATE),
             /*MenuItemAdapter.ItemData(MenuItemAdapter.TYPE_TURBO_MODE),*/
             MenuItemAdapter.ItemData(MenuItemAdapter.TYPE_PRIVATE_BROWSING),
             MenuItemAdapter.ItemData(MenuItemAdapter.TYPE_NIGHT_MODE),
