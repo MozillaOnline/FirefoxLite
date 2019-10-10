@@ -24,11 +24,7 @@ import org.mozilla.rocket.content.appComponent
 import org.mozilla.rocket.content.getActivityViewModel
 import org.mozilla.rocket.content.view.BottomBar
 import org.mozilla.rocket.content.view.MenuLayout
-import org.mozilla.rocket.extension.map
-import org.mozilla.rocket.extension.nonNullObserve
-import org.mozilla.rocket.extension.switchFrom
-import org.mozilla.rocket.extension.toActivity
-import org.mozilla.rocket.extension.toFragmentActivity
+import org.mozilla.rocket.extension.*
 import org.mozilla.rocket.nightmode.AdjustBrightnessDialog
 import javax.inject.Inject
 
@@ -90,7 +86,7 @@ class MenuDialog : BottomSheetDialog {
                         TelemetryWrapper.clickMenuHistory()
                     }
                     MenuItemAdapter.TYPE_SCREENSHOTS -> chromeViewModel.showScreenshots()
-                    MenuItemAdapter.TYPE_TURBO_MODE -> chromeViewModel.onTurboModeToggled()
+                    //MenuItemAdapter.TYPE_TURBO_MODE -> chromeViewModel.onTurboModeToggled()
                     MenuItemAdapter.TYPE_PRIVATE_BROWSING -> {
                         chromeViewModel.togglePrivateMode.call()
                         TelemetryWrapper.togglePrivateMode(true)
@@ -129,8 +125,8 @@ class MenuDialog : BottomSheetDialog {
         val activity = context.toFragmentActivity()
         menuViewModel.menuItems.nonNullObserve(activity, menuItemAdapter::setItems)
 
-        chromeViewModel.isTurboModeEnabled.switchFrom(menuViewModel.menuItems)
-                .observe(activity, Observer { menuItemAdapter.setTurboMode(it == true) })
+        /*chromeViewModel.isTurboModeEnabled.switchFrom(menuViewModel.menuItems)
+                .observe(activity, Observer { menuItemAdapter.setTurboMode(it == true) })*/
         chromeViewModel.isNightMode.switchFrom(menuViewModel.menuItems)
                 .observe(activity, Observer { menuItemAdapter.setNightMode(it?.isEnabled == true) })
         chromeViewModel.isBlockImageEnabled.switchFrom(menuViewModel.menuItems)
