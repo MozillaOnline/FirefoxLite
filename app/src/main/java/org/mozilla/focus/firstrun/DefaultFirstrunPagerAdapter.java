@@ -1,10 +1,11 @@
 package org.mozilla.focus.firstrun;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.widget.Switch;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
 
 import org.mozilla.focus.R;
 import org.mozilla.focus.telemetry.TelemetryWrapper;
@@ -17,10 +18,10 @@ public class DefaultFirstrunPagerAdapter extends FirstrunPagerAdapter {
     public DefaultFirstrunPagerAdapter(Context context, View.OnClickListener listener) {
         super(context, listener);
 
-        this.pages.add(new FirstrunPage(
+        /*this.pages.add(new FirstrunPage(
                 context.getString(R.string.first_run_page2_title),
                 context.getString(R.string.first_run_page2_text),
-                "first_run_img_2.json"));
+                "first_run_img_2.json"));*/
         this.pages.add(new FirstrunPage(
                 context.getString(R.string.first_run_page4_title),
                 context.getString(R.string.first_run_page4_text),
