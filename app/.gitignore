@@ -9,3 +9,6 @@ src/preview/java/org/mozilla/focus/generated/
 src/focus/java/org/mozilla/focus/generated/
 
 google-services.json
+
+KEYSTORE
+keystore.properties
