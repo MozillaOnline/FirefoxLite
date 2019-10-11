@@ -85,7 +85,7 @@ open class FocusApplication : LocaleAwareApplication() {
         SearchEngineManager.getInstance().init(this)
 
         TelemetryWrapper.init(this)
-        AdjustHelper.setupAdjustIfNeeded(this)
+        //AdjustHelper.setupAdjustIfNeeded(this)
 
         BrowsingHistoryManager.getInstance().init(this)
         ScreenshotManager.getInstance().init(this)

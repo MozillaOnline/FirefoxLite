@@ -9,9 +9,21 @@ apply from: '../buildSrc/checkstyle.gradle'
 apply from: '../buildSrc/findbugs.gradle'
 apply from: 'buildscripts/l10n.gradle'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tools
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     defaultConfig {
         applicationId "cn.mozilla.rocket"
         minSdkVersion Versions.min_sdk
@@ -422,4 +434,3 @@ task checkTelemetryDocDirty() {
     }
 }
 
-//apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
