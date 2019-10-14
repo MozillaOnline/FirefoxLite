@@ -48,7 +48,6 @@ import org.mozilla.rocket.adapter.AdapterDelegatesManager
 import org.mozilla.rocket.adapter.DelegateAdapter
 import org.mozilla.rocket.chrome.ChromeViewModel
 import org.mozilla.rocket.content.appComponent
-import org.mozilla.rocket.content.ecommerce.ui.ShoppingActivity
 import org.mozilla.rocket.content.game.ui.GameActivity
 import org.mozilla.rocket.content.getActivityViewModel
 import org.mozilla.rocket.content.news.ui.NewsActivity
@@ -263,7 +262,8 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
                 val context = requireContext()
                 when (it) {
                     is ContentHub.Item.Travel -> startActivity(TravelActivity.getStartIntent(context))
-                    is ContentHub.Item.Shopping -> startActivity(ShoppingActivity.getStartIntent(context))
+                    //is ContentHub.Item.Shopping -> startActivity(ShoppingActivity.getStartIntent(context))
+                    is ContentHub.Item.Shopping -> ScreenNavigator.get(context).showBrowserScreen("https://mo.m.taobao.com/union/chaojidanpin20181201?pid=mm_28347190_2425761_109044000107", true, false)
                     is ContentHub.Item.News -> startActivity(NewsActivity.getStartIntent(context))
                     is ContentHub.Item.Games -> startActivity(GameActivity.getStartIntent(context))
                 }
