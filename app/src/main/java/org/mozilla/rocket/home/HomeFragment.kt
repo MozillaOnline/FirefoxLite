@@ -263,7 +263,7 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
                 when (it) {
                     is ContentHub.Item.Travel -> startActivity(TravelActivity.getStartIntent(context))
                     //is ContentHub.Item.Shopping -> startActivity(ShoppingActivity.getStartIntent(context))
-                    is ContentHub.Item.Shopping -> ScreenNavigator.get(context).showBrowserScreen("https://mo.m.taobao.com/union/chaojidanpin20181201?pid=mm_28347190_2425761_109044000107", true, false)
+                    is ContentHub.Item.Shopping -> ScreenNavigator.get(context).showBrowserScreen("https://redirect.simba.taobao.com/rd?c=un&w=bd&k=ea3970db1767faa9&p=mm_28347190_2425761_40288306&f=https%3A%2F%2Fku.m.taobao.com%2Fkgb%2F20191111.html%3Frefpid%3Dmm_28347190_2425761_40288306", true, false)
                     is ContentHub.Item.News -> startActivity(NewsActivity.getStartIntent(context))
                     is ContentHub.Item.Games -> startActivity(GameActivity.getStartIntent(context))
                 }
