@@ -23,9 +23,9 @@ public class ThemeManager {
     }
 
     public enum ThemeSet {
-        Default(R.style.ThemeToyDefault),
+        Default(R.style.ThemeToy01),
 
-        Theme1(R.style.ThemeToy01),
+        Theme1(R.style.ThemeToyDefault),
         Theme2(R.style.ThemeToy02),
         Theme3(R.style.ThemeToy03),
         Theme4(R.style.ThemeToy04);
