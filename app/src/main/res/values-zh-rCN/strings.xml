@@ -347,8 +347,8 @@
   <string name="gaming_vertical_genre_11">体育﹠赛车</string>
   <string name="gaming_vertical_genre_12">女孩</string>
   <string name="onboarding_2_introduction_title">全新 %1$s</string>
-  <string name="onboarding_2_introduction_description">一如既往的轻快。我们增加了智能购物搜索与内容，让网络浏览更愉快有趣！</string>
-  <string name="onboarding_2_content_services_news_shopping_games">点击即可阅读热门新闻、寻找优惠折扣，或者玩最火的免费游戏！</string>
+  <string name="onboarding_2_introduction_description">一如既往的轻快，让网络浏览更愉快有趣！</string>
+  <string name="onboarding_2_content_services_news_shopping_games">点击即可寻找优惠折扣！</string>
   <string name="onboarding_2_content_services_news_games">点击即可阅读热门新闻，或玩最火的免费游戏！</string>
   <string name="onboarding_2_content_services_games">点击此处即可玩最火的免费游戏！</string>
   <string name="onboarding_2_smart_shopping_search_title">智能购物搜索</string>
