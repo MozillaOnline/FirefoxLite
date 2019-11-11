@@ -263,7 +263,7 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
                 when (it) {
                     is ContentHub.Item.Travel -> startActivity(TravelActivity.getStartIntent(context))
                     //is ContentHub.Item.Shopping -> startActivity(ShoppingActivity.getStartIntent(context))
-                    is ContentHub.Item.Shopping -> ScreenNavigator.get(context).showBrowserScreen("https://redirect.simba.taobao.com/rd?c=un&w=bd&k=ea3970db1767faa9&p=mm_28347190_2425761_40288306&f=https%3A%2F%2Fku.m.taobao.com%2Fkgb%2F20191111.html%3Frefpid%3Dmm_28347190_2425761_40288306", true, false)
+                    is ContentHub.Item.Shopping -> ScreenNavigator.get(context).showBrowserScreen("https://union-click.jd.com/jdc?e=&p=AyIGZRprFDJWWA1FBCVbV0IUWVALHFRBEwQAQB1AWQkrBUEGcHAKRCRwBFJSJhoJfQMbYy9vDRkOIgRWGl8VCxAEUytYFgMWBFQZUhAyIgdUKxB7AyIHXRlZEwUVDlUSaxUGFAVQHlkTARIAVBhrEgIbNylFEE1fT1dWGlsQMiI3VitrJQISN1UrBFFfTzdXGloRCw%3D%3D", true, false)
                     is ContentHub.Item.News -> startActivity(NewsActivity.getStartIntent(context))
                     is ContentHub.Item.Games -> startActivity(GameActivity.getStartIntent(context))
                 }
