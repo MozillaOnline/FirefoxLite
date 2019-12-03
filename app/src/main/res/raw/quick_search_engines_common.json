@@ -1,21 +1,20 @@
 [
   {
-    "name": "Facebook",
-    "searchUrlPattern": "https://www.facebook.com/search/str/%s/keywords_search",
-    "homeUrl": "https://www.facebook.com",
-    "icon": "ic_facebook.png"
+    "name": "微博",
+    "searchUrlPattern": "https://s.weibo.com/weibo?q=%s",
+    "homeUrl": "https://www.weibo.com",
+    "icon": "weibo.png"
   },
   {
-    "name": "YouTube",
-    "searchUrlPattern": "https://www.youtube.com/results?search_query=%s",
-    "homeUrl": "https://www.youtube.com",
-    "icon": "ic_youtube.png"
+    "name": "腾讯视频",
+    "searchUrlPattern": "https://v.qq.com/x/search/?q=%s",
+    "homeUrl": "https://v.qq.com",
+    "icon": "vqq.png"
   },
   {
-    "name": "Instagram",
-    "searchUrlPattern": "https://www.instagram.com/explore/tags/%s/",
-    "homeUrl": "https://www.instagram.com",
-    "icon": "ic_instagram.png",
-    "permitSpace": false
+    "name": "知乎",
+    "searchUrlPattern": "https://www.zhihu.com/search?type=content&q=%s/",
+    "homeUrl": "https://www.zhihu.com/",
+    "icon": "zhihu.png"
   }
 ]
