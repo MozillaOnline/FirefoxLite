@@ -471,4 +471,6 @@
   <string name="travel_dialog_2_description">您可以将 %1$s Travel Discovery 设为默认旅游搜索引擎。</string>
   <string name="travel_dialog_2_checkbox">不再询问我</string>
   <string name="travel_dialog_2_action">设为默认值</string>
+  <string name="label_menu_check_update">检查更新</string>
+  <string name="rate_app_feedback_url">http://mozilla.com.cn/forum-42-1.html</string>
 </resources>
