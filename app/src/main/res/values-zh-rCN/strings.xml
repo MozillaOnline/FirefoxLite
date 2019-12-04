@@ -424,4 +424,6 @@
   <string name="msrp_reward_challenge_error">啊呀！出错了</string>
   <string name="msrp_activitykilled_snackbar_button">兑换</string>
   <string name="msrp_activitykilled_snackbar_body">您赢得了一张代金券！</string>
+  <string name="label_menu_check_update">检查更新</string>
+  <string name="rate_app_feedback_url">http://mozilla.com.cn/forum-42-1.html</string>
 </resources>
