@@ -4,12 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.view.GestureDetector
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -17,26 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import dagger.Lazy
-import kotlinx.android.synthetic.main.fragment_home.account_layout
-import kotlinx.android.synthetic.main.fragment_home.arc_panel
-import kotlinx.android.synthetic.main.fragment_home.arc_view
-import kotlinx.android.synthetic.main.fragment_home.content_hub
-import kotlinx.android.synthetic.main.fragment_home.content_hub_layout
-import kotlinx.android.synthetic.main.fragment_home.content_hub_title
-import kotlinx.android.synthetic.main.fragment_home.home_background
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_fake_input
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_fake_input_icon
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_fake_input_text
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_menu_button
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_tab_counter
-import kotlinx.android.synthetic.main.fragment_home.logo_man_notification
-import kotlinx.android.synthetic.main.fragment_home.main_list
-import kotlinx.android.synthetic.main.fragment_home.page_indicator
-import kotlinx.android.synthetic.main.fragment_home.private_mode_button
-import kotlinx.android.synthetic.main.fragment_home.profile_button
-import kotlinx.android.synthetic.main.fragment_home.reward_button
-import kotlinx.android.synthetic.main.fragment_home.search_panel
-import kotlinx.android.synthetic.main.fragment_home.shopping_button
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.mozilla.focus.R
 import org.mozilla.focus.locale.LocaleAwareFragment
 import org.mozilla.focus.navigation.ScreenNavigator
@@ -150,9 +126,9 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
         chromeViewModel.tabCount.observe(this, Observer {
             setTabCount(it ?: 0)
         })
-        homeViewModel.isShoppingSearchEnabled.observe(this, Observer { isEnabled ->
-            shopping_button.isVisible = isEnabled
-            private_mode_button.isVisible = !isEnabled
+        homeViewModel.isShoppingSearchEnabled.observe(this, Observer {
+            shopping_button.isVisible = false
+            private_mode_button.isVisible = true
         })
         shopping_button.setOnClickListener { homeViewModel.onShoppingButtonClicked() }
         homeViewModel.openShoppingSearch.observe(this, Observer {
@@ -463,10 +439,10 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
             closeContentServiceSpotlight()
         })
         homeViewModel.showShoppingSearchOnboardingSpotlight.observe(this, Observer {
-            currentShoppingBtnVisibleState = shopping_button.isVisible
-            shopping_button.isVisible = true
-            private_mode_button.isVisible = false
-            showShoppingSearchSpotlight()
+            currentShoppingBtnVisibleState = false
+            shopping_button.isVisible = false
+            private_mode_button.isVisible = true
+            //showShoppingSearchSpotlight()
         })
     }
 
