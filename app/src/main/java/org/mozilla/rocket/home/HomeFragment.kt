@@ -7,12 +7,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.GestureDetector
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.widget.PopupMenu
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -42,6 +37,7 @@ import kotlinx.android.synthetic.main.fragment_home.profile_button
 import kotlinx.android.synthetic.main.fragment_home.reward_button
 import kotlinx.android.synthetic.main.fragment_home.search_panel
 import kotlinx.android.synthetic.main.fragment_home.shopping_button
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.mozilla.focus.R
 import org.mozilla.focus.locale.LocaleAwareFragment
 import org.mozilla.focus.navigation.ScreenNavigator
@@ -157,9 +153,9 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
         chromeViewModel.tabCount.observe(this, Observer {
             setTabCount(it ?: 0)
         })
-        homeViewModel.isShoppingSearchEnabled.observe(this, Observer { isEnabled ->
-            shopping_button.isVisible = isEnabled
-            private_mode_button.isVisible = !isEnabled
+        homeViewModel.isShoppingSearchEnabled.observe(this, Observer {
+            shopping_button.isVisible = false
+            private_mode_button.isVisible = true
         })
         shopping_button.setOnClickListener { homeViewModel.onShoppingButtonClicked() }
         homeViewModel.openShoppingSearch.observe(this, Observer {
@@ -490,10 +486,10 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
             closeContentServiceSpotlight()
         })
         homeViewModel.showShoppingSearchOnboardingSpotlight.observe(this, Observer {
-            currentShoppingBtnVisibleState = shopping_button.isVisible
-            shopping_button.isVisible = true
-            private_mode_button.isVisible = false
-            showShoppingSearchSpotlight()
+            currentShoppingBtnVisibleState = false
+            shopping_button.isVisible = false
+            private_mode_button.isVisible = true
+            //showShoppingSearchSpotlight()
         })
     }
 
