@@ -6,14 +6,17 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import androidx.core.app.ActivityCompat.finishAffinity
 import dagger.Lazy
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.mozilla.focus.R
+import org.mozilla.focus.activity.MainActivity
 import org.mozilla.focus.locale.LocaleAwareFragment
 import org.mozilla.focus.navigation.ScreenNavigator
 import org.mozilla.focus.telemetry.TelemetryWrapper
@@ -433,6 +436,18 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
 
     private fun initOnboardingSpotlight() {
         homeViewModel.showContentServicesOnboardingSpotlight.observe(this, Observer {
+            val d = android.app.AlertDialog.Builder(activity)
+                    .setPositiveButton("查看Firefox隐私声明") { _, _ ->
+                        ScreenNavigator.get(context).showBrowserScreen ("https://www.mozilla.org/zh-CN/privacy/firefox-lite/", true, false)
+                    }
+                    .setNeutralButton("退出app") { _, _ ->
+                        finishAffinity(this.requireActivity())
+                    }
+                    .setTitle("隐私声明")
+                    .setMessage("https://www.mozilla.org/zh-CN/privacy/firefox-lite/")
+                    .create()
+
+            d.show()
             showContentServiceSpotlight()
         })
         homeViewModel.dismissContentServiceOnboardingDialog.observe(this, Observer {
