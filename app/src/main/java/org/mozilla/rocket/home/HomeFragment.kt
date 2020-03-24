@@ -1,5 +1,6 @@
 package org.mozilla.rocket.home
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
@@ -7,7 +8,13 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
 import android.view.*
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -16,29 +23,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import dagger.Lazy
-import kotlinx.android.synthetic.main.fragment_home.account_layout
-import kotlinx.android.synthetic.main.fragment_home.arc_panel
-import kotlinx.android.synthetic.main.fragment_home.arc_view
-import kotlinx.android.synthetic.main.fragment_home.content_hub
-import kotlinx.android.synthetic.main.fragment_home.content_hub_layout
-import kotlinx.android.synthetic.main.fragment_home.content_hub_title
-import kotlinx.android.synthetic.main.fragment_home.home_background
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_fake_input
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_fake_input_icon
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_fake_input_text
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_menu_button
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_tab_counter
-import kotlinx.android.synthetic.main.fragment_home.home_fragment_title
-import kotlinx.android.synthetic.main.fragment_home.logo_man_notification
-import kotlinx.android.synthetic.main.fragment_home.main_list
-import kotlinx.android.synthetic.main.fragment_home.page_indicator
-import kotlinx.android.synthetic.main.fragment_home.private_mode_button
-import kotlinx.android.synthetic.main.fragment_home.profile_button
-import kotlinx.android.synthetic.main.fragment_home.reward_button
-import kotlinx.android.synthetic.main.fragment_home.search_panel
-import kotlinx.android.synthetic.main.fragment_home.shopping_button
 import kotlinx.android.synthetic.main.fragment_home.*
-import org.mozilla.focus.R
 import org.mozilla.focus.locale.LocaleAwareFragment
 import org.mozilla.focus.navigation.ScreenNavigator
 import org.mozilla.focus.telemetry.TelemetryWrapper
@@ -74,6 +59,8 @@ import org.mozilla.rocket.shopping.search.ui.ShoppingSearchActivity
 import org.mozilla.rocket.theme.ThemeManager
 import org.mozilla.rocket.util.ToastMessage
 import javax.inject.Inject
+import kotlin.system.exitProcess
+
 
 class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
 
@@ -94,6 +81,10 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
     private lateinit var contentServiceSpotlightDialog: Dialog
     private var currentShoppingBtnVisibleState = false
 
+    private val PREF_KEY_BOOLEAN_PRIVACY_APPROVED = "privacy_approved"
+    private val PREF_KEY_BOOLEAN_HOME_PAGE_ONBOARDING_WILL_SHOW = "home_page_onboarding_will_show";
+    private val PREF_KEY_BOOLEAN_HOME_PAGE_ONBOARDING = "has_home_page_onboarding_shown"
+
     private val topSitesPageChangeCallback = object : OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             homeViewModel.onTopSitesPagePositionChanged(position)
@@ -106,13 +97,19 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
     override fun onCreate(savedInstanceState: Bundle?) {
         appComponent().inject(this)
         super.onCreate(savedInstanceState)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
+        if(!preferences.contains(PREF_KEY_BOOLEAN_PRIVACY_APPROVED)) {
+            preferences.edit()
+                    .putBoolean(PREF_KEY_BOOLEAN_PRIVACY_APPROVED, false)
+                    .apply()
+        }
         homeViewModel = getActivityViewModel(homeViewModelCreator)
         chromeViewModel = getActivityViewModel(chromeViewModelCreator)
         downloadIndicatorViewModel = getActivityViewModel(downloadIndicatorViewModelCreator)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return inflater.inflate(org.mozilla.focus.R.layout.fragment_home, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -125,7 +122,48 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
         initFxaView()
         initLogoManNotification()
         observeNightMode()
-        initOnboardingSpotlight()
+        val preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
+        if(!preferences.getBoolean(PREF_KEY_BOOLEAN_PRIVACY_APPROVED,false)){
+            val content = "Firefox Lite 是由 Mozilla 和其他贡献者提供的自由且开源软件。\n" +
+                    "Firefox Lite 根据 Mozilla Public License 以及其他开源许可证向您提供。\n" +
+                    "您没有得到 Mozilla 基金会或任何其他方面（包括 Mozilla、Firefox 或 Firefox Lite 的名称或标志）的商标授权。更多信息参见：此处。\n" +
+                    "Firefox Lite 的其他源代码可按各种自由和开源软件许可证使用。\n" +
+                    "关于我们如何使用您通过 Firefox Lite提交给 Mozilla 的个人信息和反馈，请参见 Firefox Lite 隐私权政策。"
+            val messageClickable1 = "Mozilla Public License"
+            val messageClickable2 = "此处"
+            val messageClickable3 = "自由和开源软件许可证"
+            val messageClickable4 = "Firefox Lite 隐私权政策"
+            val messageSpannable = SpannableString(content)
+
+            val clickableSpan1 = MultiClickableSpan(1, this.appContext)
+            val clickableSpan2 = MultiClickableSpan(2, this.appContext)
+            val clickableSpan3 = MultiClickableSpan(3, this.appContext)
+            val clickableSpan4 = MultiClickableSpan(4, this.appContext)
+
+            messageSpannable.setSpan(clickableSpan1, content.indexOf(messageClickable1), content.indexOf(messageClickable1) + messageClickable1.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            messageSpannable.setSpan(clickableSpan2, content.indexOf(messageClickable2), content.indexOf(messageClickable2) + messageClickable2.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            messageSpannable.setSpan(clickableSpan3, content.indexOf(messageClickable3), content.indexOf(messageClickable3) + messageClickable3.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            messageSpannable.setSpan(clickableSpan4, content.indexOf(messageClickable4), content.indexOf(messageClickable4) + messageClickable4.length, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+            val builder = AlertDialog.Builder(requireActivity())
+                    .setPositiveButton("同意并继续", DialogInterface.OnClickListener { _, _ ->
+                        if(preferences.getBoolean(PREF_KEY_BOOLEAN_HOME_PAGE_ONBOARDING_WILL_SHOW,false)||preferences.getBoolean(PREF_KEY_BOOLEAN_HOME_PAGE_ONBOARDING,false)){
+                            preferences.edit().putBoolean(PREF_KEY_BOOLEAN_PRIVACY_APPROVED, true).apply()
+                            preferences.edit().putBoolean(PREF_KEY_BOOLEAN_HOME_PAGE_ONBOARDING, true).apply()
+                        }
+
+                        initOnboardingSpotlight()
+                    })
+                    .setNeutralButton("退出应用", DialogInterface.OnClickListener { _, _ -> exitProcess(0) })
+                    .setTitle("温馨提示")
+                    .setMessage(messageSpannable)
+                    .setCancelable(false)
+            //.setMessage(Html.fromHtml("<a href=\"https://www.mozilla.org/zh-CN/privacy/firefox/\">点此查看Firefox隐私声明</a>"))
+            val alertDialog:AlertDialog = builder.create()
+            alertDialog.show()
+            alertDialog.findViewById<TextView>(android.R.id.message).movementMethod = LinkMovementMethod.getInstance()
+        }else{
+            initOnboardingSpotlight()
+        }
 
         observeActions()
     }
@@ -212,7 +250,7 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
         val specifiedFaviconBgColors = getFaviconBgColorsFromResource(appContext)
         topSitesAdapter = DelegateAdapter(
             AdapterDelegatesManager().apply {
-                add(SitePage::class, R.layout.item_top_site_page, SitePageAdapterDelegate(homeViewModel, chromeViewModel, specifiedFaviconBgColors))
+                add(SitePage::class, org.mozilla.focus.R.layout.item_top_site_page, SitePageAdapterDelegate(homeViewModel, chromeViewModel, specifiedFaviconBgColors))
             }
         )
         main_list.apply {
@@ -353,20 +391,20 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
     }
 
     override fun applyLocale() {
-        home_fragment_fake_input_text.text = getString(R.string.home_search_bar_text)
+        home_fragment_fake_input_text.text = getString(org.mozilla.focus.R.string.home_search_bar_text)
     }
 
     private fun showTopSiteMenu(anchorView: View, pinEnabled: Boolean, site: Site, position: Int) {
         PopupMenu(anchorView.context, anchorView, Gravity.CLIP_HORIZONTAL)
                 .apply {
-                    menuInflater.inflate(R.menu.menu_top_site_item, menu)
-                    menu.findItem(R.id.pin)?.apply {
+                    menuInflater.inflate(org.mozilla.focus.R.menu.menu_top_site_item, menu)
+                    menu.findItem(org.mozilla.focus.R.id.pin)?.apply {
                         isVisible = pinEnabled
                     }
                     setOnMenuItemClickListener { item ->
                         when (item.itemId) {
-                            R.id.pin -> homeViewModel.onPinTopSiteClicked(site, position)
-                            R.id.remove -> homeViewModel.onRemoveTopSiteClicked(site)
+                            org.mozilla.focus.R.id.pin -> homeViewModel.onPinTopSiteClicked(site, position)
+                            org.mozilla.focus.R.id.remove -> homeViewModel.onRemoveTopSiteClicked(site)
                             else -> throw IllegalStateException("Unhandled menu item")
                         }
 
@@ -474,7 +512,7 @@ class HomeFragment : LocaleAwareFragment(), ScreenNavigator.HomeScreen {
 
     private fun setOnboardingStatusBarColor() {
         activity?.let {
-            it.window.statusBarColor = ContextCompat.getColor(it, R.color.paletteBlack50)
+            it.window.statusBarColor = ContextCompat.getColor(it, org.mozilla.focus.R.color.paletteBlack50)
         }
     }
 

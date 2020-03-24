@@ -181,6 +181,9 @@
             android:name="org.mozilla.focus.screenshot.ScreenshotViewerActivity"
             android:exported="false" />
 
+        <activity android:name="org.mozilla.rocket.home.WebViewActivity"
+            android:theme="@style/SettingsTheme" />
+
         <!-- This will either be an actual FCM messaging service, or a dummy service that do nothing-->
         <service
             android:name="org.mozilla.focus.notification.RocketMessagingService">

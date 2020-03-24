@@ -71,7 +71,7 @@ class HomeViewModel(
     val isShoppingSearchEnabled = MutableLiveData<Boolean>().apply { value = isShoppingButtonEnabledUseCase() }
     val hasUnreadMissions: LiveData<Boolean> = hasUnreadMissionsUseCase()
     val isFxAccount: LiveData<Boolean> = getIsFxAccountUseCase()
-    val isContentHubMergeIntoTopSite: LiveData<Boolean> = MutableLiveData<Boolean>().apply { value = isContentHubAbTestingEnabled() }
+    val isContentHubMergeIntoTopSite: LiveData<Boolean> = MutableLiveData<Boolean>().apply { value = false }
 
     val toggleBackgroundColor = SingleLiveEvent<Unit>()
     val resetBackgroundColor = SingleLiveEvent<Unit>()
